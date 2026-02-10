@@ -229,11 +229,18 @@ img {
     margin-left: auto;
 }
 
+.nav-menu li {
+    position: relative;
+}
+
 .nav-menu li a {
     color: var(--dark);
     font-weight: 500;
     padding: 8px 0;
     position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .nav-menu li a.active {
@@ -271,6 +278,82 @@ img {
 
 .nav-cta::after {
     display: none;
+}
+
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dropdown-toggle i {
+    font-size: 0.8rem;
+    transition: var(--transition);
+}
+
+.dropdown:hover .dropdown-toggle i {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background-color: var(--white);
+    box-shadow: var(--shadow-hover);
+    border-radius: var(--radius);
+    padding: 10px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: var(--transition);
+    z-index: 1000;
+}
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu a {
+    padding: 12px 20px;
+    display: block;
+    color: var(--dark);
+    transition: var(--transition);
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(128, 22, 204, 0.05);
+    color: var(--primary);
+    padding-left: 25px;
+}
+
+.dropdown-menu a::after {
+    display: none;
+}
+
+/* Move James Hardie logo to right side */
+.hardie-header-logo {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.hardie-header-logo .partner-logo-img {
+    height: 60px;
+    width: auto;
+    max-width: 100px;
 }
 
 .menu-toggle {
@@ -1165,8 +1248,8 @@ img {
     }
     
     /* Header adjustments for tablet */
-    .header-partner {
-        display: none; /* Hide partner logo on tablet */
+    .hardie-header-logo {
+        display: none; /* Hide James Hardie logo on tablet */
     }
     
     .logo {
@@ -1186,6 +1269,27 @@ img {
     
     .nav-menu {
         margin-left: 0;
+    }
+    
+    /* Dropdown adjustments */
+    .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background-color: transparent;
+        padding-left: 20px;
+        display: none;
+    }
+    
+    .dropdown.active .dropdown-menu {
+        display: block;
+    }
+    
+    .dropdown-menu a {
+        padding: 10px 15px;
+        font-size: 0.95rem;
     }
     
     /* Grid adjustments */
@@ -1220,20 +1324,47 @@ img {
         height: 100vh;
         background-color: var(--white);
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 30px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 0;
         transition: var(--transition);
         box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
         z-index: 1000;
+        padding: 80px 30px 30px;
+        overflow-y: auto;
     }
     
     .nav-menu.active {
         right: 0;
     }
     
+    .nav-menu li {
+        width: 100%;
+        border-bottom: 1px solid var(--light-gray);
+    }
+    
     .nav-menu li a {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        padding: 15px 0;
+        width: 100%;
+    }
+    
+    .nav-menu li:last-child {
+        border-bottom: none;
+    }
+    
+    /* Mobile dropdown */
+    .dropdown-toggle i {
+        margin-left: auto;
+    }
+    
+    .dropdown-menu {
+        display: none;
+        padding-left: 20px;
+    }
+    
+    .dropdown.active .dropdown-menu {
+        display: block;
     }
     
     .hero {
