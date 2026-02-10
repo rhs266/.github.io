@@ -3,414 +3,688 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Residential Home Solutions - Expert window, door, and siding replacement in Spokane Valley, WA">
-    <title>Residential Home Solutions | Window & Door Replacement | Spokane Valley</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <title>Residential Home Solutions | Spokane Valley</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        :root {
+            --primary-color: #9e2fed;
+            --primary-dark: #7a1bc4;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --gray-color: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #fff;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--dark-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        /* Hero & Slideshow */
+        .hero {
+            margin-top: 80px;
+            position: relative;
+            height: 80vh;
+            min-height: 500px;
+            overflow: hidden;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 30px;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(158, 47, 237, 0.3);
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .slide-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin: 0 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: var(--primary-color);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--primary-color);
+        }
+
+        .welcome-section {
+            background-color: #f9f5ff;
+            padding: 60px 0;
+            border-radius: 10px;
+            margin-bottom: 60px;
+        }
+
+        .welcome-text {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-img {
+            height: 200px;
+            background-color: var(--primary-color);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(158, 47, 237, 0.1);
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            background-color: #f9f5ff;
+            padding: 80px 0;
+            margin-top: 80px;
+        }
+
+        .testimonial {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .contact-info {
+            margin-top: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background-color: white;
+                padding: 20px;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+                margin-left: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero {
+                height: 70vh;
+                min-height: 400px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header & Navigation -->
-    <header class="header">
+    <header>
         <div class="container">
             <nav class="navbar">
-                <a href="#" class="logo">
-                    <img src="images/logo.png" alt="Residential Home Solutions Logo" width="180" height="50">
-                </a>
-                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                <a href="index.html" class="logo">Residential<span>HS</span></a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
                 </button>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#contact" class="nav-cta">Free Quote</a></li>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
+    <!-- Hero Section with Slideshow -->
+    <section class="hero">
+        <div class="slideshow-container">
+            <!-- Slides will be added here by JavaScript -->
+        </div>
+        <div class="slide-overlay">
             <div class="hero-content">
-                <h1 class="hero-title">Enhance Your Spokane Valley Home. Expertly Crafted.</h1>
-                <p class="hero-subtitle">Trusted local installation of high-performance windows, doors, and James Hardie® siding for lasting beauty, comfort, and value.</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">
-                        <i class="fas fa-calendar-alt"></i> Get Your Free, No-Obligation Quote
-                    </a>
-                    <a href="#services" class="btn btn-secondary">
-                        <i class="fas fa-info-circle"></i> Learn More
-                    </a>
-                </div>
-                <div class="hero-badges">
-                    <span class="badge">
-                        <i class="fas fa-award"></i> Elite Preferred James Hardie Contractor
-                    </span>
-                    <span class="badge">
-                        <i class="fas fa-home"></i> Locally Owned & Operated
-                    </span>
-                    <span class="badge">
-                        <i class="fas fa-star"></i> 5-Star Rated Service
-                    </span>
-                </div>
+                <h1>Quality Home Solutions for Spokane Valley</h1>
+                <p>Windows, Doors & Siding from a Trusted Local Business</p>
+                <a href="contact.html" class="cta-button">Get Your Free Quote Today</a>
             </div>
         </div>
-        <div class="hero-overlay"></div>
+        <div class="slide-dots" id="slideDots">
+            <!-- Dots will be added here by JavaScript -->
+        </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
+    <!-- Main Content -->
+    <main class="main-content">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Our Premium Home Solutions</h2>
-                <p class="section-subtitle">We specialize in transforming homes with premium, durable products designed for the Spokane climate.</p>
+            <h2 class="section-title">Welcome to Residential Home Solutions</h2>
+            
+            <div class="welcome-section">
+                <div class="welcome-text">
+                    <p>Finding the right home products and services in our Washington area can be a challenge. Residential Home Solutions is here to provide you with quality window, door, and siding services.</p>
+                    <p>As a hometown small business, we pride ourselves on providing our customers high-quality locally made products, the best professional insight, and outstanding customer service on all our custom windows and doors, including fiber cement siding as an Elite Preferred James Hardie Contractor Alliance member.</p>
+                    <p>Let us help you find the perfect home solutions on replacement windows, siding, and doors. Contact us today for a replacement quote for your Spokane area home.</p>
+                </div>
             </div>
+
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-window-maximize"></i>
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="service-content">
+                        <div class="badge">Premium Quality</div>
+                        <h3>Window Replacement</h3>
+                        <p>High-quality, energy-efficient replacement windows designed for the Spokane climate. We offer custom solutions to fit your home's style and your budget.</p>
                     </div>
-                    <h3>Window Replacement</h3>
-                    <p>Energy-efficient replacement windows tailored to our climate, reducing energy bills and increasing home comfort.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check-circle"></i> Energy Star Certified</li>
-                        <li><i class="fas fa-check-circle"></i> Custom Sizing & Styles</li>
-                        <li><i class="fas fa-check-circle"></i> Professional Installation</li>
-                    </ul>
                 </div>
+                
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-door-open"></i>
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1581985673473-860e8c6f6b8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="service-content">
+                        <div class="badge">Elegant & Secure</div>
+                        <h3>Entry & Patio Doors</h3>
+                        <p>Create the perfect entryway, including french doors, for your Spokane home with beautiful replacement doors from ProVia.</p>
                     </div>
-                    <h3>Door Installation</h3>
-                    <p>Secure, stylish entry and patio doors that enhance curb appeal while improving security and energy efficiency.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check-circle"></i> Enhanced Security Features</li>
-                        <li><i class="fas fa-check-circle"></i> Weather-Resistant Seals</li>
-                        <li><i class="fas fa-check-circle"></i> Custom Finishes Available</li>
-                    </ul>
                 </div>
+                
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3>James Hardie® Siding</h3>
-                    <p class="hardie-badge">Elite Preferred James Hardie Contractor</p>
-                    <p>Superior fiber cement siding that withstands Pacific Northwest weather while maintaining beauty for decades.</p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check-circle"></i> 30-Year Warranty</li>
-                        <li><i class="fas fa-check-circle"></i> Fire & Pest Resistant</li>
-                        <li><i class="fas fa-check-circle"></i> Low Maintenance</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us Section -->
-    <section class="why-us" id="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Why Choose Our Local Team?</h2>
-                <p class="section-subtitle">As a hometown small business, we're invested in our community and your satisfaction.</p>
-            </div>
-            <div class="why-grid">
-                <div class="why-content">
-                    <div class="why-item">
-                        <div class="why-icon">
-                            <i class="fas fa-hammer"></i>
-                        </div>
-                        <div>
-                            <h3>Local Craftsmanship</h3>
-                            <p>We are a hometown small business deeply invested in the Spokane Valley community. Our work reflects our pride in serving our neighbors.</p>
-                        </div>
-                    </div>
-                    <div class="why-item">
-                        <div class="why-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <div>
-                            <h3>Quality Products</h3>
-                            <p>We source and install high-quality, locally made products that stand up to Washington's climate and add lasting value to your home.</p>
-                        </div>
-                    </div>
-                    <div class="why-item">
-                        <div class="why-icon">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <div>
-                            <h3>Expert Insight</h3>
-                            <p>Get professional guidance from initial consultation through project completion. We help you make informed decisions for your home.</p>
-                        </div>
-                    </div>
-                    <div class="why-item">
-                        <div class="why-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <div>
-                            <h3>Outstanding Service</h3>
-                            <p>We're committed to your complete satisfaction with clear communication, timely completion, and attention to every detail.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="why-image">
-                    <div class="image-placeholder">
-                        <!-- Replace with actual image -->
-                        <i class="fas fa-home"></i>
-                        <p>Team at work on home installation</p>
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="service-content">
+                        <div class="badge">Elite Preferred Contractor</div>
+                        <h3>Fiber Cement Siding</h3>
+                        <p>Transform the look of your Spokane home with James Hardie siding. See how it will look on your home before you replace!</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
     <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
+    <section class="testimonials-section">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">What Your Neighbors Say</h2>
-                <p class="section-subtitle">Don't just take our word for it. Here's what Spokane Valley homeowners are saying.</p>
+            <h2 class="section-title">What Our Customers Say</h2>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"Residential Home Solutions transformed our home with beautiful new windows. The team was professional, efficient, and the results exceeded our expectations. Our energy bills have dropped significantly!"</p>
+                <p class="testimonial-author">- Sarah M., Spokane Valley</p>
             </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"Residential Home Solutions transformed our home. Their team was professional, the windows are fantastic, and our energy bills have dropped noticeably!"</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="author-info">
-                            <h4>The Peterson Family</h4>
-                            <p>Spokane Valley</p>
-                        </div>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"The James Hardie siding installation was flawless. They completed the project on time and within budget. Our home has never looked better!"</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="author-info">
-                            <h4>Michael & Sarah Johnson</h4>
-                            <p>Spokane</p>
-                        </div>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>"From the initial quote to the final walkthrough, the service was exceptional. They replaced all our windows and doors, and the difference is incredible."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">
-                            <i class="fas fa-user"></i>
-                        </div>
-                        <div class="author-info">
-                            <h4>Robert Chen</h4>
-                            <p>Liberty Lake</p>
-                        </div>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonials-cta">
-                <a href="#contact" class="btn btn-secondary">
-                    <i class="fas fa-comment-alt"></i> Share Your Experience
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process Section -->
-    <section class="process">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Our Simple 3-Step Process</h2>
-                <p class="section-subtitle">From consultation to completion, we make home improvement straightforward and stress-free.</p>
-            </div>
-            <div class="process-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Contact & Consultation</h3>
-                    <p>Call or fill out our online form for a free, no-obligation consultation at your home.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Custom Quote & Planning</h3>
-                    <p>We assess your needs and provide a detailed quote with product options and timelines.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Professional Installation</h3>
-                    <p>Our expert team completes your installation with minimal disruption and maximum care.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h2 class="section-title">Ready to Improve Your Home?</h2>
-                    <p class="contact-subtitle">Contact us today for a free, no-obligation quote on your window, door, or siding project.</p>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div>
-                                <h3>Call Us Today</h3>
-                                <p><a href="tel:15091234567">(509) 123-4567</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h3>Email Us</h3>
-                                <p><a href="mailto:info@residentialhs.com">info@residentialhs.com</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h3>Service Area</h3>
-                                <p>Serving Spokane Valley and surrounding communities</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="business-hours">
-                        <h3>Business Hours</h3>
-                        <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
-                        <p>Saturday: 9:00 AM - 2:00 PM</p>
-                        <p>Sunday: Closed</p>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <h3>Request Your Free Quote</h3>
-                    <form id="quoteForm">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Email Address" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" id="phone" name="phone" placeholder="Phone Number">
-                        </div>
-                        <div class="form-group">
-                            <select id="service" name="service" required>
-                                <option value="" disabled selected>Select Service</option>
-                                <option value="windows">Window Replacement</option>
-                                <option value="doors">Door Installation</option>
-                                <option value="siding">James Hardie Siding</option>
-                                <option value="multiple">Multiple Services</option>
-                                <option value="not-sure">Not Sure Yet</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" rows="4" placeholder="Tell us about your project..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">
-                            <i class="fas fa-paper-plane"></i> Submit Request
-                        </button>
-                        <p class="form-note">We'll contact you within 24 hours to schedule your free consultation.</p>
-                    </form>
-                </div>
+            
+            <div class="testimonial">
+                <p class="testimonial-text">"As an Elite Preferred James Hardie Contractor, they installed our new siding with exceptional craftsmanship. The difference in our home's appearance is remarkable. Highly recommend!"</p>
+                <p class="testimonial-author">- James R., Spokane</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
+            <div class="footer-content">
+                <div class="footer-column">
                     <h3>Residential Home Solutions</h3>
-                    <p>Providing quality window, door, and siding services to Spokane Valley homeowners since 2005.</p>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Google Reviews"><i class="fab fa-google"></i></a>
-                        <a href="#" aria-label="Yelp"><i class="fab fa-yelp"></i></a>
-                    </div>
+                    <p>Providing quality window, door, and siding services to Spokane Valley and the surrounding Washington area since 2005.</p>
                 </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="#services">Window Replacement</a></li>
-                        <li><a href="#services">Door Installation</a></li>
-                        <li><a href="#services">James Hardie Siding</a></li>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html#windows">Window Replacement</a></li>
+                        <li><a href="services.html#doors">Door Installation</a></li>
+                        <li><a href="services.html#siding">James Hardie Siding</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h4>Contact Info</h4>
-                    <ul class="contact-info-list">
-                        <li><i class="fas fa-phone-alt"></i> <a href="tel:15091234567">(509) 123-4567</a></li>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@residentialhs.com">info@residentialhs.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> Spokane Valley, WA</li>
-                    </ul>
-                    <div class="hardie-logo">
-                        <div class="hardie-badge-footer">
-                            <i class="fas fa-award"></i> Elite Preferred James Hardie Contractor
-                        </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Spokane Valley, WA</p>
+                        <p><i class="fas fa-phone"></i> (509) XXX-XXXX</p>
+                        <p><i class="fas fa-envelope"></i> info@residentialhs.com</p>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> Residential Home Solutions. All rights reserved. | License #: RHSWA123456</p>
-                <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            
+            <div class="copyright">
+                <p>&copy; <span id="currentYear"></span> Residential Home Solutions. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+        }
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Slideshow functionality
+        const slides = [
+            {
+                image: "https://images.unsplash.com/photo-1572883454114-1cf003c5965a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                title: "Quality Window Installation"
+            },
+            {
+                image: "https://images.unsplash.com/photo-1581985673473-860e8c6f6b8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                title: "Beautiful Entry & Patio Doors"
+            },
+            {
+                image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                title: "James Hardie Fiber Cement Siding"
+            },
+            {
+                image: "https://images.unsplash.com/photo-1558036117-15e82a2c9a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+                title: "Expert Installation Services"
+            }
+        ];
+        
+        let currentSlide = 0;
+        const slideshowContainer = document.querySelector('.slideshow-container');
+        const slideDotsContainer = document.getElementById('slideDots');
+        
+        // Create slides and dots
+        slides.forEach((slide, index) => {
+            // Create slide
+            const slideElement = document.createElement('div');
+            slideElement.className = `slide ${index === 0 ? 'active' : ''}`;
+            slideElement.style.backgroundImage = `url('${slide.image}')`;
+            slideshowContainer.appendChild(slideElement);
+            
+            // Create dot
+            const dotElement = document.createElement('div');
+            dotElement.className = `dot ${index === 0 ? 'active' : ''}`;
+            dotElement.addEventListener('click', () => {
+                goToSlide(index);
+            });
+            slideDotsContainer.appendChild(dotElement);
+        });
+        
+        // Function to go to specific slide
+        function goToSlide(slideIndex) {
+            const allSlides = document.querySelectorAll('.slide');
+            const allDots = document.querySelectorAll('.dot');
+            
+            // Remove active class from all slides and dots
+            allSlides.forEach(slide => slide.classList.remove('active'));
+            allDots.forEach(dot => dot.classList.remove('active'));
+            
+            // Add active class to current slide and dot
+            allSlides[slideIndex].classList.add('active');
+            allDots[slideIndex].classList.add('active');
+            
+            currentSlide = slideIndex;
+        }
+        
+        // Auto-advance slides
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            goToSlide(currentSlide);
+        }
+        
+        // Start slideshow auto-advance
+        let slideInterval = setInterval(nextSlide, 5000);
+        
+        // Pause slideshow on hover
+        slideshowContainer.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+        
+        slideshowContainer.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(nextSlide, 5000);
+        });
+        
+        // Highlight active navigation link
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navItems = document.querySelectorAll('.nav-links a');
+        
+        navItems.forEach(item => {
+            const itemHref = item.getAttribute('href');
+            if (currentPage === itemHref || (currentPage === '' && itemHref === 'index.html')) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
