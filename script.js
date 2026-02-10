@@ -1,7 +1,10 @@
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Set current year in footer
-    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    const currentYearElement = document.getElementById('currentYear');
+    if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+    }
     
     // Mobile menu toggle
     const menuToggle = document.getElementById('menuToggle');
@@ -28,15 +31,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Header scroll effect
     const header = document.querySelector('.header');
     
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
+    if (header) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
     
-    // Contact form submission
+    // Contact form submission (for contact.html)
     const quoteForm = document.getElementById('quoteForm');
     
     if (quoteForm) {
@@ -53,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             
             // Basic validation
-            if (!formData.name || !formData.email || !formData.service) {
+            if (!formData.name || !formData.email || !formData.service || !formData.message) {
                 alert('Please fill in all required fields.');
                 return;
             }
@@ -73,30 +78,62 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Smooth scrolling for anchor links
+    // Smooth scrolling for anchor links on the same page
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // Only handle internal page anchors
+            if (href === '#' || href.startsWith('#!')) return;
+            
+            // Check if it's a link to another page with anchor
+            if (href.includes('.html#')) {
+                // Let the browser handle navigation to another page
+                return;
+            }
+            
+            // Handle same-page anchor links
             e.preventDefault();
             
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
+            const targetId = href;
             const targetElement = document.querySelector(targetId);
+            
             if (targetElement) {
                 window.scrollTo({
-                    top: targetElement.offsetTop - 80,
+                    top: targetElement.offsetTop - 100,
                     behavior: 'smooth'
                 });
+                
+                // Close mobile menu if open
+                if (navMenu && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    if (menuToggle) {
+                        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
             }
         });
     });
     
-    // Add active class to nav links based on scroll position
-    const sections = document.querySelectorAll('section');
+    // Highlight active navigation link based on current page
+    const currentPage = window.location.pathname.split('/').pop();
     const navLinks = document.querySelectorAll('.nav-menu a');
     
+    navLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+        if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+    
+    // Highlight nav links based on scroll position for single-page sections
+    const sections = document.querySelectorAll('section[id]');
+    const navLinksForScroll = document.querySelectorAll('.nav-menu a[href^="#"]');
+    
     function highlightNavLink() {
-        let scrollPos = window.scrollY + 100;
+        let scrollPos = window.scrollY + 150;
         
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
@@ -104,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const sectionId = section.getAttribute('id');
             
             if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
+                navLinksForScroll.forEach(link => {
                     link.classList.remove('active');
                     if (link.getAttribute('href') === `#${sectionId}`) {
                         link.classList.add('active');
@@ -114,30 +151,82 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    window.addEventListener('scroll', highlightNavLink);
+    // Only run scroll highlighting on pages with sections (like index.html)
+    if (sections.length > 3) { // Home page has multiple sections
+        window.addEventListener('scroll', highlightNavLink);
+    }
     
     // Simple image lazy loading for future use
-    const images = document.querySelectorAll('img');
+    const images = document.querySelectorAll('img[data-src]');
     
-    const imageOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px 50px 0px'
-    };
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.add('loaded');
-                observer.unobserve(img);
-            }
-        });
-    }, imageOptions);
-    
-    images.forEach(img => {
-        if (img.dataset.src) {
+    if (images.length > 0) {
+        const imageOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px 50px 0px'
+        };
+        
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                    observer.unobserve(img);
+                }
+            });
+        }, imageOptions);
+        
+        images.forEach(img => {
             imageObserver.observe(img);
-        }
-    });
+        });
+    }
+    
+    // Handle page-specific functionality
+    handlePageSpecificFeatures();
 });
+
+function handlePageSpecificFeatures() {
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    // Services page features
+    if (currentPage === 'services.html' || currentPage === '') {
+        // Add service category highlighting when scrolling to anchors
+        const serviceSections = document.querySelectorAll('.service-detail-card');
+        if (serviceSections.length > 0) {
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -70% 0px',
+                threshold: 0
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        history.replaceState(null, null, `#${id}`);
+                    }
+                });
+            }, observerOptions);
+            
+            serviceSections.forEach(section => {
+                observer.observe(section);
+            });
+        }
+    }
+    
+    // Testimonials page features
+    if (currentPage === 'testimonials.html') {
+        // Add animation to testimonial cards
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        testimonialCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+    }
+}
