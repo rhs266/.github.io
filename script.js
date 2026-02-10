@@ -181,9 +181,110 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Initialize slideshow
+    initSlideshow();
+    
     // Handle page-specific functionality
     handlePageSpecificFeatures();
 });
+
+// Slideshow functionality
+function initSlideshow() {
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.querySelector('.slide-prev');
+    const nextBtn = document.querySelector('.slide-next');
+    
+    if (slides.length === 0) return; // No slideshow on current page
+    
+    let currentSlide = 0;
+    let slideInterval;
+    
+    // Show specific slide
+    function showSlide(index) {
+        // Ensure index is within bounds
+        if (index >= slides.length) index = 0;
+        if (index < 0) index = slides.length - 1;
+        
+        // Remove active class from all slides and dots
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        // Add active class to current slide and dot
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        
+        currentSlide = index;
+        
+        // Reset interval
+        resetInterval();
+    }
+    
+    // Next slide
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+    
+    // Previous slide
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+    
+    // Start automatic slideshow
+    function startInterval() {
+        slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+    
+    // Reset interval
+    function resetInterval() {
+        clearInterval(slideInterval);
+        startInterval();
+    }
+    
+    // Event listeners for buttons
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+        });
+    }
+    
+    // Event listeners for dots
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+        });
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+        }
+    });
+    
+    // Pause slideshow on hover
+    const slideshowContainer = document.querySelector('.slideshow-container');
+    if (slideshowContainer) {
+        slideshowContainer.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+        
+        slideshowContainer.addEventListener('mouseleave', () => {
+            startInterval();
+        });
+    }
+    
+    // Initialize
+    startInterval();
+}
 
 function handlePageSpecificFeatures() {
     const currentPage = window.location.pathname.split('/').pop();
