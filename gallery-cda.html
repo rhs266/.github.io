@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <style>
-        /* Gallery Page Styles */
+        /* Gallery Template Styles */
         .gallery-hero {
             background-color: var(--light);
             padding: 120px 0 60px;
@@ -27,7 +27,7 @@
         }
         
         .gallery-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -95,8 +95,8 @@
             flex-shrink: 0;
         }
         
-        /* Product Gallery Section */
-        .product-gallery-section {
+        /* Masonry Gallery Section */
+        .masonry-gallery-section {
             padding: 60px 0 80px;
             background-color: var(--off-white);
         }
@@ -137,57 +137,63 @@
             border-color: var(--primary);
         }
         
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
+        /* Masonry Grid Layout */
+        .masonry-grid {
+            columns: 4 300px;
+            column-gap: 20px;
         }
         
-        .gallery-item {
-            background-color: var(--white);
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            position: relative;
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            border: 1px solid var(--light-gray);
+            background-color: var(--white);
+            cursor: pointer;
         }
         
-        .gallery-item:hover {
-            transform: translateY(-10px);
+        .masonry-item:hover {
+            transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
-            border-color: var(--secondary);
         }
         
-        .gallery-image {
+        .masonry-img {
             width: 100%;
-            height: 250px;
-            overflow: hidden;
-            background-color: var(--light-gray);
-            position: relative;
-        }
-        
-        .gallery-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
             transition: transform 0.5s ease;
         }
         
-        .gallery-item:hover .gallery-image img {
-            transform: scale(1.05);
+        .masonry-item:hover .masonry-img {
+            transform: scale(1.03);
         }
         
-        .gallery-content {
-            padding: 25px;
+        .masonry-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: var(--white);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
         }
         
-        .gallery-content h3 {
-            color: var(--primary);
-            margin-bottom: 10px;
-            font-size: 1.4rem;
+        .masonry-item:hover .masonry-caption {
+            transform: translateY(0);
         }
         
-        .window-type-badge {
+        .masonry-caption h4 {
+            color: var(--white);
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        
+        .masonry-category {
             display: inline-block;
             background-color: var(--secondary);
             color: var(--white);
@@ -195,66 +201,86 @@
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         
-        .gallery-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 15px 0;
-        }
-        
-        .feature-tag {
-            background-color: var(--off-white);
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: var(--gray);
-            display: flex;
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
             align-items: center;
-            gap: 5px;
+            justify-content: center;
         }
         
-        .feature-tag i {
-            color: var(--primary);
-            font-size: 0.8rem;
-        }
-        
-        .gallery-actions {
+        .lightbox-modal.active {
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
         }
         
-        .view-details-btn {
-            flex: 1;
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 10px;
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
             border-radius: var(--radius);
+        }
+        
+        .lightbox-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--white);
+            padding: 20px;
             text-align: center;
-            font-weight: 600;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+        }
+        
+        .lightbox-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
             transition: var(--transition);
         }
         
-        .view-details-btn:hover {
-            background-color: var(--primary-dark);
-        }
-        
-        .quick-quote-btn {
-            flex: 1;
-            background-color: var(--secondary);
-            color: var(--white);
-            padding: 10px;
-            border-radius: var(--radius);
-            text-align: center;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-        
-        .quick-quote-btn:hover {
-            background-color: var(--secondary-dark);
+        .lightbox-nav button:hover {
+            background: var(--secondary);
         }
         
         .no-results {
@@ -278,6 +304,12 @@
         }
         
         /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .masonry-grid {
+                columns: 3 280px;
+            }
+        }
+        
         @media (max-width: 992px) {
             .brand-details-grid {
                 grid-template-columns: 1fr;
@@ -287,15 +319,15 @@
             .brand-image {
                 height: 350px;
             }
+            
+            .masonry-grid {
+                columns: 2 300px;
+            }
         }
         
         @media (max-width: 768px) {
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
-            
-            .gallery-image {
-                height: 200px;
+            .masonry-grid {
+                columns: 1 400px;
             }
             
             .brand-logo-header {
@@ -307,14 +339,8 @@
             }
             
             .brand-details-section,
-            .product-gallery-section {
+            .masonry-gallery-section {
                 padding: 60px 0;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .gallery-grid {
-                grid-template-columns: 1fr;
             }
             
             .gallery-filters {
@@ -328,13 +354,21 @@
                 padding: 8px 16px;
                 font-size: 0.9rem;
             }
-            
-            .gallery-actions {
-                flex-direction: column;
+        }
+        
+        @media (max-width: 576px) {
+            .masonry-grid {
+                columns: 1;
             }
             
             .brand-image {
                 height: 250px;
+            }
+            
+            .lightbox-nav button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -389,8 +423,7 @@
                 <div class="brand-image-container">
                     <div class="brand-image">
                         <!-- Replace with actual brand/product image -->
-                        <i class="fas fa-home"></i>
-                        <span>Brand/Product Image</span>
+                        <img src="images/windows/cda-showcase.jpg" alt="Coeur d'Alene Window Showcase" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                 </div>
                 <div class="brand-content">
@@ -444,12 +477,12 @@
         </div>
     </section>
 
-    <!-- Product Gallery Section -->
-    <section class="product-gallery-section">
+    <!-- Masonry Gallery Section -->
+    <section class="masonry-gallery-section">
         <div class="gallery-container">
             <div class="gallery-header">
                 <h2>Explore Our Coeur d'Alene Window Collection</h2>
-                <p class="section-subtitle">Filter by window type to find the perfect solution for your home</p>
+                <p class="section-subtitle">Click on any image to view it larger. Filter by window type to find the perfect solution for your home.</p>
             </div>
             
             <div class="gallery-filters">
@@ -463,172 +496,121 @@
                 <button class="filter-btn" data-filter="custom">Custom Shapes</button>
             </div>
             
-            <div class="gallery-grid" id="galleryGrid">
+            <div class="masonry-grid" id="masonryGrid">
                 <!-- Double-Hung Window -->
-                <div class="gallery-item" data-category="double-hung">
-                    <div class="gallery-image">
-                        <img src="images/windows/cda-double-hung.jpg" alt="Coeur d'Alene Double-Hung Window">
-                    </div>
-                    <div class="gallery-content">
-                        <span class="window-type-badge">Double-Hung</span>
-                        <h3>Classic Double-Hung Window</h3>
-                        <p>Timeless design with both sashes operable for excellent ventilation and easy cleaning from inside your home.</p>
-                        <div class="gallery-features">
-                            <span class="feature-tag"><i class="fas fa-leaf"></i> Energy Efficient</span>
-                            <span class="feature-tag"><i class="fas fa-snowflake"></i> Weather Resistant</span>
-                            <span class="fas fa-tint"></i> Easy Clean</span>
-                        </div>
-                        <div class="gallery-actions">
-                            <a href="contact.html" class="view-details-btn">Get Details</a>
-                            <a href="contact.html" class="quick-quote-btn">Quick Quote</a>
-                        </div>
+                <div class="masonry-item" data-category="double-hung" data-index="0">
+                    <img src="images/windows/cda-double-hung.jpg" alt="Coeur d'Alene Double-Hung Window" class="masonry-img">
+                    <div class="masonry-caption">
+                        <span class="masonry-category">Double-Hung</span>
+                        <h4>Classic Double-Hung Window</h4>
+                        <p>Timeless design with both sashes operable for excellent ventilation</p>
                     </div>
                 </div>
                 
                 <!-- Casement Window -->
-                <div class="gallery-item" data-category="casement">
-                    <div class="gallery-image">
-                        <img src="images/windows/cda-casement.jpg" alt="Coeur d'Alene Casement Window">
-                    </div>
-                    <div class="gallery-content">
-                        <span class="window-type-badge">Casement</span>
-                        <h3>Premium Casement Window</h3>
-                        <p>Side-hinged windows that crank open for maximum ventilation and a tight weather seal.</p>
-                        <div class="gallery-features">
-                            <span class="feature-tag"><i class="fas fa-wind"></i> Maximum Ventilation</span>
-                            <span class="feature-tag"><i class="fas fa-expand-alt"></i> Unobstructed View</span>
-                            <span class="feature-tag"><i class="fas fa-lock"></i> Secure Locking</span>
-                        </div>
-                        <div class="gallery-actions">
-                            <a href="contact.html" class="view-details-btn">Get Details</a>
-                            <a href="contact.html" class="quick-quote-btn">Quick Quote</a>
-                        </div>
+                <div class="masonry-item" data-category="casement" data-index="1">
+                    <img src="images/windows/cda-casement.jpg" alt="Coeur d'Alene Casement Window" class="masonry-img">
+                    <div class="masonry-caption">
+                        <span class="masonry-category">Casement</span>
+                        <h4>Premium Casement Window</h4>
+                        <p>Side-hinged windows that crank open for maximum ventilation</p>
                     </div>
                 </div>
                 
                 <!-- Sliding Window -->
-                <div class="gallery-item" data-category="sliding">
-                    <div class="gallery-image">
-                        <img src="images/windows/cda-sliding.jpg" alt="Coeur d'Alene Sliding Window">
-                    </div>
-                    <div class="gallery-content">
-                        <span class="window-type-badge">Sliding</span>
-                        <h3>Modern Sliding Window</h3>
-                        <p>Horizontal sliding operation perfect for contemporary homes, tight spaces, and panoramic views.</p>
-                        <div class="gallery-features">
-                            <span class="feature-tag"><i class="fas fa-ruler"></i> Space Saving</span>
-                            <span class="feature-tag"><i class="fas fa-eye"></i> Wide Views</span>
-                            <span class="feature-tag"><i class="fas fa-tint"></i> Weather Resistant</span>
-                        </div>
-                        <div class="gallery-actions">
-                            <a href="contact.html" class="view-details-btn">Get Details</a>
-                            <a href="contact.html" class="quick-quote-btn">Quick Quote</a>
-                        </div>
+                <div class="masonry-item" data-category="sliding" data-index="2">
+                    <img src="images/windows/cda-sliding.jpg" alt="Coeur d'Alene Sliding Window" class="masonry-img">
+                    <div class="masonry-caption">
+                        <span class="masonry-category">Sliding</span>
+                        <h4>Modern Sliding Window</h4>
+                        <p>Horizontal sliding operation perfect for contemporary homes</p>
                     </div>
                 </div>
                 
                 <!-- Picture Window -->
-                <div class="gallery-item" data-category="picture">
-                    <div class="gallery-image">
-                        <img src="images/windows/cda-picture.jpg" alt="Coeur d'Alene Picture Window">
-                    </div>
-                    <div class="gallery-content">
-                        <span class="window-type-badge">Picture Window</span>
-                        <h3>Large Picture Window</h3>
-                        <p>Fixed windows that provide unobstructed views and maximum natural light for your home.</p>
-                        <div class="gallery-features">
-                            <span class="feature-tag"><i class="fas fa-mountain"></i> Panoramic Views</span>
-                            <span class="feature-tag"><i class="fas fa-lightbulb"></i> Maximum Light</span>
-                            <span class="feature-tag"><i class="fas fa-home"></i> Architectural</span>
-                        </div>
-                        <div class="gallery-actions">
-                            <a href="contact.html" class="view-details-btn">Get Details</a>
-                            <a href="contact.html" class="quick-quote-btn">Quick Quote</a>
-                        </div>
+                <div class="masonry-item" data-category="picture" data-index="3">
+                    <img src="images/windows/cda-picture.jpg" alt="Coeur d'Alene Picture Window" class="masonry-img">
+                    <div class="masonry-caption">
+                        <span class="masonry-category">Picture Window</span>
+                        <h4>Large Picture Window</h4>
+                        <p>Fixed windows for unobstructed views and maximum natural light</p>
                     </div>
                 </div>
                 
                 <!-- Patio Door -->
-                <div class="gallery-item" data-category="patio-doors">
-                    <div class="gallery-image">
-                        <img src="images/doors/cda-patio-door.jpg" alt="Coeur d'Alene Patio Door">
-                    </div>
-                    <div class="gallery-content">
-                        <span class="window-type-badge">Patio Door</span>
-                        <h3>French Style Patio Door</h3>
-                        <p>Elegant hinged patio doors that create a seamless connection between indoor and outdoor living spaces.</p>
-                        <div class="gallery-features">
-                            <span class="feature-tag"><i class="fas fa-door-open"></i> Wide Opening</span>
-                            <span class="feature-tag"><i class="fas fa-lock"></i> Multi-Point Lock</span>
-                            <span class="feature-tag"><i class="fas fa-glass-whiskey"></i> Decorative Glass</span>
-                        </div>
-                        <div class="gallery-actions">
-                            <a href="contact.html" class="view-details-btn">Get Details</a>
-                            <a href="contact.html" class="quick-quote-btn">Quick Quote</a>
-                        </div>
+                <div class="masonry-item" data-category="patio-doors" data-index="4">
+                    <img src="images/doors/cda-patio-door.jpg" alt="Coeur d'Alene Patio Door" class="masonry-img">
+                    <div class="masonry-caption">
+                        <span class="masonry-category">Patio Door</span>
+                        <h4>French Style Patio Door</h4>
+                        <p>Elegant hinged patio doors for seamless indoor-outdoor living</p>
                     </div>
                 </div>
                 
                 <!-- Bay Window -->
-                <div class="gallery-item" data-category="bay-bow">
-                    <div class="gallery-image">
-                        <img src="images/windows/cda-bay-window.jpg" alt="Coeur d'Alene Bay Window">
-                    </div>
-                    <div class="gallery-content">
-                        <span class="window-type-badge">Bay Window</span>
-                        <h3>Elegant Bay Window</h3>
-                        <p>Create additional space and architectural interest with this beautiful angled window design.</p>
-                        <div class="gallery-features">
-                            <span class="feature-tag"><i class="fas fa-expand"></i> Extra Space</span>
-                            <span class="feature-tag"><i class="fas fa-sun"></i> Natural Light</span>
-                            <span class="feature-tag"><i class="fas fa-chair"></i> Window Seat</span>
-                        </div>
-                        <div class="gallery-actions">
-                            <a href="contact.html" class="view-details-btn">Get Details</a>
-                            <a href="contact.html" class="quick-quote-btn">Quick Quote</a>
-                        </div>
+                <div class="masonry-item" data-category="bay-bow" data-index="5">
+                    <img src="images/windows/cda-bay-window.jpg" alt="Coeur d'Alene Bay Window" class="masonry-img">
+                    <div class="masonry-caption">
+                        <span class="masonry-category">Bay Window</span>
+                        <h4>Elegant Bay Window</h4>
+                        <p>Create additional space and architectural interest</p>
                     </div>
                 </div>
                 
                 <!-- Custom Window -->
-                <div class="gallery-item" data-category="custom">
-                    <div class="gallery-image">
-                        <img src="images/windows/cda-custom.jpg" alt="Coeur d'Alene Custom Window">
-                    </div>
-                    <div class="gallery-content">
-                        <span class="window-type-badge">Custom Shape</span>
-                        <h3>Custom Architectural Window</h3>
-                        <p>Uniquely shaped windows designed to match your specific architectural requirements and style.</p>
-                        <div class="gallery-features">
-                            <span class="feature-tag"><i class="fas fa-ruler-combined"></i> Custom Size</span>
-                            <span class="feature-tag"><i class="fas fa-shapes"></i> Unique Shape</span>
-                            <span class="feature-tag"><i class="fas fa-paint-brush"></i> Custom Finish</span>
-                        </div>
-                        <div class="gallery-actions">
-                            <a href="contact.html" class="view-details-btn">Get Details</a>
-                            <a href="contact.html" class="quick-quote-btn">Quick Quote</a>
-                        </div>
+                <div class="masonry-item" data-category="custom" data-index="6">
+                    <img src="images/windows/cda-custom.jpg" alt="Coeur d'Alene Custom Window" class="masonry-img">
+                    <div class="masonry-caption">
+                        <span class="masonry-category">Custom Shape</span>
+                        <h4>Custom Architectural Window</h4>
+                        <p>Uniquely shaped windows for specific architectural requirements</p>
                     </div>
                 </div>
                 
                 <!-- Energy Efficient Window -->
-                <div class="gallery-item" data-category="all">
-                    <div class="gallery-image">
-                        <img src="images/windows/cda-energy.jpg" alt="Coeur d'Alene Energy Efficient Window">
+                <div class="masonry-item" data-category="all" data-index="7">
+                    <img src="images/windows/cda-energy.jpg" alt="Coeur d'Alene Energy Efficient Window" class="masonry-img">
+                    <div class="masonry-caption">
+                        <span class="masonry-category">Energy Star</span>
+                        <h4>High Performance Window</h4>
+                        <p>Advanced technology with superior insulation and energy savings</p>
                     </div>
-                    <div class="gallery-content">
-                        <span class="window-type-badge">Energy Star</span>
-                        <h3>High Performance Window</h3>
-                        <p>Advanced technology with superior insulation and energy savings for Spokane Valley homes.</p>
-                        <div class="gallery-features">
-                            <span class="feature-tag"><i class="fas fa-bolt"></i> High R-Value</span>
-                            <span class="feature-tag"><i class="fas fa-temperature-low"></i> Low U-Factor</span>
-                            <span class="feature-tag"><i class="fas fa-certificate"></i> Energy Star</span>
-                        </div>
-                        <div class="gallery-actions">
-                            <a href="contact.html" class="view-details-btn">Get Details</a>
-                            <a href="contact.html" class="quick-quote-btn">Quick Quote</a>
-                        </div>
+                </div>
+                
+                <!-- Additional Images for Variety -->
+                <div class="masonry-item" data-category="double-hung" data-index="8">
+                    <img src="images/windows/cda-double-hung2.jpg" alt="Coeur d'Alene Double-Hung Window 2" class="masonry-img">
+                    <div class="masonry-caption">
+                        <span class="masonry-category">Double-Hung</span>
+                        <h4>Traditional Double-Hung</h4>
+                        <p>Energy-efficient design with classic appearance</p>
+                    </div>
+                </div>
+                
+                <div class="masonry-item" data-category="casement" data-index="9">
+                    <img src="images/windows/cda-casement2.jpg" alt="Coeur d'Alene Casement Window 2" class="masonry-img">
+                    <div class="masonry-caption">
+                        <span class="masonry-category">Casement</span>
+                        <h4>Contemporary Casement</h4>
+                        <p>Modern design with excellent weather sealing</p>
+                    </div>
+                </div>
+                
+                <div class="masonry-item" data-category="sliding" data-index="10">
+                    <img src="images/windows/cda-sliding2.jpg" alt="Coeur d'Alene Sliding Window 2" class="masonry-img">
+                    <div class="masonry-caption">
+                        <span class="masonry-category">Sliding</span>
+                        <h4>Wide Sliding Window</h4>
+                        <p>Perfect for panoramic views and modern homes</p>
+                    </div>
+                </div>
+                
+                <div class="masonry-item" data-category="patio-doors" data-index="11">
+                    <img src="images/doors/cda-patio-door2.jpg" alt="Coeur d'Alene Patio Door 2" class="masonry-img">
+                    <div class="masonry-caption">
+                        <span class="masonry-category">Patio Door</span>
+                        <h4>Sliding Patio Door</h4>
+                        <p>Space-saving design with smooth operation</p>
                     </div>
                 </div>
             </div>
@@ -643,9 +625,34 @@
                 <a href="windows-patio-doors.html" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Back to All Window Brands
                 </a>
+                <a href="contact.html" class="btn btn-primary" style="margin-left: 15px;">
+                    <i class="fas fa-calendar-alt"></i> Get a Quote
+                </a>
             </div>
         </div>
     </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <button class="lightbox-close" id="lightboxClose">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="" class="lightbox-img">
+            <div class="lightbox-caption">
+                <h3 id="lightboxTitle"></h3>
+                <p id="lightboxDescription"></p>
+            </div>
+        </div>
+        <div class="lightbox-nav">
+            <button id="lightboxPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="lightboxNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -712,10 +719,11 @@
     <!-- JavaScript -->
     <script src="script.js"></script>
     <script>
-        // Filter functionality for gallery
+        // Gallery Template JavaScript
         document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
             const filterButtons = document.querySelectorAll('.filter-btn');
-            const galleryItems = document.querySelectorAll('.gallery-item');
+            const masonryItems = document.querySelectorAll('.masonry-item');
             const noResults = document.getElementById('noResults');
             
             filterButtons.forEach(button => {
@@ -729,11 +737,11 @@
                     const filterValue = this.getAttribute('data-filter');
                     let visibleCount = 0;
                     
-                    // Filter gallery items
-                    galleryItems.forEach(item => {
-                        const categories = item.getAttribute('data-category').split(' ');
+                    // Filter masonry items
+                    masonryItems.forEach(item => {
+                        const category = item.getAttribute('data-category');
                         
-                        if (filterValue === 'all' || categories.includes(filterValue)) {
+                        if (filterValue === 'all' || category === filterValue) {
                             item.style.display = 'block';
                             visibleCount++;
                         } else {
@@ -749,6 +757,110 @@
                     }
                 });
             });
+            
+            // Lightbox functionality
+            const lightboxModal = document.getElementById('lightboxModal');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxTitle = document.getElementById('lightboxTitle');
+            const lightboxDescription = document.getElementById('lightboxDescription');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const lightboxPrev = document.getElementById('lightboxPrev');
+            const lightboxNext = document.getElementById('lightboxNext');
+            
+            let currentImageIndex = 0;
+            let filteredItems = Array.from(masonryItems);
+            
+            // Open lightbox when clicking on masonry item
+            masonryItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    const img = this.querySelector('.masonry-img');
+                    const category = this.querySelector('.masonry-category');
+                    const title = this.querySelector('h4');
+                    const description = this.querySelector('p');
+                    
+                    currentImageIndex = parseInt(this.getAttribute('data-index'));
+                    updateLightbox(img.src, category.textContent, title.textContent, description.textContent);
+                    lightboxModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Update filtered items based on current filter
+                    const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
+                    if (activeFilter === 'all') {
+                        filteredItems = Array.from(masonryItems).filter(item => item.style.display !== 'none');
+                    } else {
+                        filteredItems = Array.from(masonryItems).filter(item => 
+                            item.style.display !== 'none' && item.getAttribute('data-category') === activeFilter
+                        );
+                    }
+                });
+            });
+            
+            // Close lightbox
+            lightboxClose.addEventListener('click', function() {
+                lightboxModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close lightbox when clicking outside the image
+            lightboxModal.addEventListener('click', function(e) {
+                if (e.target === lightboxModal) {
+                    lightboxModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (lightboxModal.classList.contains('active')) {
+                    if (e.key === 'Escape') {
+                        lightboxModal.classList.remove('active');
+                        document.body.style.overflow = 'auto';
+                    } else if (e.key === 'ArrowLeft') {
+                        navigateLightbox(-1);
+                    } else if (e.key === 'ArrowRight') {
+                        navigateLightbox(1);
+                    }
+                }
+            });
+            
+            // Lightbox navigation
+            lightboxPrev.addEventListener('click', function() {
+                navigateLightbox(-1);
+            });
+            
+            lightboxNext.addEventListener('click', function() {
+                navigateLightbox(1);
+            });
+            
+            function updateLightbox(src, category, title, description) {
+                lightboxImage.src = src;
+                lightboxImage.alt = title;
+                lightboxTitle.textContent = title;
+                lightboxDescription.textContent = `${category} - ${description}`;
+            }
+            
+            function navigateLightbox(direction) {
+                // Find current index in filtered items
+                const currentItem = masonryItems[currentImageIndex];
+                let currentFilteredIndex = filteredItems.findIndex(item => 
+                    item.getAttribute('data-index') === currentItem.getAttribute('data-index')
+                );
+                
+                // Calculate new index
+                let newIndex = (currentFilteredIndex + direction + filteredItems.length) % filteredItems.length;
+                
+                // Get new item
+                const newItem = filteredItems[newIndex];
+                const newImageIndex = parseInt(newItem.getAttribute('data-index'));
+                const img = newItem.querySelector('.masonry-img');
+                const category = newItem.querySelector('.masonry-category');
+                const title = newItem.querySelector('h4');
+                const description = newItem.querySelector('p');
+                
+                // Update lightbox
+                currentImageIndex = newImageIndex;
+                updateLightbox(img.src, category.textContent, title.textContent, description.textContent);
+            }
             
             // Set current year in footer
             document.getElementById('currentYear').textContent = new Date().getFullYear();
