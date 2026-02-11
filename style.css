@@ -231,7 +231,7 @@ img {
 /* Navigation menu */
 .nav-menu {
     display: flex;
-    gap: 10px;
+    gap: 20px;
     align-items: center;
 }
 
@@ -331,7 +331,7 @@ img {
     top: 100%;
     left: 0;
     transform: translateY(10px);
-    min-width: 220px;
+    min-width: 280px;
     background-color: var(--white);
     box-shadow: var(--shadow-hover);
     border-radius: var(--radius);
