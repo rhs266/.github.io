@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Flexible Financing Options for Home Improvements - Residential Home Solutions Spokane Valley">
+    <title>Financing Options | 0% Interest & Low Monthly Payments | Residential Home Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="Residential Home Solutions Logo" width="320" height="90">
+                </a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#services" class="dropdown-toggle">
+                            Services <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="windows-patio-doors.html">Windows & Patio Doors</a></li>
+                            <li><a href="entry-storm-doors.html">Entry & Storm Doors</a></li>
+                            <li><a href="siding.html">Siding</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#services" class="dropdown-toggle active">
+                            Offers <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="promotions.html">Promotions</a></li>
+                            <li><a href="financing.html" class="active">Financing</a></li>
+                            <li><a href="rebates.html">Rebates</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="contact.html" class="nav-cta">Free Quote</a></li>
+                </ul>
+                <div class="hardie-header-logo">
+                    <img src="images/infinitylogo.png" alt="InfinitybyMarvin Contractor" class="partner-logo-img">
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="hero" style="min-height: 50vh; padding: 120px 0 60px;">
+        <div class="slideshow-container">
+            <div class="slide active">
+                <div class="slide-image" style="background-image: url('images/slide3.jpg');"></div>
+                <div class="slide-overlay"></div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="hero-content" style="max-width: 700px;">
+                <h1 class="hero-title">Flexible Financing Options</h1>
+                <p class="hero-subtitle">Affordable monthly payments and special financing offers to help you complete your home improvement projects today.</p>
+                <div class="hero-badges">
+                    <span class="badge">
+                        <i class="fas fa-credit-card"></i> 0% Interest Options
+                    </span>
+                    <span class="badge">
+                        <i class="fas fa-calendar-check"></i> Low Monthly Payments
+                    </span>
+                    <span class="badge">
+                        <i class="fas fa-check-circle"></i> Instant Decision Available
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financing Partners -->
+    <section class="logo-showcase" style="border-top: none; padding: 40px 0;">
+        <div class="container">
+            <p style="text-align: center; font-size: 1.1rem; color: var(--primary); font-weight: 600; margin-bottom: 20px;">OUR TRUSTED FINANCING PARTNERS</p>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 50px; flex-wrap: wrap;">
+                <div style="background-color: var(--white); padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow);">
+                    <img src="images/partner-synchrony.png" alt="Synchrony Financial" style="height: 60px; width: auto;" onerror="this.style.display='none'; this.parentElement.innerHTML='<h3 style=\'color: var(--primary);\'>Synchrony</h3>'">
+                    <h3 style="color: var(--primary); margin: 0;">Synchrony</h3>
+                </div>
+                <div style="background-color: var(--white); padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow);">
+                    <img src="images/partner-greensky.png" alt="GreenSky" style="height: 60px; width: auto;" onerror="this.style.display='none'; this.parentElement.innerHTML='<h3 style=\'color: var(--primary);\'>GreenSky</h3>'">
+                    <h3 style="color: var(--primary); margin: 0;">GreenSky</h3>
+                </div>
+                <div style="background-color: var(--white); padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow);">
+                    <img src="images/partner-wellsfargo.png" alt="Wells Fargo" style="height: 60px; width: auto;" onerror="this.style.display='none'; this.parentElement.innerHTML='<h3 style=\'color: var(--primary);\'>Wells Fargo</h3>'">
+                    <h3 style="color: var(--primary); margin: 0;">Wells Fargo</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Financing Options -->
+    <section class="services" style="padding: 60px 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Financing Plans That Fit Your Budget</h2>
+                <p class="section-subtitle">Choose the option that works best for your home improvement project.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+                <!-- Option 1: 0% Interest -->
+                <div class="service-card" style="border: 2px solid var(--secondary); position: relative;">
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background-color: var(--secondary); color: white; padding: 6px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; white-space: nowrap;">
+                        MOST POPULAR
+                    </div>
+                    <div class="service-icon">
+                        <i class="fas fa-percent" style="color: var(--secondary);"></i>
+                    </div>
+                    <h3 style="color: var(--primary);">0% Interest Financing</h3>
+                    <p style="font-size: 1.3rem; font-weight: 700; color: var(--secondary); margin-bottom: 15px;">12-24 Months</p>
+                    <p>No interest if paid in full within the promotional period.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> $2,500 minimum purchase</li>
+                        <li><i class="fas fa-check-circle"></i> No annual fee</li>
+                        <li><i class="fas fa-check-circle"></i> Equal monthly payments</li>
+                        <li><i class="fas fa-check-circle"></i> Quick online application</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-primary" style="margin-top: 25px; width: 100%;">Apply Now</a>
+                </div>
+
+                <!-- Option 2: Low Monthly Payment -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3 style="color: var(--primary);">Low Monthly Payment</h3>
+                    <p style="font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 15px;">As low as $89/mo</p>
+                    <p>Fixed monthly payments for up to 10 years.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> $1,000 minimum purchase</li>
+                        <li><i class="fas fa-check-circle"></i> Fixed interest rates</li>
+                        <li><i class="fas fa-check-circle"></i> No prepayment penalty</li>
+                        <li><i class="fas fa-check-circle"></i> Flexible terms: 3-10 years</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-secondary" style="margin-top: 25px; width: 100%;">Calculate Payment</a>
+                </div>
+
+                <!-- Option 3: Deferred Interest -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 style="color: var(--primary);">Deferred Interest</h3>
+                    <p style="font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 15px;">No payments for 6 months</p>
+                    <p>Defer your payments and interest for six months.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> $3,000 minimum purchase</li>
+                        <li><i class="fas fa-check-circle"></i> Interest accrues from date of purchase</li>
+                        <li><i class="fas fa-check-circle"></i> Pay in full to avoid interest</li>
+                        <li><i class="fas fa-check-circle"></i> Flexible payment schedule</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-secondary" style="margin-top: 25px; width: 100%;">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="process" style="background-color: var(--off-white);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Easy 3-Step Approval Process</h2>
+                <p class="section-subtitle">Getting started with financing is quick and simple.</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Apply Online</h3>
+                    <p>Complete our secure online application in minutes. No impact to your credit score for pre-qualification.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Get Instant Decision</h3>
+                    <p>Most applicants receive an instant credit decision. Funds are available immediately upon approval.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Start Your Project</h3>
+                    <p>Schedule your installation and begin your home improvement with manageable payments.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="contact.html" class="btn btn-primary btn-large">Apply for Financing Today</a>
+                <p style="margin-top: 20px; color: var(--gray);">Questions about financing? <a href="contact.html" style="color: var(--secondary); font-weight: 600;">Contact our team</a> for assistance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financing FAQ -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Financing FAQ</h2>
+                <p class="section-subtitle">Answers to common questions about our financing options.</p>
+            </div>
+            
+            <div class="faq-grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle" style="color: var(--secondary); margin-right: 10px;"></i> What credit score is needed?</h4>
+                    <p>We offer financing options for a wide range of credit profiles. While promotional 0% APR offers typically require good to excellent credit, our low monthly payment plans are available for more credit situations. Apply to see your personalized options.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle" style="color: var(--secondary); margin-right: 10px;"></i> Is there a penalty for early payoff?</h4>
+                    <p>No! There are no prepayment penalties with any of our financing partners. You can pay off your balance at any time without additional fees.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle" style="color: var(--secondary); margin-right: 10px;"></i> Can I use financing with promotions?</h4>
+                    <p>Yes, you can combine special financing offers with most of our current promotions. Ask your project consultant for details on stacking savings.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle" style="color: var(--secondary); margin-right: 10px;"></i> How long does approval take?</h4>
+                    <p>Most applications receive a decision within seconds to minutes. In some cases, additional verification may be required, extending the process to 24-48 hours.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle" style="color: var(--secondary); margin-right: 10px;"></i> What is the minimum amount to finance?</h4>
+                    <p>Minimum financing amounts vary by program, starting as low as $1,000 for our low monthly payment plans and $2,500 for 0% interest promotions.</p>
+                </div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle" style="color: var(--secondary); margin-right: 10px;"></i> Do you offer in-house financing?</h4>
+                    <p>We partner with top national lenders to offer the best rates and terms. While we don't offer in-house financing, our partners provide competitive options for all customers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section style="padding: 60px 0; background: linear-gradient(rgba(0,51,102,0.05), rgba(0,51,102,0.02));">
+        <div class="container">
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <h2 style="color: var(--primary); margin-bottom: 20px;">Ready to Start Your Project?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 30px;">Get a free, no-obligation quote and explore your financing options today.</p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="contact.html" class="btn btn-primary btn-large">Request Free Quote</a>
+                    <a href="tel:15098926460" class="btn btn-secondary btn-large"><i class="fas fa-phone-alt"></i> Call Us Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Residential Home Solutions</h3>
+                    <p>Providing quality window, door, and siding services to Spokane Valley homeowners since 2006.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/residentialhs" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/residentialhomesolutions/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" rel="noopener" aria-label="Google Reviews"><i class="fab fa-google"></i></a>
+                        <a href="https://x.com/residentialhs" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Offers</h4>
+                    <ul>
+                        <li><a href="promotions.html">Promotions</a></li>
+                        <li><a href="financing.html">Financing</a></li>
+                        <li><a href="rebates.html">Rebates</a></li>
+                        <li><a href="contact.html">Free Quote</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info-list">
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:15098926460">(509) 892-6460</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@residentialhs.com">info@residentialhs.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i>523 N Ella Rd, Spokane Valley, WA</li>
+                    </ul>
+                    <div class="hardie-logo">
+                        <div class="hardie-badge-footer">
+                            <i class="fas fa-award"></i> Elite Preferred James Hardie Contractor
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Residential Home Solutions. All rights reserved. | License #: RHSWA123456</p>
+                <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
