@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="[Brand Name] Windows Gallery | Residential Home Solutions">
+    <title>[Brand Name] Gallery | Residential Home Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        /* Gallery Specific Styles */
+        .gallery-header {
+            background-color: var(--light);
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+        
+        .brand-logo-header {
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto 30px;
+            display: block;
+        }
+        
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 50px;
+            padding: 20px;
+            background-color: var(--off-white);
+            border-radius: var(--radius);
+        }
+        
+        .filter-btn {
+            padding: 12px 24px;
+            background-color: var(--white);
+            border: 2px solid var(--light-gray);
+            border-radius: 30px;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .gallery-item {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--light-gray);
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--secondary);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background-color: var(--light-gray);
+            position: relative;
+        }
+        
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-image img {
+            transform: scale(1.05);
+        }
+        
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 70%, rgba(0,0,0,0.5) 100%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .image-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-content {
+            padding: 25px;
+        }
+        
+        .gallery-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .window-type-badge {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .gallery-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .feature-tag {
+            background-color: var(--off-white);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .feature-tag i {
+            color: var(--primary);
+            font-size: 0.8rem;
+        }
+        
+        .gallery-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .view-details-btn {
+            flex: 1;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px;
+            border-radius: var(--radius);
+            text-align: center;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .view-details-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .quick-quote-btn {
+            flex: 1;
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 10px;
+            border-radius: var(--radius);
+            text-align: center;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .quick-quote-btn:hover {
+            background-color: var(--secondary-dark);
+        }
+        
+        .window-detail-section {
+            background-color: var(--off-white);
+            padding: 60px 0;
+            margin-top: 40px;
+        }
+        
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .detail-image-container {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--light-gray);
+        }
+        
+        .detail-image {
+            width: 100%;
+            height: 300px;
+            background-color: var(--light-gray);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        
+        .detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .detail-info h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .spec-list {
+            margin: 20px 0;
+        }
+        
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        
+        .spec-label {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .spec-value {
+            color: var(--gray);
+        }
+        
+        .color-options {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .color-swatch:hover {
+            transform: scale(1.1);
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: var(--white);
+            border-radius: var(--radius);
+            border: 2px dashed var(--light-gray);
+        }
+        
+        .no-results i {
+            font-size: 3rem;
+            color: var(--light-gray);
+            margin-bottom: 20px;
+        }
+        
+        .back-to-products {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-filters {
+                padding: 15px;
+            }
+            
+            .filter-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .gallery-image {
+                height: 200px;
+            }
+            
+            .brand-logo-header {
+                max-width: 200px;
+            }
+            
+            .gallery-header {
+                padding: 100px 0 40px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .gallery-actions {
+                flex-direction: column;
+            }
+            
+            .gallery-filters {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .filter-btn {
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="Residential Home Solutions Logo" width="320" height="90">
+                </a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown">
+                        <a href="#services" class="dropdown-toggle">
+                            Services <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="windows-patio-doors.html">Windows & Patio Doors</a></li>
+                            <li><a href="entry-storm-doors.html">Entry & Storm Doors</a></li>
+                            <li><a href="siding.html">Siding</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="contact.html" class="nav-cta">Free Quote</a></li>
+                </ul>
+                <div class="hardie-header-logo">
+                    <img src="images/infinitylogo.png" alt="Infinity by Marvin Contractor" class="partner-logo-img">
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Gallery Header -->
+    <section class="gallery-header">
+        <div class="container">
+            <img src="images/[brand-logo].png" alt="[Brand Name] Logo" class="brand-logo-header">
+            <h1 class="section-title">[Brand Name] Product Gallery</h1>
+            <p class="section-subtitle">Browse our collection of [Brand Name] windows and patio doors</p>
+        </div>
+    </section>
+
+    <!-- Gallery Filters -->
+    <section class="gallery-container" style="padding: 40px 0 20px;">
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">All Products</button>
+            <button class="filter-btn" data-filter="double-hung">Double-Hung</button>
+            <button class="filter-btn" data-filter="casement">Casement</button>
+            <button class="filter-btn" data-filter="sliding">Sliding</button>
+            <button class="filter-btn" data-filter="picture">Picture Windows</button>
+            <button class="filter-btn" data-filter="patio-doors">Patio Doors</button>
+            <button class="filter-btn" data-filter="bay-bow">Bay & Bow</button>
+            <button class="filter-btn" data-filter="custom">Custom Shapes</button>
+            <button class="filter-btn" data-filter="energy-efficient">Energy Efficient</button>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="gallery-container" style="padding: 20px 0 40px;">
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Sample Gallery Items - You'll add more -->
+            <div class="gallery-item" data-category="double-hung energy-efficient">
+                <div class="gallery-image">
+                    <img src="images/windows/double-hung-1.jpg" alt="[Brand Name] Double-Hung Window">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="gallery-content">
+                    <span class="window-type-badge">Double-Hung</span>
+                    <h3>Classic Double-Hung Window</h3>
+                    <p>A timeless design featuring two operable sashes that tilt in for easy cleaning and maintenance.</p>
+                    <div class="gallery-features">
+                        <span class="feature-tag"><i class="fas fa-leaf"></i> Energy Star</span>
+                        <span class="feature-tag"><i class="fas fa-snowflake"></i> Low-E Glass</span>
+                        <span class="feature-tag"><i class="fas fa-shield-alt"></i> Durable</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <a href="#double-hung-detail" class="view-details-btn">View Details</a>
+                        <a href="contact.html" class="quick-quote-btn">Quick Quote</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="casement energy-efficient">
+                <div class="gallery-image">
+                    <img src="images/windows/casement-1.jpg" alt="[Brand Name] Casement Window">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="gallery-content">
+                    <span class="window-type-badge">Casement</span>
+                    <h3>Premium Casement Window</h3>
+                    <p>Side-hinged windows that crank open for maximum ventilation and energy efficiency.</p>
+                    <div class="gallery-features">
+                        <span class="feature-tag"><i class="fas fa-leaf"></i> Energy Star</span>
+                        <span class="feature-tag"><i class="fas fa-wind"></i> Weather Tight</span>
+                        <span class="feature-tag"><i class="fas fa-expand-alt"></i> Full View</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <a href="#casement-detail" class="view-details-btn">View Details</a>
+                        <a href="contact.html" class="quick-quote-btn">Quick Quote</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="sliding picture">
+                <div class="gallery-image">
+                    <img src="images/windows/sliding-1.jpg" alt="[Brand Name] Sliding Window">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="gallery-content">
+                    <span class="window-type-badge">Sliding</span>
+                    <h3>Modern Sliding Window</h3>
+                    <p>Smooth horizontal sliding operation perfect for contemporary homes and tight spaces.</p>
+                    <div class="gallery-features">
+                        <span class="feature-tag"><i class="fas fa-ruler"></i> Space Saving</span>
+                        <span class="feature-tag"><i class="fas fa-eye"></i> Panoramic View</span>
+                        <span class="feature-tag"><i class="fas fa-tint"></i> Weather Resistant</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <a href="#sliding-detail" class="view-details-btn">View Details</a>
+                        <a href="contact.html" class="quick-quote-btn">Quick Quote</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="patio-doors">
+                <div class="gallery-image">
+                    <img src="images/doors/patio-door-1.jpg" alt="[Brand Name] Patio Door">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="gallery-content">
+                    <span class="window-type-badge">Patio Door</span>
+                    <h3>French Style Patio Door</h3>
+                    <p>Elegant hinged patio doors that open to create a seamless indoor-outdoor connection.</p>
+                    <div class="gallery-features">
+                        <span class="feature-tag"><i class="fas fa-door-open"></i> Wide Opening</span>
+                        <span class="feature-tag"><i class="fas fa-lock"></i> Multi-Point Lock</span>
+                        <span class="feature-tag"><i class="fas fa-glass-whiskey"></i> Decorative Glass</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <a href="#patio-door-detail" class="view-details-btn">View Details</a>
+                        <a href="contact.html" class="quick-quote-btn">Quick Quote</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="bay-bow custom">
+                <div class="gallery-image">
+                    <img src="images/windows/bay-window-1.jpg" alt="[Brand Name] Bay Window">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="gallery-content">
+                    <span class="window-type-badge">Bay Window</span>
+                    <h3>Elegant Bay Window</h3>
+                    <p>Create additional space and architectural interest with this beautiful bay window design.</p>
+                    <div class="gallery-features">
+                        <span class="feature-tag"><i class="fas fa-expand"></i> Extra Space</span>
+                        <span class="feature-tag"><i class="fas fa-sun"></i> Natural Light</span>
+                        <span class="feature-tag"><i class="fas fa-chair"></i> Window Seat</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <a href="#bay-window-detail" class="view-details-btn">View Details</a>
+                        <a href="contact.html" class="quick-quote-btn">Quick Quote</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="picture custom">
+                <div class="gallery-image">
+                    <img src="images/windows/picture-window-1.jpg" alt="[Brand Name] Picture Window">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="gallery-content">
+                    <span class="window-type-badge">Picture Window</span>
+                    <h3>Large Picture Window</h3>
+                    <p>Fixed windows that provide unobstructed views and maximum natural light penetration.</p>
+                    <div class="gallery-features">
+                        <span class="feature-tag"><i class="fas fa-mountain"></i> Panoramic View</span>
+                        <span class="feature-tag"><i class="fas fa-lightbulb"></i> Maximum Light</span>
+                        <span class="feature-tag"><i class="fas fa-home"></i> Architectural</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <a href="#picture-window-detail" class="view-details-btn">View Details</a>
+                        <a href="contact.html" class="quick-quote-btn">Quick Quote</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="energy-efficient custom">
+                <div class="gallery-image">
+                    <img src="images/windows/energy-efficient-1.jpg" alt="[Brand Name] Energy Efficient Window">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="gallery-content">
+                    <span class="window-type-badge">Energy Efficient</span>
+                    <h3>High Performance Window</h3>
+                    <p>Advanced technology window with superior insulation and energy savings features.</p>
+                    <div class="gallery-features">
+                        <span class="feature-tag"><i class="fas fa-bolt"></i> High R-Value</span>
+                        <span class="feature-tag"><i class="fas fa-temperature-low"></i> Low U-Factor</span>
+                        <span class="feature-tag"><i class="fas fa-certificate"></i> NFRC Rated</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <a href="#energy-efficient-detail" class="view-details-btn">View Details</a>
+                        <a href="contact.html" class="quick-quote-btn">Quick Quote</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-item" data-category="custom">
+                <div class="gallery-image">
+                    <img src="images/windows/custom-1.jpg" alt="[Brand Name] Custom Window">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="gallery-content">
+                    <span class="window-type-badge">Custom Shape</span>
+                    <h3>Custom Architectural Window</h3>
+                    <p>Uniquely shaped windows designed to match specific architectural requirements.</p>
+                    <div class="gallery-features">
+                        <span class="feature-tag"><i class="fas fa-ruler-combined"></i> Custom Size</span>
+                        <span class="feature-tag"><i class="fas fa-shapes"></i> Unique Shape</span>
+                        <span class="feature-tag"><i class="fas fa-paint-brush"></i> Custom Finish</span>
+                    </div>
+                    <div class="gallery-actions">
+                        <a href="#custom-detail" class="view-details-btn">View Details</a>
+                        <a href="contact.html" class="quick-quote-btn">Quick Quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="noResults" class="no-results" style="display: none;">
+            <i class="fas fa-search"></i>
+            <h3>No Products Found</h3>
+            <p>Try selecting a different filter or view all products.</p>
+        </div>
+        
+        <div class="back-to-products">
+            <a href="windows-patio-doors.html" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to All Products
+            </a>
+        </div>
+    </section>
+
+    <!-- Detailed Product Sections -->
+    <section id="double-hung-detail" class="window-detail-section">
+        <div class="container">
+            <div class="detail-grid">
+                <div class="detail-image-container">
+                    <div class="detail-image">
+                        <img src="images/windows/double-hung-detail.jpg" alt="Double-Hung Window Detail">
+                    </div>
+                </div>
+                <div class="detail-info">
+                    <h3>Double-Hung Window Features</h3>
+                    <p>Our double-hung windows offer classic styling with modern performance features. Both sashes tilt in for easy cleaning from inside your home.</p>
+                    
+                    <div class="spec-list">
+                        <div class="spec-item">
+                            <span class="spec-label">Energy Rating</span>
+                            <span class="spec-value">ENERGY STAR® Certified</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">U-Factor</span>
+                            <span class="spec-value">0.26 - 0.30</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Solar Heat Gain Coefficient</span>
+                            <span class="spec-value">0.18 - 0.25</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Frame Material</span>
+                            <span class="spec-value">[Brand Specific Material]</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Glass Options</span>
+                            <span class="spec-value">Double or Triple Pane, Low-E, Argon Fill</span>
+                        </div>
+                    </div>
+                    
+                    <h4>Available Colors</h4>
+                    <div class="color-options">
+                        <div class="color-swatch" style="background-color: #ffffff;" title="White"></div>
+                        <div class="color-swatch" style="background-color: #2c3e50;" title="Charcoal"></div>
+                        <div class="color-swatch" style="background-color: #7f8c8d;" title="Gray"></div>
+                        <div class="color-swatch" style="background-color: #34495e;" title="Slate"></div>
+                        <div class="color-swatch" style="background-color: #ecf0f1; border: 1px solid #bdc3c7;" title="Almond"></div>
+                    </div>
+                    
+                    <a href="contact.html" class="btn btn-primary" style="margin-top: 20px;">
+                        <i class="fas fa-quote-right"></i> Get Quote for Double-Hung Windows
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Residential Home Solutions</h3>
+                    <p>Providing quality window, door, and siding services to Spokane Valley homeowners since 2005.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Google Reviews"><i class="fab fa-google"></i></a>
+                        <a href="#" aria-label="Yelp"><i class="fab fa-yelp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="windows-patio-doors.html">Windows & Patio Doors</a></li>
+                        <li><a href="entry-storm-doors.html">Entry & Storm Doors</a></li>
+                        <li><a href="siding.html">Siding</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Window Partners</h4>
+                    <ul>
+                        <li><a href="https://www.infinitywindows.com/" target="_blank">Infinity by Marvin</a></li>
+                        <li><a href="https://www.provia.com/windows/" target="_blank">ProVia Windows</a></li>
+                        <li><a href="https://www.coeurdalenewindow.com/" target="_blank">Coeur d'Alene Window</a></li>
+                        <li><a href="https://www.vpiqualitywindows.com/windows" target="_blank">VPI Quality Windows</a></li>
+                        <li><a href="https://www.residentialhs.com/fiberglass-windows" target="_blank">Fiberglass Windows Info</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info-list">
+                        <li><i class="fas fa-phone-alt"></i> <a href="tel:15098926460">(509) 892-6460</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@residentialhs.com">info@residentialhs.com</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Spokane Valley, WA</li>
+                    </ul>
+                    <div class="hardie-logo">
+                        <div class="hardie-badge-footer">
+                            <i class="fas fa-award"></i> Elite Preferred James Hardie Contractor
+                        </div>
+                    </div>
+                    <div class="hardie-logo" style="margin-top: 10px;">
+                        <div class="hardie-badge-footer">
+                            <i class="fas fa-window-maximize"></i> Infinity by Marvin Contractor
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Residential Home Solutions. All rights reserved. | License #: RHSWA123456</p>
+                <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const noResults = document.getElementById('noResults');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    let visibleCount = 0;
+                    
+                    // Filter gallery items
+                    galleryItems.forEach(item => {
+                        const categories = item.getAttribute('data-category').split(' ');
+                        
+                        if (filterValue === 'all' || categories.includes(filterValue)) {
+                            item.style.display = 'block';
+                            visibleCount++;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                    
+                    // Show/hide no results message
+                    if (visibleCount === 0) {
+                        noResults.style.display = 'block';
+                    } else {
+                        noResults.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Smooth scroll for detail links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href !== '#' && href.startsWith('#') && !href.includes('double-hung-detail')) {
+                        e.preventDefault();
+                        
+                        const targetId = href.substring(1);
+                        const targetElement = document.getElementById(targetId);
+                        
+                        if (targetElement) {
+                            // First show the section if it's hidden
+                            targetElement.style.display = 'block';
+                            
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+            
+            // Current year for footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Handle detail section visibility
+            const detailSections = document.querySelectorAll('.window-detail-section');
+            detailSections.forEach(section => {
+                // Hide all detail sections initially except the first one
+                if (section.id !== 'double-hung-detail') {
+                    section.style.display = 'none';
+                }
+            });
+            
+            // Show detail section when clicking "View Details"
+            document.querySelectorAll('.view-details-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    const targetId = href.substring(1);
+                    
+                    // Hide all detail sections
+                    detailSections.forEach(section => {
+                        section.style.display = 'none';
+                    });
+                    
+                    // Show target section
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.style.display = 'block';
+                        
+                        // Scroll to the section
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
