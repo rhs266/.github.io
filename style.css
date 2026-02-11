@@ -231,7 +231,7 @@ img {
 /* Navigation menu */
 .nav-menu {
     display: flex;
-    gap: 25px;
+    gap: 50px;
     align-items: center;
 }
 
