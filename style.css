@@ -9,7 +9,7 @@
     --primary: #6120bd; 
     --primary-dark: #7629e3;
     --primary-light: #48198a;
-    --secondary: #FF6600;
+    --secondary: #FF6600; /* Orange accent from NGWindows */
     --secondary-dark: #9c4405;
     --secondary-light: #FF8833;
     --light: #f8f9fa;
@@ -173,7 +173,7 @@ img {
     left: 50%;
     transform: translateX(-50%);
     width: 80px;
-    height: 30px;
+    height: 3px;
     background-color: var(--secondary);
 }
 
