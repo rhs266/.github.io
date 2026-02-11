@@ -322,8 +322,8 @@ img {
 .dropdown-menu {
     position: absolute;
     top: 100%;
-    right: 0;
-    left: auto;
+    left: 50%;
+    transform: translate(-50%, 10px);
     min-width: 220px;
     background-color: var(--white);
     box-shadow: var(--shadow-hover);
@@ -331,7 +331,6 @@ img {
     padding: 10px 0;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(10px);
     transition: var(--transition);
     z-index: 1000;
 }
@@ -339,7 +338,7 @@ img {
 .dropdown:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translate(-50%, 0);
 }
 
 .dropdown-menu li {
