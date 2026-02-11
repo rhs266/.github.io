@@ -1293,7 +1293,7 @@ img {
 
 .footer-col h3,
 .footer-col h4 {
-    color: var(--white);
+    color: var(--dark);
     margin-bottom: 25px;
     position: relative;
 }
