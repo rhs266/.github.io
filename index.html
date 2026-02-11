@@ -3,369 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="James Hardie Siding Installation | Residential Home Solutions">
-    <title>James Hardie Siding | Residential Home Solutions</title>
+    <meta name="description" content="Residential Home Solutions - Expert window, door, and siding replacement in Spokane Valley, WA">
+    <title>Residential Home Solutions | Window & Door Replacement | Spokane Valley</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <!-- Additional inline style for this page – ensures title spacing and image presentation -->
-    <style>
-        /* Increase padding for page header to fix title closeness to header */
-        .page-header.siding-header {
-            padding: 160px 0 70px !important;
-            background-color: var(--light);
-        }
-        /* Showcase image styling – clean, elegant, fits with Hardie aesthetic */
-        .siding-showcase-img {
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-hover);
-            max-width: 1000px;
-            margin: 35px auto 25px;
-            border: 1px solid var(--light-gray);
-        }
-        .siding-showcase-img img {
-            border-radius: calc(var(--radius) + 2px);
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        /* Gallery/slideshow specific styling – harmonious with existing hero slideshow */
-        .siding-gallery {
-            background-color: var(--off-white);
-            padding: 60px 0;
-            margin-top: 40px;
-            border-top: 1px solid var(--light-gray);
-            border-bottom: 1px solid var(--light-gray);
-        }
-        .gallery-slideshow-container {
-            position: relative;
-            max-width: 1100px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-hover);
-        }
-        .gallery-slide {
-            display: none;
-            position: relative;
-        }
-        .gallery-slide.active {
-            display: block;
-        }
-        .gallery-slide img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            display: block;
-        }
-        .gallery-overlay-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            color: white;
-            padding: 30px 20px 20px;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-        .gallery-nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin-top: 25px;
-        }
-        .gallery-dots {
-            display: flex;
-            gap: 12px;
-        }
-        .gallery-dot {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: var(--medium-gray);
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid transparent;
-        }
-        .gallery-dot.active {
-            background: var(--secondary);
-            transform: scale(1.2);
-            border-color: var(--white);
-            box-shadow: 0 0 0 2px var(--secondary-light);
-        }
-        .gallery-prev, .gallery-next {
-            background: var(--primary);
-            border: none;
-            color: white;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            border: 2px solid white;
-            box-shadow: var(--shadow);
-        }
-        .gallery-prev:hover, .gallery-next:hover {
-            background: var(--secondary);
-            transform: scale(1.1);
-        }
-        /* ensure the CTA after gallery has clean spacing */
-        .after-gallery-cta {
-            margin-top: 50px;
-        }
-        @media (max-width: 768px) {
-            .gallery-slide img {
-                height: 300px;
-            }
-            .siding-showcase-img {
-                margin: 25px auto 15px;
-            }
-        }
-    </style>
 </head>
 <body>
-    <!-- Header & Navigation (unchanged, fully preserved) -->
-    <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="index.html" class="logo">
-                    <img src="images/logo.png" alt="Residential Home Solutions Logo" width="320" height="90">
-                </a>
-                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="dropdown">
-                        <a href="#services" class="dropdown-toggle">
-                            Services <i class="fas fa-chevron-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="windows-patio-doors.html">Windows & Patio Doors</a></li>
-                            <li><a href="entry-storm-doors.html">Entry & Storm Doors</a></li>
-                            <li><a href="siding.html">Siding</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="about.html" class="active">About</a></li>
-                    <li><a href="testimonials.html">Testimonials</a></li>
-                    <li><a href="contact.html" class="nav-cta">Free Quote</a></li>
-                </ul>
-                <div class="hardie-header-logo">
-                    <img src="images/infinitylogo.png" alt="InfinitybyMarvin Contractor" class="partner-logo-img">
-                </div>
-            </nav>
-        </div>
-    </header>
+     <!-- Header & Navigation -->
+   <header class="header">
+    <div class="container">
+        <nav class="navbar">
+            <!-- Main logo (centered) -->
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Residential Home Solutions Logo" width="320" height="90">
+            </a>
+            
+            <!-- Mobile menu toggle -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <!-- Navigation menu -->
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#services" class="dropdown-toggle">
+                        Services <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="windows-patio-doors.html">Windows & Patio Doors</a></li>
+                        <li><a href="entry-storm-doors.html">Entry & Storm Doors</a></li>
+                        <li><a href="siding.html">Siding</a></li>
+                    </ul>
+                </li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="contact.html" class="nav-cta">Free Quote</a></li>
+            </ul>
 
-    <!-- Page Header – with increased padding class to fix title proximity -->
-    <section class="page-header siding-header" style="background-color: var(--light); padding: 160px 0 70px;">
-        <div class="container">
-            <div class="section-header">
-                <h1 class="section-title">James Hardie® Siding</h1>
-                <p class="section-subtitle">Premium fiber cement siding designed for Spokane Valley's climate</p>
-                <div class="hardie-badge-large" style="margin-top: 20px;">
-                    <i class="fas fa-award"></i> Elite Preferred James Hardie Contractor
-                </div>
-                
-                <!-- ===== SHOWCASE IMAGE: directly underneath title, before main content ===== -->
-                <div class="siding-showcase-img">
-                    <!-- Replace with actual showcase image path. Using a semantic placeholder with fitting alt text -->
-                    <img src="images/siding/siding-showcase.jpg" alt="Beautiful James Hardie siding installation by Residential Home Solutions" onerror="this.src='https://placehold.co/1000x500/6120bd/white?text=James+Hardie+Siding+Showcase'; this.onerror=null;">
-                </div>
+            <!-- James Hardie logo on the right -->
+            <div class="hardie-header-logo">
+               <img src="images/infinitylogo.png" alt="InfinitybyMarvin Contractor" class="partner-logo-img">
             </div>
-        </div>
-    </section>
+        </nav>
+    </div>
+</header>
 
-    <!-- Main Service Content (same structure, enhanced) -->
-    <section class="services-detail" style="padding: 60px 0 40px;">
-        <div class="container">
-            <div class="service-detail-card">
-                <div class="service-detail-header">
-                    <div class="service-icon-large">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h2>James Hardie Fiber Cement Siding</h2>
-                    <p class="service-tagline">Transform and protect your home with America's #1 siding choice</p>
-                </div>
-                
-                <div class="service-detail-content" style="max-width: 900px; margin: 0 auto;">
-                    <h3>Why Choose James Hardie Siding?</h3>
-                    <p>As an Elite Preferred James Hardie Contractor, we install the highest quality fiber cement siding specifically engineered to withstand the Pacific Northwest's challenging weather conditions. James Hardie siding offers unmatched durability, beauty, and protection for your home.</p>
-                    
-                    <div class="benefits-grid" style="margin: 40px 0;">
-                        <div class="benefit-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <h4>Weather Resistant</h4>
-                            <p>Withstands rain, snow, hail, and extreme temperature fluctuations</p>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-fire"></i>
-                            <h4>Fire Resistant</h4>
-                            <p>Non-combustible material that won't fuel fires like wood or vinyl</p>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-bug"></i>
-                            <h4>Pest Resistant</h4>
-                            <p>Resists termites, woodpeckers, and other pests that damage wood siding</p>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-paint-roller"></i>
-                            <h4>Low Maintenance</h4>
-                            <p>ColorPlus® technology provides long-lasting color that resists fading</p>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-calendar-check"></i>
-                            <h4>30-Year Warranty</h4>
-                            <p>Industry-leading transferable warranty for peace of mind</p>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-chart-line"></i>
-                            <h4>Increased Value</h4>
-                            <p>Boosts curb appeal and home value with premium appearance</p>
-                        </div>
-                    </div>
-                    
-                    <h3>Our Siding Products & Styles</h3>
-                    
-                    <div class="types-grid" style="margin: 30px 0;">
-                        <div class="type-item">
-                            <i class="fas fa-border-style"></i>
-                            <h5>Lap Siding</h5>
-                            <p>Classic horizontal siding with timeless appeal</p>
-                        </div>
-                        <div class="type-item">
-                            <i class="fas fa-th"></i>
-                            <h5>Vertical Siding</h5>
-                            <p>Modern vertical panels for contemporary homes</p>
-                        </div>
-                        <div class="type-item">
-                            <i class="fas fa-shapes"></i>
-                            <h5>Shingle Siding</h5>
-                            <p>Shake-style shingles for rustic charm</p>
-                        </div>
-                        <div class="type-item">
-                            <i class="fas fa-vector-square"></i>
-                            <h5>Artisan Siding</h5>
-                            <p>Handcrafted look with distinctive grooves</p>
-                        </div>
-                        <div class="type-item">
-                            <i class="fas fa-columns"></i>
-                            <h5>Panel Siding</h5>
-                            <p>Smooth panels for modern, clean aesthetics</p>
-                        </div>
-                        <div class="type-item">
-                            <i class="fas fa-palette"></i>
-                            <h5>ColorPlus® Colors</h5>
-                            <p>Wide range of factory-applied, fade-resistant colors</p>
-                        </div>
-                    </div>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <!-- Slideshow Container -->
+        <div class="slideshow-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <div class="slide-image" style="background-image: url('images/slide1.jpg');"></div>
+                <div class="slide-overlay"></div>
             </div>
-        </div>
-    </section>
-
-    <!-- ===== GALLERY / SLIDESHOW SECTION – scrolling slideshow of images ===== -->
-    <section class="siding-gallery">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">James Hardie Project Gallery</h2>
-                <p class="section-subtitle">See a showcase of James Hardie Projects</p>
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="slide-image" style="background-image: url('images/slide2.jpg');"></div>
+                <div class="slide-overlay"></div>
             </div>
-
-            <!-- Slideshow container - replicates the interactive feel of index hero but dedicated for siding -->
-            <div class="gallery-slideshow-container">
-                <!-- Slide 1 -->
-                <div class="gallery-slide active">
-                    <img src="images/siding/siding-gallery1.jpg" alt="Rancher style" onerror="this.src='https://placehold.co/1100x500/48198a/white?text=Hardie+Lap+Siding+-+Iron+Gray'; this.onerror=null;">
-                    <div class="gallery-overlay-caption">
-                        <i class="fas fa-location-dot" style="margin-right: 8px;"></i>
-                    </div>
-                </div>
-                <!-- Slide 2 -->
-                <div class="gallery-slide">
-                    <img src="images/siding/siding-gallery2.jpg" alt="Iron grey" onerror="this.src='https://placehold.co/1100x500/7629e3/white?text=Vertical+Siding+-+Arctic+White'; this.onerror=null;">
-                    <div class="gallery-overlay-caption">
-                        <i class="fas fa-location-dot" style="margin-right: 8px;"></i>
-                    </div>
-                </div>
-                <!-- Slide 3 -->
-                <div class="gallery-slide">
-                    <img src="images/siding/siding-gallery3.jpg" alt="PNW" onerror="this.src='https://placehold.co/1100x500/6120bd/white?text=HardieShingle+-+Cobble+Stone'; this.onerror=null;">
-                    <div class="gallery-overlay-caption">
-                        <i class="fas fa-location-dot" style="margin-right: 8px;"></i> Spokane – HardieShingle®, Cobble Stone
-                    </div>
-                </div>
-                <!-- Slide 4 -->
-                <div class="gallery-slide">
-                    <img src="images/siding/siding-gallery4.jpg" alt="Modern midwest home" onerror="this.src='https://placehold.co/1100x500/9c4405/white?text=Artisan+Siding+-+Evening+Blue'; this.onerror=null;">
-                    <div class="gallery-overlay-caption">
-                        <i class="fas fa-location-dot" style="margin-right: 8px;"></i>
-                    </div>
-                </div>
-                <!-- Slide 5 – bonus slide, because Hardie deserves it -->
-                <div class="gallery-slide">
-                    <img src="images/siding/siding-gallery5.jpg" alt="Painted lady style home" onerror="this.src='https://placehold.co/1100x500/FF6600/white?text=Panel+Siding+-+Night+Gray'; this.onerror=null;">
-                    <div class="gallery-overlay-caption">
-                        <i class="fas fa-location-dot" style="margin-right: 8px;"></i>
-                    </div>
-                </div>
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="slide-image" style="background-image: url('images/slide3.jpg');"></div>
+                <div class="slide-overlay"></div>
             </div>
-
-            <!-- Navigation: prev/next + dots -->
-            <div class="gallery-nav">
-                <button class="gallery-prev" aria-label="Previous gallery image">
+            <!-- Slide 4 -->
+            <div class="slide">
+                <div class="slide-image" style="background-image: url('images/slide4.jpg');"></div>
+                <div class="slide-overlay"></div>
+            </div>
+            
+            <!-- Slideshow Navigation -->
+            <div class="slideshow-nav">
+                <button class="slide-prev" aria-label="Previous slide">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <div class="gallery-dots">
-                    <span class="gallery-dot active" data-index="0"></span>
-                    <span class="gallery-dot" data-index="1"></span>
-                    <span class="gallery-dot" data-index="2"></span>
-                    <span class="gallery-dot" data-index="3"></span>
-                    <span class="gallery-dot" data-index="4"></span>
+                <div class="slide-dots">
+                    <span class="dot active" data-slide="0"></span>
+                    <span class="dot" data-slide="1"></span>
+                    <span class="dot" data-slide="2"></span>
+                    <span class="dot" data-slide="3"></span>
                 </div>
-                <button class="gallery-next" aria-label="Next gallery image">
+                <button class="slide-next" aria-label="Next slide">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
-
-            <div class="text-center after-gallery-cta">
-                <p style="margin-top: 30px; font-style: italic; color: var(--primary);">
-                    <i class="fas fa-camera"></i> Every project is a reflection of our craftsmanship and Hardie® quality.
-                </p>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Upgrade Your Home With Confidence.</h1>
+                <p class="hero-subtitle">Locally owned and trusted for expert installation of high-performance windows, doors, and James Hardie® siding—built for lasting beauty, comfort, and value.</p>
+                <div class="hero-buttons">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-calendar-alt"></i> Get Your Free, No-Obligation Quote
+                    </a>
+                    <a href="#services" class="btn btn-primary">
+                        <i class="fas fa-info-circle"></i> Learn More
+                    </a>
+                </div>
+                <div class="hero-badges">
+                    <span class="badge">
+                        <i class="fas fa-award"></i> Elite Preferred James Hardie Contractor
+                    </span>
+                    <span class="badge">
+                        <i class="fas fa-home"></i> Locally Owned & Operated
+                    </span>
+                    <span class="badge">
+                        <i class="fas fa-star"></i> 5-Star Rated Service
+                    </span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section (updated to reflect gallery context, but original preserved) -->
-    <section class="process" style="background-color: var(--light);">
+    <!-- Services Section -->
+    <section class="services" id="services">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Ready to Transform Your Home?</h2>
-                <p class="section-subtitle">Contact us today for a free consultation and quote on James Hardie siding installation</p>
+                <h2 class="section-title">Our Premium Home Solutions</h2>
+                <p class="section-subtitle">We specialize in transforming homes with premium, durable products designed for the Spokane climate.</p>
             </div>
-            <div class="text-center">
-                <a href="contact.html" class="btn btn-primary btn-large">
-                    <i class="fas fa-calendar-alt"></i> Schedule Free Consultation
-                </a>
-                <p style="margin-top: 20px; font-size: 1.1rem;">
-                    <i class="fas fa-phone"></i> Call us today: <a href="tel:15098926460" style="color: var(--primary); text-decoration: underline;">(509) 892-6460</a>
-                </p>
-                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">
-                    <i class="fas fa-award"></i> As an Elite Preferred James Hardie Contractor, we offer exclusive warranties and expert installation
-                </p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-window-maximize"></i>
+                    </div>
+                    <h3>Window Replacement</h3>
+                    <p>Energy-efficient replacement windows tailored to our climate, reducing energy bills and increasing home comfort.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Energy Star Certified</li>
+                        <li><i class="fas fa-check-circle"></i> Custom Sizing & Styles</li>
+                        <li><i class="fas fa-check-circle"></i> Professional Installation</li>
+                    </ul>
+                    <a href="windows-patio-doors.html" class="btn btn-primary" style="margin-top: 20px; width: 100%;">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <h3>Door Installation</h3>
+                    <p>Secure, stylish entry and patio doors that enhance curb appeal while improving security and energy efficiency.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Enhanced Security Features</li>
+                        <li><i class="fas fa-check-circle"></i> Weather-Resistant Seals</li>
+                        <li><i class="fas fa-check-circle"></i> Custom Finishes Available</li>
+                    </ul>
+                    <a href="entry-storm-doors.html" class="btn btn-primary" style="margin-top: 20px; width: 100%;">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>James Hardie® Siding</h3>
+                    <p class="hardie-badge">Elite Preferred James Hardie Contractor</p>
+                    <p>Superior fiber cement siding that withstands Pacific Northwest weather while maintaining beauty for decades.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> 30-Year Warranty</li>
+                        <li><i class="fas fa-check-circle"></i> Fire & Pest Resistant</li>
+                        <li><i class="fas fa-check-circle"></i> Low Maintenance</li>
+                    </ul>
+                    <a href="siding.html" class="btn btn-primary" style="margin-top: 20px; width: 100%;">Learn More</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer (identical, fully preserved) -->
+    <!-- Why Choose Us Section -->
+    <section class="why-us" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Why Choose Our Local Team?</h2>
+                <p class="section-subtitle">As a hometown small business, we're invested in our community and your satisfaction.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-content">
+                    <div class="why-item">
+                        <div class="why-icon">
+                            <i class="fas fa-hammer"></i>
+                        </div>
+                        <div>
+                            <h3>Local Craftsmanship</h3>
+                            <p>We are a hometown small business deeply invested in the Spokane Valley community. Our work reflects our pride in serving our neighbors.</p>
+                        </div>
+                    </div>
+                    <div class="why-item">
+                        <div class="why-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div>
+                            <h3>Quality Products</h3>
+                            <p>We source and install high-quality made products that stand up to PNW's climate and add lasting value to your home.</p>
+                        </div>
+                    </div>
+                    <div class="why-item">
+                        <div class="why-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div>
+                            <h3>Expert Insight</h3>
+                            <p>Get professional guidance from initial consultation through project completion. We help you make informed decisions for your home.</p>
+                        </div>
+                    </div>
+                    <div class="why-item">
+                        <div class="why-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div>
+                            <h3>Outstanding Service</h3>
+                            <p>We're committed to your complete satisfaction with clear communication, timely completion, and attention to every detail.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="why-image">
+                    <div class="why-image">
+                        <img src="images/gallery18.png" alt="Team at work on home installation">
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="about.html" class="btn btn-secondary">Learn More About Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logo Showcase Section (Above Footer) -->
+    <section class="logo-showcase">
+        <div class="container">
+            <div class="logo-grid">
+                <!-- Logo 1 -->
+                <div class="partner-logo">
+                    <img src="images/partner-james-hardie.png" alt="James Hardie Elite Preferred Contractor">
+                </div>
+                <!-- Logo 2 -->
+                <div class="partner-logo">
+                    <img src="images/partner-energy-star.png" alt="Energy Star Partner">
+                </div>
+                <!-- Logo 3 -->
+                <div class="partner-logo">
+                    <img src="images/partner-bbb.png" alt="BBB Accredited Business">
+                </div>
+                <!-- Logo 4 -->
+                <div class="partner-logo">
+                    <img src="images/partner-local-business.png" alt="Local Business Association">
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -432,152 +323,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript – includes gallery slideshow functionality AND main script (merged) -->
-    <script>
-        // ========== MAIN SCRIPT (as in script.js) – preserves header scroll, mobile menu, etc ==========
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- Current year in footer ---
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-            // --- Header scroll effect ---
-            const header = document.querySelector('.header');
-            if (header) {
-                window.addEventListener('scroll', function() {
-                    if (window.scrollY > 50) {
-                        header.classList.add('scrolled');
-                    } else {
-                        header.classList.remove('scrolled');
-                    }
-                });
-            }
-
-            // --- Mobile menu toggle ---
-            const menuToggle = document.getElementById('menuToggle');
-            const navMenu = document.getElementById('navMenu');
-            if (menuToggle && navMenu) {
-                menuToggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    navMenu.classList.toggle('active');
-                    const icon = menuToggle.querySelector('i');
-                    if (icon) {
-                        icon.classList.toggle('fa-bars');
-                        icon.classList.toggle('fa-times');
-                    }
-                });
-
-                // Close mobile menu when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!navMenu.contains(event.target) && !menuToggle.contains(event.target)) {
-                        navMenu.classList.remove('active');
-                        const icon = menuToggle.querySelector('i');
-                        if (icon) {
-                            icon.classList.add('fa-bars');
-                            icon.classList.remove('fa-times');
-                        }
-                    }
-                });
-            }
-
-            // --- Dropdown for mobile (toggle on click instead of hover) ---
-            const dropdowns = document.querySelectorAll('.dropdown');
-            if (window.innerWidth <= 768) {
-                dropdowns.forEach(dropdown => {
-                    const toggle = dropdown.querySelector('.dropdown-toggle');
-                    if (toggle) {
-                        toggle.addEventListener('click', function(e) {
-                            e.preventDefault();
-                            dropdown.classList.toggle('active');
-                        });
-                    }
-                });
-            }
-
-            // ========== GALLERY SLIDESHOW (SIDING PAGE) ==========
-            const gallerySlides = document.querySelectorAll('.gallery-slide');
-            const galleryDots = document.querySelectorAll('.gallery-dot');
-            const prevBtn = document.querySelector('.gallery-prev');
-            const nextBtn = document.querySelector('.gallery-next');
-            
-            if (gallerySlides.length > 0 && galleryDots.length > 0) {
-                let currentSlide = 0;
-
-                function showGallerySlide(index) {
-                    // wrap around
-                    if (index >= gallerySlides.length) index = 0;
-                    if (index < 0) index = gallerySlides.length - 1;
-                    
-                    // hide all slides, remove active class
-                    gallerySlides.forEach(slide => slide.classList.remove('active'));
-                    galleryDots.forEach(dot => dot.classList.remove('active'));
-                    
-                    // show current
-                    gallerySlides[index].classList.add('active');
-                    galleryDots[index].classList.add('active');
-                    currentSlide = index;
-                }
-
-                // Event listeners for dots
-                galleryDots.forEach((dot, idx) => {
-                    dot.addEventListener('click', () => showGallerySlide(idx));
-                });
-
-                // Previous / next buttons
-                if (prevBtn) {
-                    prevBtn.addEventListener('click', () => showGallerySlide(currentSlide - 1));
-                }
-                if (nextBtn) {
-                    nextBtn.addEventListener('click', () => showGallerySlide(currentSlide + 1));
-                }
-
-                // Optional: auto-advance every 5 seconds (like index hero)
-                let autoSlideInterval = setInterval(() => {
-                    showGallerySlide(currentSlide + 1);
-                }, 5500);
-
-                // pause on hover (nice UX)
-                const galleryContainer = document.querySelector('.gallery-slideshow-container');
-                if (galleryContainer) {
-                    galleryContainer.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
-                    galleryContainer.addEventListener('mouseleave', () => {
-                        autoSlideInterval = setInterval(() => {
-                            showGallerySlide(currentSlide + 1);
-                        }, 5500);
-                    });
-                }
-            }
-
-            // ===== Hero slideshow for index.html (if exists) – do not break other pages =====
-            const heroSlides = document.querySelectorAll('.hero .slide');
-            const heroDots = document.querySelectorAll('.hero .dot');
-            const heroPrev = document.querySelector('.slide-prev');
-            const heroNext = document.querySelector('.slide-next');
-            
-            if (heroSlides.length > 0 && heroDots.length > 0) {
-                let heroCurrent = 0;
-                
-                function showHeroSlide(index) {
-                    if (index >= heroSlides.length) index = 0;
-                    if (index < 0) index = heroSlides.length - 1;
-                    heroSlides.forEach(s => s.classList.remove('active'));
-                    heroDots.forEach(d => d.classList.remove('active'));
-                    heroSlides[index].classList.add('active');
-                    heroDots[index].classList.add('active');
-                    heroCurrent = index;
-                }
-                
-                heroDots.forEach((dot, i) => {
-                    dot.addEventListener('click', () => showHeroSlide(i));
-                });
-                
-                if (heroPrev) heroPrev.addEventListener('click', () => showHeroSlide(heroCurrent - 1));
-                if (heroNext) heroNext.addEventListener('click', () => showHeroSlide(heroCurrent + 1));
-                
-                setInterval(() => {
-                    showHeroSlide(heroCurrent + 1);
-                }, 6000);
-            }
-        });
-    </script>
-    <!-- Fallback if external script.js also loads, we avoid conflicts; but our inline handles everything -->
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
