@@ -147,6 +147,18 @@
             color: var(--gray);
         }
         
+        .stock-image-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: var(--light-gray);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            color: var(--gray);
+        }
+        
         .gallery-link {
             display: inline-flex;
             align-items: center;
@@ -191,8 +203,94 @@
                 display: block;
             }
         }
-
-        /* ===== GALLERY STYLES (matching gallery-infinity.html) ===== */
+        .gallery-hero {
+            background-color: var(--light);
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+        
+        .brand-logo-header {
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto 30px;
+            display: block;
+        }
+        
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Brand Details Section with Side-by-Side Layout */
+        .brand-details-section {
+            padding: 80px 0;
+        }
+        
+        .brand-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        
+        .brand-image-container {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .brand-image {
+            width: 100%;
+            height: 400px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+        }
+        
+        .brand-image i {
+            font-size: 4rem;
+        }
+        
+        .brand-content h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+        }
+        
+        .brand-features {
+            margin: 30px 0;
+        }
+        
+        .brand-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .brand-feature-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 51, 102, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        /* Masonry Gallery Section */
+        .masonry-gallery-section {
+            padding: 60px 0 80px;
+            background-color: var(--off-white);
+        }
+        
         .gallery-header {
             text-align: center;
             margin-bottom: 50px;
@@ -394,15 +492,8 @@
             text-align: center;
             margin: 50px 0 20px;
         }
-
-        /* Additional brand/gallery adjustments */
-        .brand-logo-header {
-            max-width: 300px;
-            height: auto;
-            margin: 0 auto 30px;
-            display: block;
-        }
         
+        /* Responsive Styles */
         @media (max-width: 1200px) {
             .masonry-grid {
                 columns: 3 280px;
@@ -410,6 +501,15 @@
         }
         
         @media (max-width: 992px) {
+            .brand-details-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .brand-image {
+                height: 350px;
+            }
+            
             .masonry-grid {
                 columns: 2 300px;
             }
@@ -418,6 +518,19 @@
         @media (max-width: 768px) {
             .masonry-grid {
                 columns: 1 400px;
+            }
+            
+            .brand-logo-header {
+                max-width: 250px;
+            }
+            
+            .gallery-hero {
+                padding: 100px 0 40px;
+            }
+            
+            .brand-details-section,
+            .masonry-gallery-section {
+                padding: 60px 0;
             }
             
             .gallery-filters {
@@ -438,26 +551,34 @@
                 columns: 1;
             }
             
+            .brand-image {
+                height: 250px;
+            }
+            
             .lightbox-nav button {
                 width: 40px;
                 height: 40px;
                 font-size: 1.2rem;
             }
         }
-        /* ===== END GALLERY STYLES ===== */
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
+     <!-- Header & Navigation -->
    <header class="header">
     <div class="container">
         <nav class="navbar">
+            <!-- Main logo (centered) -->
             <a href="index.html" class="logo">
                 <img src="images/logo.png" alt="Residential Home Solutions Logo" width="320" height="90">
             </a>
+            
+            <!-- Mobile menu toggle -->
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
                 <i class="fas fa-bars"></i>
             </button>
+            
+            <!-- Navigation menu -->
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li class="dropdown">
@@ -485,15 +606,16 @@
                 <li><a href="testimonials.html">Testimonials</a></li>
                 <li><a href="contact.html" class="nav-cta">Free Quote</a></li>
             </ul>
+
+            <!-- James Hardie logo on the right -->
             <div class="hardie-header-logo">
                <img src="images/infinitylogo.png" alt="InfinitybyMarvin Contractor" class="partner-logo-img">
             </div>
         </nav>
     </div>
 </header>
-
     <!-- Page Header -->
-    <section class="page-header" style="background-color: var(--light); padding: 180px 0 80px;">
+    <section class="page-header" style="background-color: var(--light); padding: 160px 0 70px;">
         <div class="container">
             <div class="section-header">
                 <h1 class="section-title">Windows & Patio Doors</h1>
@@ -519,7 +641,7 @@
                     <p>At Residential Home Solutions, we partner with the Pacific Northwest's leading window manufacturers to bring you exceptional quality, energy efficiency, and durability. Each product line is selected for its ability to withstand our unique climate challenges while enhancing your home's comfort and value.</p>
                     
                     <!-- Window Provider Introduction -->
-                    <div style="background-color: rgba(128, 22, 204, 0.05); padding: 30px; border-radius: var(--radius); margin: 40px 0;">
+                    <div class="window-providers-intro" style="background-color: rgba(128, 22, 204, 0.05); padding: 30px; border-radius: var(--radius); margin: 40px 0;">
                         <h4 style="color: var(--primary); margin-bottom: 15px;">Why Choose Our Window Partners?</h4>
                         <p>We carefully select window manufacturers based on quality craftsmanship, energy efficiency, and local availability. As your trusted window experts, we provide:</p>
                         <ul style="columns: 2; column-gap: 40px; margin-top: 20px;">
@@ -533,7 +655,7 @@
                     </div>
                     
                     <!-- Window Provider Showcase -->
-                    <div style="margin: 50px 0;">
+                    <div class="providers-showcase" style="margin: 50px 0;">
                         <h3 style="text-align: center; margin-bottom: 40px;">Our Premium Window Partners</h3>
                         
                         <!-- Infinity by Marvin -->
@@ -550,7 +672,7 @@
                                 <h4 style="color: var(--primary); margin-bottom: 15px;">Infinity by Marvin</h4>
                                 <p>Infinity by Marvin offers the ultimate in replacement window technology with their innovative fiberglass construction. These windows provide exceptional durability, energy efficiency, and low maintenance.</p>
                                 
-                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
+                                <div class="provider-features" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
                                     <div style="display: flex; align-items: center; gap: 10px;">
                                         <i class="fas fa-leaf" style="color: #27ae60;"></i>
                                         <span>Superior Energy Efficiency</span>
@@ -613,7 +735,7 @@
                                 <h4 style="color: var(--primary); margin-bottom: 15px;">ProVia Windows & Doors</h4>
                                 <p>ProVia offers comprehensive solutions with both windows and doors. Their products are engineered with precision and built to perform, featuring exceptional energy efficiency and durability for Spokane Valley homes.</p>
                                 
-                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
+                                <div class="provider-features" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
                                     <div style="display: flex; align-items: center; gap: 10px;">
                                         <i class="fas fa-snowflake" style="color: #3498db;"></i>
                                         <span>Excellent Insulation</span>
@@ -676,7 +798,7 @@
                                 <h4 style="color: var(--primary); margin-bottom: 15px;">Coeur d'Alene Window Company</h4>
                                 <p>Coeur d'Alene Window Company represents the best of local Pacific Northwest craftsmanship. Their windows are specifically designed for our regional climate and built to withstand the unique weather challenges of Eastern Washington and Northern Idaho.</p>
                                 
-                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
+                                <div class="provider-features" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
                                     <div style="display: flex; align-items: center; gap: 10px;">
                                         <i class="fas fa-home" style="color: #e74c3c;"></i>
                                         <span>Local Manufacturing</span>
@@ -739,7 +861,7 @@
                                 <h4 style="color: var(--primary); margin-bottom: 15px;">VPI Quality Windows</h4>
                                 <p>VPI Quality Windows offers superior engineering and construction designed for long-term performance. Their windows feature innovative technologies that provide exceptional energy efficiency, security, and durability for Pacific Northwest homes.</p>
                                 
-                                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
+                                <div class="provider-features" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
                                     <div style="display: flex; align-items: center; gap: 10px;">
                                         <i class="fas fa-bolt" style="color: #f1c40f;"></i>
                                         <span>Advanced Energy Tech</span>
@@ -789,219 +911,172 @@
                         </div>
                     </div>
                     
-                    <!-- ===== UPDATED GALLERY SECTION – MASONRY + LIGHTBOX (like Infinity) ===== -->
-                    <div style="margin: 80px 0 40px;">
-                        <div class="gallery-header">
-                            <h2 class="section-title">Window & Patio Door Project Gallery</h2>
-                            <p class="section-subtitle">Browse our installations featuring Infinity by Marvin, ProVia, Coeur d'Alene, and VPI. Click any image to enlarge.</p>
+                    <!-- Window Types Grid with Stock Images -->
+                    <div class="container">
+                        <div class="section-header">
+                            <h2 class="section-title">ProVia Door Project Gallery</h2>
+                            <p class="section-subtitle">Browse our installations. Every door is custom-crafted for Spokane Valley homes.</p>
                         </div>
-                        
-                        <!-- Filter Buttons -->
-                        <div class="gallery-filters">
-                            <button class="filter-btn active" data-filter="all">All Products</button>
-                            <button class="filter-btn" data-filter="infinity">Infinity by Marvin</button>
-                            <button class="filter-btn" data-filter="provia">ProVia</button>
-                            <button class="filter-btn" data-filter="cda">Coeur d'Alene</button>
-                            <button class="filter-btn" data-filter="vpi">VPI</button>
-                            <button class="filter-btn" data-filter="patio-door">Patio Doors</button>
-                        </div>
-                        
-                        <!-- Masonry Grid -->
-                        <div class="masonry-grid" id="masonryGrid">
-                            <!-- INFINITY -->
-                            <div class="masonry-item" data-category="infinity" data-index="0">
-                                <img src="images/infinity/infinity-double-hung.jpg" alt="Infinity Double-Hung Window" class="masonry-img" onerror="this.src='https://placehold.co/600x400/8016cc/white?text=Infinity+Double+Hung';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">Infinity</span>
-                                    <h4>Double-Hung Window</h4>
-                                    <p>Classic design, energy-efficient fiberglass</p>
+            
+                        <!-- Slideshow container -->
+                        <div class="gallery-slideshow-container">
+                            <!-- Slide 1:  -->
+                            <div class="gallery-slide active">
+                                <img src="images/infinity/infinity-double-hung.jpg" alt="Infinity Double-Hung Window" onerror="this.src='images/infinity/infinity-double-hung.jpg'; this.onerror=null;">
+                                <div class="gallery-overlay-caption">
+                                    <i class="fas fa-tag" style="margin-right: 8px;"></i> Infinity Double Hung
                                 </div>
                             </div>
-                            <div class="masonry-item" data-category="infinity" data-index="1">
-                                <img src="images/infinity/infinity-casement.jpg" alt="Infinity Casement Window" class="masonry-img" onerror="this.src='https://placehold.co/600x400/8016cc/white?text=Infinity+Casement';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">Infinity</span>
-                                    <h4>Casement Window</h4>
-                                    <p>Crank-out operation, superior ventilation</p>
+                            <!-- Slide 2: -->
+                            <div class="gallery-slide">
+                                <img src="images/infinity/infinity-casement.jpg" alt="Infinity Casement" onerror="images/infinity/infinity-casement.jpg'; this.onerror=null;">
+                                <div class="gallery-overlay-caption">
+                                    <i class="fas fa-tag" style="margin-right: 8px;"></i> Infinity Casement
                                 </div>
                             </div>
-                            <div class="masonry-item" data-category="infinity patio-door" data-index="2">
-                                <img src="images/infinity/infinity-patio-door.jpg" alt="Infinity Patio Door" class="masonry-img" onerror="this.src='https://placehold.co/600x400/8016cc/white?text=Infinity+Patio+Door';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">Patio Door</span>
-                                    <h4>French Patio Door</h4>
-                                    <p>Elegant fiberglass, seamless indoor-outdoor</p>
+                            <!-- Slide 3:  -->
+                            <div class="gallery-slide">
+                                <img src="images/infinity/infinity-patio-door.jpg" alt="Infinity Patio Door" onerror="images/infinity/infinity-patio-door.jpg'; this.onerror=null;">
+                                <div class="gallery-overlay-caption">
+                                    <i class="fas fa-tag" style="margin-right: 8px;"></i> Infinity Patio Door
                                 </div>
                             </div>
-                            <div class="masonry-item" data-category="infinity" data-index="3">
-                                <img src="images/infinity/infinity-custom.jpg" alt="Infinity Custom Window" class="masonry-img" onerror="this.src='https://placehold.co/600x800/8016cc/white?text=Infinity+Custom';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">Infinity</span>
-                                    <h4>Custom Shape Window</h4>
-                                    <p>Architectural elegance</p>
+                            <!-- Slide 4:  -->
+                            <div class="gallery-slide">
+                                <img src="images/infinity/infinity-custom.jpg" alt="Infinity Custom Shape Window" onerror="images/infinity/infinity-custom.jpg'; this.onerror=null;">
+                                <div class="gallery-overlay-caption">
+                                    <i class="fas fa-tag" style="margin-right: 8px;"></i> Infinity Custom Shape Window
                                 </div>
                             </div>
-                            <div class="masonry-item" data-category="infinity patio-door" data-index="4">
-                                <img src="images/infinity/infinity-patio-door2.jpg" alt="Infinity Sliding Patio Door" class="masonry-img" onerror="this.src='https://placehold.co/600x450/8016cc/white?text=Infinity+Sliding+Patio';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">Patio Door</span>
-                                    <h4>Sliding Patio Door</h4>
-                                    <p>Space-saving, smooth operation</p>
+                            <!-- Slide 5:  -->
+                            <div class="gallery-slide">
+                                <img src="images/provia/provia-double-hung.jpg" alt="ProVia Double Hung Window" onerror="images/provia/provia-double-hung.jpg'; this.onerror=null;">
+                                <div class="gallery-overlay-caption">
+                                    <i class="fas fa-tag" style="margin-right: 8px;"></i> ProVia Double Hung Window
                                 </div>
                             </div>
-                            <div class="masonry-item" data-category="infinity" data-index="5">
-                                <img src="images/infinity/infinity-sliding2.jpg" alt="Infinity Sliding Window" class="masonry-img" onerror="this.src='https://placehold.co/600x400/8016cc/white?text=Infinity+Sliding';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">Infinity</span>
-                                    <h4>Sliding Window</h4>
-                                    <p>Horizontal operation, modern look</p>
+                            <!-- Slide 5:  -->
+                            <div class="gallery-slide">
+                                <img src="images/provia/provia-casement.jpg" alt="ProVia Casement Window" onerror="images/provia/provia-casement.jpg'; this.onerror=null;">
+                                <div class="gallery-overlay-caption">
+                                    <i class="fas fa-tag" style="margin-right: 8px;"></i> ProVia Casement Window
                                 </div>
                             </div>
-                            
-                            <!-- PROVIA -->
-                            <div class="masonry-item" data-category="provia" data-index="6">
-                                <img src="images/provia/provia-double-hung.jpg" alt="ProVia Double Hung Window" class="masonry-img" onerror="this.src='https://placehold.co/600x500/2c3e50/white?text=ProVia+Double+Hung';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">ProVia</span>
-                                    <h4>Double Hung Window</h4>
-                                    <p>Traditional style, modern efficiency</p>
+                            <!-- Slide 5:  -->
+                            <div class="gallery-slide">
+                                <img src="images/provia/provia-picture.jpg" alt="ProVia Picture Window" onerror="images/provia/provia-picture.jpg'; this.onerror=null;">
+                                <div class="gallery-overlay-caption">
+                                    <i class="fas fa-tag" style="margin-right: 8px;"></i> ProVia Picture Window
                                 </div>
                             </div>
-                            <div class="masonry-item" data-category="provia" data-index="7">
-                                <img src="images/provia/provia-casement.jpg" alt="ProVia Casement Window" class="masonry-img" onerror="this.src='https://placehold.co/600x400/2c3e50/white?text=ProVia+Casement';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">ProVia</span>
-                                    <h4>Casement Window</h4>
-                                    <p>Excellent weather seal</p>
+                            <!-- Slide 5:  -->
+                            <div class="gallery-slide">
+                                <img src="images/provia/provia-patio-door.jpg" alt="ProVia Patio Door" onerror="images/provia/provia-patio-door.jpg'; this.onerror=null;">
+                                <div class="gallery-overlay-caption">
+                                    <i class="fas fa-tag" style="margin-right: 8px;"></i> ProVia Patio Door
                                 </div>
                             </div>
-                            <div class="masonry-item" data-category="provia" data-index="8">
-                                <img src="images/provia/provia-picture.jpg" alt="ProVia Picture Window" class="masonry-img" onerror="this.src='https://placehold.co/600x300/2c3e50/white?text=ProVia+Picture';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">ProVia</span>
-                                    <h4>Picture Window</h4>
-                                    <p>Unobstructed views, natural light</p>
+                            <!-- Slide 5:  -->
+                            <div class="gallery-slide">
+                                <img src="images/provia/provia-bay.jpg" alt="ProVia Bay Window" onerror="images/provia/provia-bay.jpg'; this.onerror=null;">
+                                <div class="gallery-overlay-caption">
+                                    <i class="fas fa-tag" style="margin-right: 8px;"></i> ProVia Bay Window
                                 </div>
                             </div>
-                            <div class="masonry-item" data-category="provia patio-door" data-index="9">
-                                <img src="images/provia/provia-patio-door.jpg" alt="ProVia Patio Door" class="masonry-img" onerror="this.src='https://placehold.co/600x550/2c3e50/white?text=ProVia+Patio+Door';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">Patio Door</span>
-                                    <h4>Sliding Patio Door</h4>
-                                    <p>Smooth, durable, energy efficient</p>
+                            <!-- Slide 5:  -->
+                            <div class="gallery-slide">
+                                <img src="images/cda/cda-single-hung.jpg" alt="Coeur d'Alene Single Hung Window" onerror="images/cda/cda-single-hung.jpg'; this.onerror=null;">
+                                <div class="gallery-overlay-caption">
+                                    <i class="fas fa-tag" style="margin-right: 8px;"></i> Coeur d'Alene Single Hung Window
                                 </div>
                             </div>
-                            <div class="masonry-item" data-category="provia" data-index="10">
-                                <img src="images/provia/provia-bay.jpg" alt="ProVia Bay Window" class="masonry-img" onerror="this.src='https://placehold.co/600x450/2c3e50/white?text=ProVia+Bay';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">ProVia</span>
-                                    <h4>Bay Window</h4>
-                                    <p>Adds space and character</p>
+                            <!-- Slide 5:  -->
+                            <div class="gallery-slide">
+                                <img src="images/cda/cda-patio-door.jpg" alt="Coeur d'Alene Patio Door" onerror="this.src='images/cda/cda-patio-door.jpg'; this.onerror=null;">
+                                <div class="gallery-overlay-caption">
+                                    <i class="fas fa-tag" style="margin-right: 8px;"></i> Coeur d'Alene Patio Door
                                 </div>
                             </div>
-                            
-                            <!-- COEUR d'ALENE -->
-                            <div class="masonry-item" data-category="cda" data-index="11">
-                                <img src="images/cda/cda-single-hung.jpg" alt="Coeur d'Alene Single Hung Window" class="masonry-img" onerror="this.src='https://placehold.co/600x550/16a085/white?text=CDA+Single+Hung';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">Coeur d'Alene</span>
-                                    <h4>Single Hung Window</h4>
-                                    <p>Local craftsmanship, climate-tuned</p>
+                            <!-- Slide 5:  -->
+                            <div class="gallery-slide">
+                                <img src="images/cda/cda-custom.jpg" alt="Coeur d'Alene Custom Shape Window" onerror="this.src='https://placehold.co/1100x500/FF6600/white?text=SecureGuard+Storm+Door+-+Black+with+Retractable+Screen'; this.onerror=null;">
+                                <div class="gallery-overlay-caption">
+                                    <i class="fas fa-tag" style="margin-right: 8px;"></i> Coeur d'Alene Custum Shape Window
                                 </div>
                             </div>
-                            <div class="masonry-item" data-category="cda patio-door" data-index="12">
-                                <img src="images/cda/cda-patio-door.jpg" alt="Coeur d'Alene Patio Door" class="masonry-img" onerror="this.src='https://placehold.co/600x400/16a085/white?text=CDA+Patio+Door';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">Patio Door</span>
-                                    <h4>Patio Door</h4>
-                                    <p>Designed for Inland Northwest</p>
+                            <!-- Slide 5:  -->
+                            <div class="gallery-slide">
+                                <img src="images/doors/door-gallery5.jpg" alt="Deluxe™ 397 Full View Storm Door in Mountain Berry" onerror="this.src='https://placehold.co/1100x500/FF6600/white?text=SecureGuard+Storm+Door+-+Black+with+Retractable+Screen'; this.onerror=null;">
+                                <div class="gallery-overlay-caption">
+                                    <i class="fas fa-tag" style="margin-right: 8px;"></i> Deluxe™ 397 Full View Storm Door in Mountain Berry
                                 </div>
                             </div>
-                            <div class="masonry-item" data-category="cda" data-index="13">
-                                <img src="images/cda/cda-custom.jpg" alt="Coeur d'Alene Custom Window" class="masonry-img" onerror="this.src='https://placehold.co/600x500/16a085/white?text=CDA+Custom';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">Coeur d'Alene</span>
-                                    <h4>Custom Shape Window</h4>
-                                    <p>Unique architectural solutions</p>
+                            <!-- Slide 5:  -->
+                            <div class="gallery-slide">
+                                <img src="images/infinity/infinity-patio-door2.jpg" alt="Infinity Patio Door" onerror="images/infinity/infinity-patio-door2.jpg'; this.onerror=null;">
+                                <div class="gallery-overlay-caption">
+                                    <i class="fas fa-tag" style="margin-right: 8px;"></i> Infinity Patio Door
                                 </div>
                             </div>
-                            
-                            <!-- VPI -->
-                            <div class="masonry-item" data-category="vpi" data-index="14">
-                                <img src="images/vpi/vpi-double-hung.jpg" alt="VPI Double Hung Window" class="masonry-img" onerror="this.src='https://placehold.co/600x450/8e44ad/white?text=VPI+Double+Hung';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">VPI</span>
-                                    <h4>Double Hung Window</h4>
-                                    <p>Precision engineering, energy star</p>
-                                </div>
-                            </div>
-                            <div class="masonry-item" data-category="vpi" data-index="15">
-                                <img src="images/vpi/vpi-casement.jpg" alt="VPI Casement Window" class="masonry-img" onerror="this.src='https://placehold.co/600x350/8e44ad/white?text=VPI+Casement';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">VPI</span>
-                                    <h4>Casement Window</h4>
-                                    <p>Advanced locking, tight seal</p>
-                                </div>
-                            </div>
-                            <div class="masonry-item" data-category="vpi" data-index="16">
-                                <img src="images/vpi/vpi-sliding.jpg" alt="VPI Sliding Window" class="masonry-img" onerror="this.src='https://placehold.co/600x400/8e44ad/white?text=VPI+Sliding';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">VPI</span>
-                                    <h4>Sliding Window</h4>
-                                    <p>Smooth operation, low maintenance</p>
-                                </div>
-                            </div>
-                            <div class="masonry-item" data-category="vpi patio-door" data-index="17">
-                                <img src="images/vpi/vpi-patio-door.jpg" alt="VPI Patio Door" class="masonry-img" onerror="this.src='https://placehold.co/600x600/8e44ad/white?text=VPI+Patio+Door';">
-                                <div class="masonry-caption">
-                                    <span class="masonry-category">Patio Door</span>
-                                    <h4>Sliding Patio Door</h4>
-                                    <p>Durable, secure, beautiful</p>
+                            <!-- Slide 5:  -->
+                            <div class="gallery-slide">
+                                <img src="images/infinity/infinity-sliding2.jpg" alt="Infinity Sliding Window" onerror="images/infinity/infinity-sliding2.jpg'; this.onerror=null;">
+                                <div class="gallery-overlay-caption">
+                                    <i class="fas fa-tag" style="margin-right: 8px;"></i> Infinity Sliding Window
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- No Results Message -->
-                        <div id="noResults" class="no-results" style="display: none;">
-                            <i class="fas fa-search"></i>
-                            <h3>No Products Found</h3>
-                            <p>Try selecting a different filter or view all products.</p>
+            
+                        <!-- Navigation: prev/next + dots -->
+                        <div class="gallery-nav">
+                            <button class="gallery-prev" aria-label="Previous gallery image">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="gallery-dots">
+                                <span class="gallery-dot active" data-index="0"></span>
+                                <span class="gallery-dot" data-index="1"></span>
+                                <span class="gallery-dot" data-index="2"></span>
+                                <span class="gallery-dot" data-index="3"></span>
+                                <span class="gallery-dot" data-index="4"></span>
+                            </div>
+                            <button class="gallery-next" aria-label="Next gallery image">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
                         </div>
-                        
-                        <div class="back-to-products">
-                            <a href="contact.html" class="btn btn-primary">
-                                <i class="fas fa-calendar-alt"></i> Get a Quote
-                            </a>
+            
+                        <div class="text-center after-gallery-cta">
+                            <p style="margin-top: 30px; font-style: italic; color: var(--primary);">
+                                <i class="fas fa-camera"></i> Every door is custom-built to your home’s exact measurements.
+                            </p>
                         </div>
                     </div>
-                    <!-- ===== END UPDATED GALLERY ===== -->
                     
                     <!-- Benefits Section -->
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin: 60px 0 40px;">
-                        <div style="text-align: center; padding: 25px; background-color: var(--light); border-radius: var(--radius);">
-                            <i class="fas fa-bolt" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+                    <div class="benefits-grid" style="margin: 40px 0;">
+                        <div class="benefit-item">
+                            <i class="fas fa-bolt"></i>
                             <h4>Energy Savings</h4>
                             <p>Reduce heating and cooling costs by up to 30% with our Energy Star certified windows</p>
                         </div>
-                        <div style="text-align: center; padding: 25px; background-color: var(--light); border-radius: var(--radius);">
-                            <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+                        <div class="benefit-item">
+                            <i class="fas fa-shield-alt"></i>
                             <h4>Enhanced Security</h4>
                             <p>Advanced locking systems and durable materials for maximum protection</p>
                         </div>
-                        <div style="text-align: center; padding: 25px; background-color: var(--light); border-radius: var(--radius);">
-                            <i class="fas fa-volume-mute" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+                        <div class="benefit-item">
+                            <i class="fas fa-volume-mute"></i>
                             <h4>Noise Reduction</h4>
                             <p>Multi-pane glass and tight seals dramatically reduce outside noise</p>
                         </div>
-                        <div style="text-align: center; padding: 25px; background-color: var(--light); border-radius: var(--radius);">
-                            <i class="fas fa-home" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 15px;"></i>
+                        <div class="benefit-item">
+                            <i class="fas fa-home"></i>
                             <h4>Increased Home Value</h4>
                             <p>Premium window replacement can significantly increase your home's resale value</p>
                         </div>
                     </div>
                     
                     <!-- Fiberglass Windows Section -->
-                    <div style="background-color: rgba(128, 22, 204, 0.05); padding: 40px; border-radius: var(--radius); margin: 50px 0;">
+                    <div class="fiberglass-section" style="background-color: rgba(128, 22, 204, 0.05); padding: 40px; border-radius: var(--radius); margin: 50px 0;">
                         <h3 style="color: var(--primary); text-align: center; margin-bottom: 20px;">Why Choose Fiberglass Windows?</h3>
                         <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Fiberglass windows, like those from Infinity by Marvin, offer superior performance for Spokane Valley homes:</p>
                         
@@ -1026,6 +1101,12 @@
                                 <h5>Sustainable Choice</h5>
                                 <p>Long lifespan reduces environmental impact</p>
                             </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 30px;">
+                            <a href="https://www.residentialhs.com/fiberglass-windows" target="_blank" class="btn btn-secondary">
+                                <i class="fas fa-info-circle"></i> Learn More About Fiberglass Windows
+                            </a>
                         </div>
                     </div>
                     
@@ -1060,7 +1141,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+<!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -1129,32 +1210,10 @@
         </div>
     </footer>
 
-    <!-- Lightbox Modal (exact copy from gallery-infinity) -->
-    <div class="lightbox-modal" id="lightboxModal">
-        <button class="lightbox-close" id="lightboxClose">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="lightbox-content">
-            <img id="lightboxImage" src="" alt="" class="lightbox-img">
-            <div class="lightbox-caption">
-                <h3 id="lightboxTitle"></h3>
-                <p id="lightboxDescription"></p>
-            </div>
-        </div>
-        <div class="lightbox-nav">
-            <button id="lightboxPrev">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button id="lightboxNext">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-    </div>
-
     <!-- JavaScript -->
     <script src="script.js"></script>
     <script>
-        // Ensure current year in footer
+        // Ensure current year is displayed in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         
         // Mobile dropdown functionality
@@ -1166,6 +1225,7 @@
                 }
             });
         });
+        
         document.querySelectorAll('.learn-more-dropdown').forEach(dropdown => {
             dropdown.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) {
@@ -1174,135 +1234,6 @@
                 }
             });
         });
-
-        // ===== GALLERY + LIGHTBOX SCRIPT (identical functionality to gallery-infinity.html) =====
-        (function() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const masonryItems = document.querySelectorAll('.masonry-item');
-            const noResults = document.getElementById('noResults');
-            const lightboxModal = document.getElementById('lightboxModal');
-            const lightboxImage = document.getElementById('lightboxImage');
-            const lightboxTitle = document.getElementById('lightboxTitle');
-            const lightboxDescription = document.getElementById('lightboxDescription');
-            const lightboxClose = document.getElementById('lightboxClose');
-            const lightboxPrev = document.getElementById('lightboxPrev');
-            const lightboxNext = document.getElementById('lightboxNext');
-
-            let currentImageIndex = 0;
-            let filteredItems = Array.from(masonryItems);
-
-            // FILTER
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-
-                    const filterValue = this.getAttribute('data-filter');
-                    let visibleCount = 0;
-
-                    masonryItems.forEach(item => {
-                        const category = item.getAttribute('data-category');
-                        if (filterValue === 'all' || category.includes(filterValue)) {
-                            item.style.display = 'block';
-                            visibleCount++;
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-
-                    // Update filteredItems for lightbox navigation
-                    if (filterValue === 'all') {
-                        filteredItems = Array.from(masonryItems).filter(item => item.style.display !== 'none');
-                    } else {
-                        filteredItems = Array.from(masonryItems).filter(item => 
-                            item.style.display !== 'none' && item.getAttribute('data-category').includes(filterValue)
-                        );
-                    }
-
-                    noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-                });
-            });
-
-            // LIGHTBOX OPEN
-            masonryItems.forEach((item, idx) => {
-                item.addEventListener('click', function() {
-                    const img = this.querySelector('.masonry-img');
-                    const categoryEl = this.querySelector('.masonry-category');
-                    const titleEl = this.querySelector('h4');
-                    const descEl = this.querySelector('p');
-
-                    currentImageIndex = parseInt(this.getAttribute('data-index'));
-                    updateLightbox(
-                        img.src, 
-                        categoryEl ? categoryEl.textContent : '', 
-                        titleEl ? titleEl.textContent : '', 
-                        descEl ? descEl.textContent : ''
-                    );
-                    lightboxModal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-
-                    // Update filteredItems based on active filter
-                    const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter');
-                    if (activeFilter === 'all') {
-                        filteredItems = Array.from(masonryItems).filter(item => item.style.display !== 'none');
-                    } else {
-                        filteredItems = Array.from(masonryItems).filter(item => 
-                            item.style.display !== 'none' && item.getAttribute('data-category').includes(activeFilter)
-                        );
-                    }
-                });
-            });
-
-            // CLOSE
-            lightboxClose.addEventListener('click', closeLightbox);
-            lightboxModal.addEventListener('click', function(e) {
-                if (e.target === lightboxModal) closeLightbox();
-            });
-            document.addEventListener('keydown', function(e) {
-                if (lightboxModal.classList.contains('active')) {
-                    if (e.key === 'Escape') closeLightbox();
-                    if (e.key === 'ArrowLeft') navigateLightbox(-1);
-                    if (e.key === 'ArrowRight') navigateLightbox(1);
-                }
-            });
-
-            lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
-            lightboxNext.addEventListener('click', () => navigateLightbox(1));
-
-            function closeLightbox() {
-                lightboxModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-
-            function updateLightbox(src, category, title, description) {
-                lightboxImage.src = src;
-                lightboxImage.alt = title;
-                lightboxTitle.textContent = title;
-                lightboxDescription.textContent = `${category} – ${description}`;
-            }
-
-            function navigateLightbox(direction) {
-                // find current in filteredItems by data-index
-                const currentItem = Array.from(masonryItems).find(item => parseInt(item.dataset.index) === currentImageIndex);
-                let currentFilteredIndex = filteredItems.findIndex(item => 
-                    parseInt(item.dataset.index) === parseInt(currentItem.dataset.index)
-                );
-                let newIndex = (currentFilteredIndex + direction + filteredItems.length) % filteredItems.length;
-                let newItem = filteredItems[newIndex];
-                let newImageIndex = parseInt(newItem.dataset.index);
-
-                const img = newItem.querySelector('.masonry-img');
-                const category = newItem.querySelector('.masonry-category');
-                const title = newItem.querySelector('h4');
-                const description = newItem.querySelector('p');
-
-                currentImageIndex = newImageIndex;
-                updateLightbox(img.src, category.textContent, title.textContent, description.textContent);
-            }
-
-            // initial filteredItems = all visible
-            filteredItems = Array.from(masonryItems);
-        })();
     </script>
 </body>
 </html>
