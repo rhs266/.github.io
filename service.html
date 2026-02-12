@@ -13,36 +13,67 @@
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <style>
         /* service-repair specific styles — parts, service, existing product focus */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
         .service-repair-header {
             background: linear-gradient(105deg, #f4f7fb 0%, #e9f0f5 100%);
             padding: 110px 0 50px;
         }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+        
         .request-container {
-            max-width: 2500px;
+            max-width: 1300px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 50px;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
             align-items: start;
         }
-        @media (max-width: 992px) {
+        
+        @media (max-width: 1100px) {
             .request-container {
                 grid-template-columns: 1fr;
+                gap: 40px;
             }
         }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+        }
+        
         .repair-benefits {
             background: white;
             padding: 38px 32px;
             border-radius: 28px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.03);
             border: 1px solid #e6edf2;
+            width: 100%;
         }
+        
         .repair-benefits h3 {
             font-size: 2rem;
             font-family: 'Merriweather', serif;
             color: #153e4e;
             margin-bottom: 15px;
         }
+        
         .service-tag {
             background: #d5433a;
             color: white;
@@ -55,11 +86,13 @@
             margin-bottom: 20px;
             text-transform: uppercase;
         }
+        
         .parts-list {
             list-style: none;
             padding: 0;
             margin: 25px 0 15px;
         }
+        
         .parts-list li {
             display: flex;
             align-items: baseline;
@@ -69,12 +102,14 @@
             font-weight: 500;
             color: #1e3a47;
         }
+        
         .parts-list li i {
             color: #2f7a5c;
             width: 22px;
             text-align: center;
             font-size: 1.2rem;
         }
+        
         .service-alert {
             background: #fff3e0;
             border-left: 5px solid #c96b2c;
@@ -83,13 +118,22 @@
             margin-top: 30px;
             font-size: 1.05rem;
         }
+        
         .form-card {
             background: white;
             border-radius: 28px;
             box-shadow: 0 18px 40px rgba(0,0,0,0.04);
             padding: 40px 38px;
             border: 1px solid #e2eaf0;
+            width: 100%;
         }
+        
+        @media (max-width: 768px) {
+            .form-card {
+                padding: 30px 20px;
+            }
+        }
+        
         .form-title {
             font-size: 1.9rem;
             font-weight: 700;
@@ -97,6 +141,7 @@
             color: #0a3140;
             margin-bottom: 10px;
         }
+        
         .form-sub {
             color: #466473;
             margin-bottom: 30px;
@@ -104,11 +149,13 @@
             padding-bottom: 15px;
             border-bottom: 2px dashed #cbd8e0;
         }
+        
         .form-row {
             margin-bottom: 24px;
             display: flex;
             flex-direction: column;
         }
+        
         .form-row label {
             font-weight: 650;
             font-size: 0.98rem;
@@ -118,6 +165,7 @@
             align-items: center;
             gap: 8px;
         }
+        
         .form-control, .form-select, textarea {
             padding: 15px 20px;
             border: 1.5px solid #dde5ea;
@@ -126,13 +174,16 @@
             background: #fbfdff;
             transition: 0.2s;
             font-family: 'Inter', sans-serif;
+            width: 100%;
         }
+        
         .form-control:focus, .form-select:focus, textarea:focus {
             border-color: #1c6d5e;
             outline: none;
             background: white;
             box-shadow: 0 0 0 4px rgba(28,109,94,0.06);
         }
+        
         .radio-group {
             display: flex;
             flex-wrap: wrap;
@@ -141,6 +192,7 @@
             padding: 18px 22px;
             border-radius: 28px;
         }
+        
         .radio-option {
             display: flex;
             align-items: center;
@@ -150,18 +202,21 @@
             border-radius: 50px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.02);
         }
+        
         .radio-option input[type="radio"] {
             width: 18px;
             height: 18px;
             accent-color: #236b55;
             margin: 0;
         }
+        
         .checkbox-group-service {
             display: flex;
             flex-wrap: wrap;
             gap: 14px;
             margin-top: 10px;
         }
+        
         .checkbox-service-item {
             background: #edf3f7;
             padding: 12px 22px;
@@ -172,16 +227,21 @@
             font-weight: 500;
             border: 1px solid transparent;
             transition: 0.1s;
+            cursor: pointer;
         }
+        
         .checkbox-service-item:hover {
             background: #e2ecf2;
         }
+        
         .checkbox-service-item input {
             width: 19px;
             height: 19px;
             accent-color: #1f6e51;
             margin: 0;
+            cursor: pointer;
         }
+        
         .btn-service {
             background: #1a5c5f;
             background: linear-gradient(165deg, #1a5c5f 0%, #124e51 100%);
@@ -200,12 +260,21 @@
             border: 1px solid rgba(255,255,255,0.2);
             box-shadow: 0 10px 18px rgba(19,78,75,0.16);
             transition: 0.2s;
+            cursor: pointer;
         }
+        
         .btn-service:hover {
             background: #0f474a;
             transform: translateY(-3px);
             box-shadow: 0 18px 28px rgba(19,78,75,0.22);
         }
+        
+        .btn-service:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
         .service-footer-callout {
             background: #e3eef2;
             border-radius: 18px;
@@ -216,6 +285,7 @@
             align-items: center;
             justify-content: space-between;
         }
+        
         .hardie-badge-small {
             background: #1f5057;
             color: white;
@@ -224,6 +294,7 @@
             font-size: 0.8rem;
             font-weight: 600;
         }
+        
         .emergency-note {
             background: #fef1e6;
             border-radius: 14px;
@@ -232,8 +303,145 @@
             border: 1px solid #f3d5bc;
             color: #6b3f1c;
         }
+        
         .page-header h1 {
             font-size: 2.6rem;
+        }
+        
+        .flex-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .flex-row .form-row {
+            flex: 1 1 200px;
+        }
+        
+        .upload-area {
+            border: 2px dashed #c3d6dd;
+            padding: 22px;
+            text-align: center;
+            border-radius: 24px;
+            background: #fafdfe;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .upload-area:hover {
+            border-color: #1c6d5e;
+            background: #f0f7fa;
+        }
+        
+        .upload-area i {
+            font-size: 2.2rem;
+            color: #3c7983;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            padding: 20px 25px;
+            display: none;
+            align-items: center;
+            gap: 15px;
+            z-index: 9999;
+            max-width: 400px;
+            animation: slideIn 0.3s ease;
+            border-left: 6px solid #1a5c5f;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .notification.show {
+            display: flex;
+        }
+        
+        .notification.success {
+            border-left-color: #2f7a5c;
+        }
+        
+        .notification.error {
+            border-left-color: #d5433a;
+        }
+        
+        .notification i {
+            font-size: 1.8rem;
+        }
+        
+        .notification.success i {
+            color: #2f7a5c;
+        }
+        
+        .notification.error i {
+            color: #d5433a;
+        }
+        
+        .notification-content {
+            flex: 1;
+        }
+        
+        .notification-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #1e3a47;
+        }
+        
+        .notification-message {
+            color: #466473;
+            font-size: 0.95rem;
+        }
+        
+        .close-notification {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #8ba3ad;
+            padding: 5px;
+        }
+        
+        .close-notification:hover {
+            color: #1e3a47;
+        }
+        
+        .service-left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .warranty-checkbox {
+            background: #f5faff;
+            padding: 20px;
+            border-radius: 18px;
+            margin: 18px 0;
         }
     </style>
 </head>
@@ -242,17 +450,12 @@
    <header class="header">
     <div class="container">
         <nav class="navbar">
-            <!-- Main logo (centered) -->
             <a href="index.html" class="logo">
                 <img src="images/logo.png" alt="Residential Home Solutions Logo" width="320" height="90">
             </a>
-            
-            <!-- Mobile menu toggle -->
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
                 <i class="fas fa-bars"></i>
             </button>
-            
-            <!-- Navigation menu -->
             <ul class="nav-menu" id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li class="dropdown">
@@ -280,8 +483,6 @@
                 <li><a href="testimonials.html">Testimonials</a></li>
                 <li><a href="contact.html" class="nav-cta">Free Quote</a></li>
             </ul>
-
-            <!-- James Hardie logo on the right -->
             <div class="hardie-header-logo">
                <img src="images/infinitylogo.png" alt="InfinitybyMarvin Contractor" class="partner-logo-img">
             </div>
@@ -289,10 +490,10 @@
     </div>
 </header>
 
-    <!-- PAGE HEADER — service request (repair / parts / existing product focus) -->
+    <!-- PAGE HEADER -->
     <section class="service-repair-header">
         <div class="container">
-            <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <div class="header-content">
                 <span class="service-tag"><i class="fas fa-wrench"></i> Existing home service & repairs</span>
                 <h1 style="font-size: 2.9rem; font-family: 'Merriweather', serif; color: #123d47; margin-bottom: 15px; max-width: 900px;">Already have our products? <br>Need a part, adjustment, or service?</h1>
                 <p style="font-size: 1.3rem; color: #2b5668; max-width: 750px; margin-bottom: 5px;">Fast, local service for windows, doors, patio doors, storm doors, and siding components. Same-week options available.</p>
@@ -305,10 +506,39 @@
         </div>
     </section>
 
-    <!-- =========== SERVICE REQUEST FORM — JOB ALREADY DONE, NEED PART/SERVICE/REPAIR =========== -->
+    <!-- =========== SERVICE REQUEST FORM =========== -->
     <section style="padding: 60px 0 80px; background: white;">
         <div class="container request-container">
-            <!-- RIGHT: DETAILED "SERVICE REQUEST" FORM — EXISTING JOB, PARTS, REPAIR, ETC. -->
+            <!-- LEFT COLUMN - BENEFITS & INFO -->
+            <div class="service-left-column">
+                <div class="repair-benefits">
+                    <h3>We fix what we build — and more.</h3>
+                    <p style="font-size: 1.1rem; color: #235b66; margin-bottom: 20px;">Genuine parts, experienced techs, no-pressure service.</p>
+                    <ul class="parts-list">
+                        <li><i class="fas fa-check-circle"></i> Window sashes, balances, locks</li>
+                        <li><i class="fas fa-check-circle"></i> Patio door rollers, handles, screens</li>
+                        <li><i class="fas fa-check-circle"></i> Entry door hardware, hinges, weatherstrip</li>
+                        <li><i class="fas fa-check-circle"></i> Storm door pistons, closers, glass</li>
+                        <li><i class="fas fa-check-circle"></i> Siding panels, trim, J-channel</li>
+                        <li><i class="fas fa-check-circle"></i> Foggy glass / seal replacement</li>
+                    </ul>
+                    <div class="service-alert">
+                        <i class="fas fa-lightbulb" style="color: #c96b2c;"></i> <strong>Don't replace the whole unit — often just a $35 part fixes it.</strong> We'll diagnose and give you options.
+                    </div>
+                </div>
+                
+                <div style="background: #174a47; border-radius: 28px; padding: 32px; color: white;">
+                    <i class="fas fa-clock" style="font-size: 2.5rem; margin-bottom: 15px; opacity: 0.9;"></i>
+                    <h3 style="font-family: 'Merriweather', serif; margin-bottom: 15px; color: white;">Same-week service available</h3>
+                    <p style="margin-bottom: 20px; opacity: 0.95; font-size: 1.1rem;">Most common repairs completed in one visit. We stock parts for Infinity, Marvin, ProVia, and James Hardie.</p>
+                    <div style="display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.1); padding: 15px 20px; border-radius: 60px;">
+                        <i class="fas fa-phone-alt"></i>
+                        <span style="font-weight: 700;">Call parts counter: <a href="tel:15098926460" style="color: white; text-decoration: none;">(509) 892-6460</a></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RIGHT COLUMN - FORM -->
             <div class="form-card">
                 <div class="form-title">
                     <i class="fas fa-clipboard-check" style="color: #1b7c5c;"></i> Request part / service
@@ -317,32 +547,38 @@
                     <i class="fas fa-info-circle"></i> Already a customer or product installed? Tell us what needs attention.
                 </div>
                 
-                <form id="serviceRepairForm">
+                <form id="serviceRepairForm" novalidate>
                     <!-- CONTACT INFO -->
                     <div class="form-row">
                         <label><i class="fas fa-user"></i> Full name *</label>
-                        <input type="text" class="form-control" placeholder="e.g. Linda Thompson" required>
+                        <input type="text" class="form-control" id="fullName" placeholder="e.g. Linda Thompson" required>
+                        <div class="error-message" style="color: #d5433a; font-size: 0.85rem; margin-top: 5px; display: none;"></div>
                     </div>
-                    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-                        <div style="flex: 1;" class="form-row">
+                    
+                    <div class="flex-row">
+                        <div class="form-row">
                             <label><i class="fas fa-envelope"></i> Email *</label>
-                            <input type="email" class="form-control" placeholder="linda@example.com" required>
+                            <input type="email" class="form-control" id="email" placeholder="linda@example.com" required>
+                            <div class="error-message" style="color: #d5433a; font-size: 0.85rem; margin-top: 5px; display: none;"></div>
                         </div>
-                        <div style="flex: 1;" class="form-row">
+                        <div class="form-row">
                             <label><i class="fas fa-phone"></i> Phone *</label>
-                            <input type="tel" class="form-control" placeholder="(509) 892-6460" required>
+                            <input type="tel" class="form-control" id="phone" placeholder="(509) 892-6460" required>
+                            <div class="error-message" style="color: #d5433a; font-size: 0.85rem; margin-top: 5px; display: none;"></div>
                         </div>
                     </div>
+                    
                     <div class="form-row">
                         <label><i class="fas fa-location-dot"></i> Service address *</label>
-                        <input type="text" class="form-control" placeholder="523 N Ella Rd, Spokane Valley, WA" value="" required>
-                        <span style="font-size: 0.85rem; color: #527a84; margin-top: 5px;">Same as where product is installed?</span>
+                        <input type="text" class="form-control" id="address" placeholder="523 N Ella Rd, Spokane Valley, WA" required>
+                        <span style="font-size: 0.85rem; color: #527a84; margin-top: 5px;">Same as where product is installed</span>
+                        <div class="error-message" style="color: #d5433a; font-size: 0.85rem; margin-top: 5px; display: none;"></div>
                     </div>
 
-                    <!-- PRODUCT CATEGORY - what needs service? -->
+                    <!-- PRODUCT CATEGORY -->
                     <div class="form-row">
                         <label><i class="fas fa-border-all"></i> Which product needs service? *</label>
-                        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <div class="checkbox-group-service" id="productTypeGroup">
                             <label class="checkbox-service-item">
                                 <input type="checkbox" name="product_type" value="window"> Window
                             </label>
@@ -359,74 +595,85 @@
                                 <input type="checkbox" name="product_type" value="siding"> Siding
                             </label>
                         </div>
+                        <div id="productTypeError" style="color: #d5433a; font-size: 0.85rem; margin-top: 5px; display: none;"></div>
                     </div>
 
-                    <!-- SPECIFIC PART / ISSUE - service-oriented -->
+                    <!-- SPECIFIC ISSUE -->
                     <div class="form-row">
                         <label><i class="fas fa-screwdriver"></i> What needs to be serviced / replaced? *</label>
-                        <select class="form-select" required>
-                            <option selected disabled>Select most urgent issue</option>
-                            <option>Broken handle / lock</option>
-                            <option>Roller / track — door hard to slide</option>
-                            <option>Storm door closer / piston</option>
-                            <option>Foggy glass / seal failure</option>
-                            <option>Cracked or broken glass</option>
-                            <option>Screen repair / replacement</option>
-                            <option>Weatherstrip / draft</option>
-                            <option>Siding panel replacement</option>
-                            <option>Hinge adjustment / door sag</option>
-                            <option>Multi-point lock not engaging</option>
-                            <option>Other part / hardware</option>
+                        <select class="form-select" id="serviceIssue" required>
+                            <option value="" selected disabled>Select most urgent issue</option>
+                            <option value="Broken handle / lock">Broken handle / lock</option>
+                            <option value="Roller / track — door hard to slide">Roller / track — door hard to slide</option>
+                            <option value="Storm door closer / piston">Storm door closer / piston</option>
+                            <option value="Foggy glass / seal failure">Foggy glass / seal failure</option>
+                            <option value="Cracked or broken glass">Cracked or broken glass</option>
+                            <option value="Screen repair / replacement">Screen repair / replacement</option>
+                            <option value="Weatherstrip / draft">Weatherstrip / draft</option>
+                            <option value="Siding panel replacement">Siding panel replacement</option>
+                            <option value="Hinge adjustment / door sag">Hinge adjustment / door sag</option>
+                            <option value="Multi-point lock not engaging">Multi-point lock not engaging</option>
+                            <option value="Other part / hardware">Other part / hardware</option>
                         </select>
+                        <div class="error-message" style="color: #d5433a; font-size: 0.85rem; margin-top: 5px; display: none;"></div>
                     </div>
 
-                    <!-- ADDITIONAL DETAIL — maybe original purchase info? -->
+                    <!-- DESCRIPTION -->
                     <div class="form-row">
                         <label><i class="fas fa-pen"></i> Describe the issue & part needed (if known) *</label>
-                        <textarea class="form-control" rows="4" placeholder="Example: Patio door bottom roller is broken, door derails. Model maybe from 2018. Also left screen has a tear."></textarea>
+                        <textarea class="form-control" id="description" rows="4" placeholder="Example: Patio door bottom roller is broken, door derails. Model maybe from 2018. Also left screen has a tear." required></textarea>
+                        <div class="error-message" style="color: #d5433a; font-size: 0.85rem; margin-top: 5px; display: none;"></div>
                     </div>
 
-                    <!-- ORIGINAL INSTALL? IF KNOWN (helps with parts) -->
+                    <!-- ORIGINAL INSTALL -->
                     <div class="form-row">
                         <label><i class="fas fa-clock"></i> Was this product originally installed by Residential Home Solutions?</label>
-                        <div style="display: flex; gap: 35px;">
-                            <label style="display: flex; align-items: center; gap: 8px;"><input type="radio" name="original_install" value="yes"> Yes, installed by RHS</label>
-                            <label style="display: flex; align-items: center; gap: 8px;"><input type="radio" name="original_install" value="no"> No / not sure</label>
-                            <label style="display: flex; align-items: center; gap: 8px;"><input type="radio" name="original_install" value="other"> Other brand</label>
+                        <div style="display: flex; gap: 35px; flex-wrap: wrap;">
+                            <label style="display: flex; align-items: center; gap: 8px;">
+                                <input type="radio" name="original_install" value="yes"> Yes, installed by RHS
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px;">
+                                <input type="radio" name="original_install" value="no"> No / not sure
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px;">
+                                <input type="radio" name="original_install" value="other"> Other brand
+                            </label>
                         </div>
                     </div>
 
-                    <!-- WHEN? PREFERRED SERVICE TIME (repair vs part only) -->
+                    <!-- PREFERRED TIME -->
                     <div class="form-row">
                         <label><i class="fas fa-calendar-alt"></i> When do you need service?</label>
-                        <select class="form-select">
-                            <option>As soon as possible (we’ll call to schedule)</option>
+                        <select class="form-select" id="serviceTime">
+                            <option>As soon as possible (we'll call to schedule)</option>
                             <option>This week</option>
                             <option>Next week</option>
-                            <option>Just need part — I’ll pick up/install</option>
+                            <option>Just need part — I'll pick up/install</option>
                         </select>
                     </div>
 
-                    <!-- WARRANTY/OTHER INFO (since existing customer) -->
-                    <div style="background: #f5faff; padding: 20px; border-radius: 18px; margin: 18px 0;">
+                    <!-- WARRANTY CHECKBOX -->
+                    <div class="warranty-checkbox">
                         <label style="display: flex; align-items: flex-start; gap: 12px; font-weight: 400;">
-                            <input type="checkbox" checked style="width: 18px; height: 18px; margin-top: 2px;">
-                            <span style="font-size: 0.98rem;">Check if still under warranty — we’ll verify and save you money if covered.</span>
+                            <input type="checkbox" id="warrantyCheck" checked style="width: 18px; height: 18px; margin-top: 2px;">
+                            <span style="font-size: 0.98rem;">Check if still under warranty — we'll verify and save you money if covered.</span>
                         </label>
                     </div>
 
-                    <!-- UPLOAD PHOTO — huge for parts identification -->
+                    <!-- PHOTO UPLOAD -->
                     <div class="form-row">
                         <label><i class="fas fa-camera"></i> Upload photo of issue / part (helps us bring right part)</label>
-                        <div style="border: 2px dashed #c3d6dd; padding: 22px; text-align: center; border-radius: 24px; background: #fafdfe;">
-                            <i class="fas fa-cloud-upload-alt" style="font-size: 2.2rem; color: #3c7983;"></i>
+                        <div class="upload-area" id="uploadArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
                             <p style="margin: 8px 0 0; font-weight: 500;">Drag & drop or <span style="color: #0c6b5e; text-decoration: underline;">browse files</span></p>
                             <span style="font-size: 0.8rem; color: #5b7682;">JPG, PNG up to 10MB</span>
+                            <input type="file" id="fileInput" accept="image/*" style="display: none;">
                         </div>
+                        <div id="fileInfo" style="margin-top: 10px; font-size: 0.9rem; color: #1c4a5c;"></div>
                     </div>
 
                     <!-- SUBMIT BUTTON -->
-                    <button type="submit" class="btn-service">
+                    <button type="submit" class="btn-service" id="submitBtn">
                         <i class="fas fa-paper-plane"></i> Submit service request
                     </button>
                     <p style="font-size: 0.88rem; color: #3f6872; margin-top: 15px; display: flex; gap: 10px; align-items: center;">
@@ -445,7 +692,7 @@
         </div>
     </section>
 
-    <!-- SMALL TRUST STRIP — parts & service promise -->
+    <!-- TRUST STRIP -->
     <section style="background: #f1f6f9; padding: 35px 0;">
         <div class="container">
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
@@ -465,18 +712,32 @@
         </div>
     </section>
 
-    <!-- TESTIMONIAL SNIPPET — service after installation -->
+    <!-- TESTIMONIAL -->
     <section style="padding: 50px 0; background: white;">
         <div class="container">
             <div style="max-width: 850px; margin: 0 auto; text-align: center;">
-                <i class="fas fa-star" style="color: #ffb703; font-size: 1.8rem;"></i><i class="fas fa-star" style="color: #ffb703; font-size: 1.8rem;"></i><i class="fas fa-star" style="color: #ffb703; font-size: 1.8rem;"></i><i class="fas fa-star" style="color: #ffb703; font-size: 1.8rem;"></i><i class="fas fa-star" style="color: #ffb703; font-size: 1.8rem;"></i>
-                <p style="font-size: 1.4rem; font-style: italic; color: #184553; margin: 25px 0 10px;">"Our patio door wouldn’t slide — they came out, had the roller in the truck, fixed it in 20 minutes. Didn’t try to upsell a whole door. That’s why we always call RHS."</p>
+                <i class="fas fa-star" style="color: #ffb703; font-size: 1.8rem;"></i>
+                <i class="fas fa-star" style="color: #ffb703; font-size: 1.8rem;"></i>
+                <i class="fas fa-star" style="color: #ffb703; font-size: 1.8rem;"></i>
+                <i class="fas fa-star" style="color: #ffb703; font-size: 1.8rem;"></i>
+                <i class="fas fa-star" style="color: #ffb703; font-size: 1.8rem;"></i>
+                <p style="font-size: 1.4rem; font-style: italic; color: #184553; margin: 25px 0 10px;">"Our patio door wouldn't slide — they came out, had the roller in the truck, fixed it in 20 minutes. Didn't try to upsell a whole door. That's why we always call RHS."</p>
                 <span style="font-weight: 700;">— Carol M., Spokane Valley</span>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER (identical to original services.html, but update year script) -->
+    <!-- NOTIFICATION SYSTEM -->
+    <div id="notification" class="notification">
+        <i id="notificationIcon" class="fas fa-check-circle"></i>
+        <div class="notification-content">
+            <div id="notificationTitle" class="notification-title">Success!</div>
+            <div id="notificationMessage" class="notification-message">Your request has been submitted.</div>
+        </div>
+        <button class="close-notification" onclick="hideNotification()">&times;</button>
+    </div>
+
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -532,9 +793,303 @@
             </div>
         </div>
     </footer>
+
     <script>
+        // Set current year in footer
         document.getElementById('currentYear').innerHTML = new Date().getFullYear();
+
+        // ============ FORM OPERATIONAL FUNCTIONALITY ============
+        
+        // File upload handling
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const fileInfo = document.getElementById('fileInfo');
+        
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#1c6d5e';
+            uploadArea.style.background = '#f0f7fa';
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = '#c3d6dd';
+            uploadArea.style.background = '#fafdfe';
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#c3d6dd';
+            uploadArea.style.background = '#fafdfe';
+            
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                updateFileInfo(e.dataTransfer.files[0]);
+            }
+        });
+        
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length) {
+                updateFileInfo(fileInput.files[0]);
+            }
+        });
+        
+        function updateFileInfo(file) {
+            if (file.size > 10 * 1024 * 1024) {
+                fileInfo.innerHTML = '<span style="color: #d5433a;"><i class="fas fa-exclamation-circle"></i> File too large. Maximum 10MB.</span>';
+                fileInput.value = '';
+            } else {
+                fileInfo.innerHTML = `<span style="color: #1c6d5e;"><i class="fas fa-check-circle"></i> Selected: ${file.name} (${(file.size / 1024).toFixed(1)} KB)</span>`;
+            }
+        }
+
+        // Notification system
+        function showNotification(title, message, isSuccess = true) {
+            const notification = document.getElementById('notification');
+            const icon = document.getElementById('notificationIcon');
+            const titleEl = document.getElementById('notificationTitle');
+            const messageEl = document.getElementById('notificationMessage');
+            
+            if (isSuccess) {
+                notification.className = 'notification success show';
+                icon.className = 'fas fa-check-circle';
+            } else {
+                notification.className = 'notification error show';
+                icon.className = 'fas fa-exclamation-circle';
+            }
+            
+            titleEl.textContent = title;
+            messageEl.textContent = message;
+            
+            setTimeout(() => {
+                hideNotification();
+            }, 5000);
+        }
+        
+        function hideNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.remove('show');
+        }
+
+        // Form validation and submission
+        const form = document.getElementById('serviceRepairForm');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        function validateForm() {
+            let isValid = true;
+            
+            // Clear all error messages
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.style.display = 'none';
+                el.textContent = '';
+            });
+            document.getElementById('productTypeError').style.display = 'none';
+            
+            // Validate full name
+            const name = document.getElementById('fullName');
+            if (!name.value.trim()) {
+                showFieldError(name, 'Please enter your full name');
+                isValid = false;
+            }
+            
+            // Validate email
+            const email = document.getElementById('email');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email.value.trim()) {
+                showFieldError(email, 'Please enter your email');
+                isValid = false;
+            } else if (!emailPattern.test(email.value)) {
+                showFieldError(email, 'Please enter a valid email address');
+                isValid = false;
+            }
+            
+            // Validate phone
+            const phone = document.getElementById('phone');
+            if (!phone.value.trim()) {
+                showFieldError(phone, 'Please enter your phone number');
+                isValid = false;
+            } else {
+                const phoneDigits = phone.value.replace(/\D/g, '');
+                if (phoneDigits.length < 10) {
+                    showFieldError(phone, 'Please enter a valid 10-digit phone number');
+                    isValid = false;
+                }
+            }
+            
+            // Validate address
+            const address = document.getElementById('address');
+            if (!address.value.trim()) {
+                showFieldError(address, 'Please enter your service address');
+                isValid = false;
+            }
+            
+            // Validate product type (at least one checkbox checked)
+            const checkboxes = document.querySelectorAll('input[name="product_type"]:checked');
+            if (checkboxes.length === 0) {
+                document.getElementById('productTypeError').textContent = 'Please select at least one product type';
+                document.getElementById('productTypeError').style.display = 'block';
+                isValid = false;
+            }
+            
+            // Validate service issue
+            const issue = document.getElementById('serviceIssue');
+            if (!issue.value) {
+                showFieldError(issue, 'Please select an issue');
+                isValid = false;
+            }
+            
+            // Validate description
+            const description = document.getElementById('description');
+            if (!description.value.trim()) {
+                showFieldError(description, 'Please describe the issue');
+                isValid = false;
+            } else if (description.value.trim().length < 10) {
+                showFieldError(description, 'Please provide more details (at least 10 characters)');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+        
+        function showFieldError(field, message) {
+            const errorDiv = field.parentElement.querySelector('.error-message');
+            if (errorDiv) {
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+            }
+            field.style.borderColor = '#d5433a';
+            
+            // Reset border on input
+            field.addEventListener('input', function onInput() {
+                field.style.borderColor = '#dde5ea';
+                const error = field.parentElement.querySelector('.error-message');
+                if (error) {
+                    error.style.display = 'none';
+                }
+                field.removeEventListener('input', onInput);
+            });
+        }
+
+        // Format phone number as user types
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value.length <= 3) {
+                    value = value;
+                } else if (value.length <= 6) {
+                    value = value.slice(0, 3) + '-' + value.slice(3);
+                } else {
+                    value = value.slice(0, 3) + '-' + value.slice(3, 6) + '-' + value.slice(6, 10);
+                }
+                e.target.value = value;
+            }
+        });
+
+        // Form submission
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Disable submit button to prevent double submission
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            
+            // Validate form
+            if (!validateForm()) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit service request';
+                showNotification('Validation Error', 'Please check all required fields', false);
+                return;
+            }
+            
+            // Simulate form submission (replace with actual fetch/AJAX call)
+            setTimeout(() => {
+                // Show success notification
+                showNotification('Service Request Submitted!', 'We\'ll contact you within 24 hours to schedule your service.', true);
+                
+                // Reset form
+                form.reset();
+                fileInfo.innerHTML = '';
+                
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit service request';
+                
+                // Scroll to top to show notification
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 1500);
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+            });
+        }
+
+        // Dropdown toggle for mobile
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    const parent = this.parentElement;
+                    const dropdownMenu = parent.querySelector('.dropdown-menu');
+                    dropdownMenu.classList.toggle('show');
+                }
+            });
+        });
     </script>
     <script src="script.js"></script>
+    
+    <style>
+        /* Additional mobile styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 100px;
+                left: 0;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                flex-direction: column;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                box-shadow: none;
+                padding-left: 20px;
+                display: none;
+            }
+            
+            .dropdown-menu.show {
+                display: block;
+            }
+            
+            .header .container {
+                position: relative;
+            }
+            
+            .request-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </body>
 </html>
