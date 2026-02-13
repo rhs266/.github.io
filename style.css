@@ -374,6 +374,15 @@ img {
     display: none;
 }
 
+.nav-menu a.active {
+    color: #FF6600;
+    font-weight: 600;
+}
+
+.dropdown-toggle.active {
+    color: #FF6600;
+}
+
 /* Mobile toggle */
 .menu-toggle {
     display: none;
