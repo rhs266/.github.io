@@ -1245,7 +1245,7 @@ img {
 /* ===== LOGO SHOWCASE SECTION ===== */
 .logo-showcase {
     background-color: var(--off-white);
-    padding: 60px 0 60px;
+    padding: 60px 0;
     border-top: 1px solid var(--light-gray);
     border-bottom: 1px solid var(--light-gray);
 }
@@ -1253,6 +1253,7 @@ img {
 .logo-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    padding: 0 0 60px;
     gap: 20px;
     align-items: center;
     justify-items: center;
