@@ -400,5 +400,28 @@
     </footer>
 
     <script src="script.js"></script>
+        <script>
+        // Ensure current year is displayed in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Mobile dropdown functionality
+        document.querySelectorAll('.window-type-dropdown').forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    const content = this.querySelector('.window-type-content');
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+        });
+        
+        document.querySelectorAll('.learn-more-dropdown').forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    const content = this.querySelector('.learn-more-dropdown-content');
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
