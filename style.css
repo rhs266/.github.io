@@ -1529,12 +1529,14 @@ img {
     }
 
     .nav-menu li a {
-        padding: 15px 20px;
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        width: 100%;
-    }
+    padding: 10px 60px;
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1px; /* Reduced from 10px to 5px for tighter spacing */
+    width: 100%;
+}
 
     .nav-cta {
         margin: 10px 0 0 0;
