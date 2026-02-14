@@ -37,13 +37,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Close menu when clicking outside
         document.addEventListener('click', function(event) {
-            if (!event.target.closest('.navbar') && navMenu.classList.contains('active')) {
+            if (navMenu.classList.contains('active') && 
+                !event.target.closest('.navbar') && 
+                window.innerWidth <= 768) {
                 navMenu.classList.remove('active');
                 const icon = menuToggle.querySelector('i');
                 if (icon) {
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
                 }
+                
+                // Close all dropdowns
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                    const dropdownIcon = dropdown.querySelector('.dropdown-toggle i');
+                    if (dropdownIcon) {
+                        dropdownIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
             }
         });
 
@@ -61,6 +72,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     document.querySelectorAll('.dropdown').forEach(dropdown => {
                         dropdown.classList.remove('active');
+                        const dropdownIcon = dropdown.querySelector('.dropdown-toggle i');
+                        if (dropdownIcon) {
+                            dropdownIcon.style.transform = 'rotate(0deg)';
+                        }
                     });
                 }
             });
