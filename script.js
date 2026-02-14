@@ -11,49 +11,118 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     /* ===============================
-       MOBILE MENU TOGGLE
+       MOBILE MENU TOGGLE - FIXED VERSION
     =============================== */
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
 
     if (menuToggle && navMenu) {
 
-        menuToggle.addEventListener('click', function() {
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
             navMenu.classList.toggle('active');
-            menuToggle.innerHTML = navMenu.classList.contains('active')
-                ? '<i class="fas fa-times"></i>'
-                : '<i class="fas fa-bars"></i>';
+            
+            // Toggle icon between bars and times
+            const icon = this.querySelector('i');
+            if (icon) {
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.navbar') && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
         });
 
         // Close menu when clicking normal links
         const navLinks = document.querySelectorAll('.nav-menu a:not(.dropdown-toggle)');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
-                navMenu.classList.remove('active');
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
 
-                document.querySelectorAll('.dropdown').forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-            });
-        });
-
-        // Mobile dropdown toggle
-        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-        dropdownToggles.forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
-                if (window.innerWidth <= 992) {
-                    e.preventDefault();
-                    const dropdown = this.parentElement;
-                    dropdown.classList.toggle('active');
-
-                    document.querySelectorAll('.dropdown').forEach(other => {
-                        if (other !== dropdown) {
-                            other.classList.remove('active');
-                        }
+                    document.querySelectorAll('.dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
                     });
                 }
             });
+        });
+
+        // Mobile dropdown toggle - FIXED
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const dropdown = this.closest('.dropdown');
+                    
+                    // Close other dropdowns
+                    document.querySelectorAll('.dropdown').forEach(other => {
+                        if (other !== dropdown) {
+                            other.classList.remove('active');
+                            
+                            // Reset chevron rotation for other dropdowns
+                            const otherIcon = other.querySelector('.dropdown-toggle i');
+                            if (otherIcon) {
+                                otherIcon.style.transform = 'rotate(0deg)';
+                            }
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    dropdown.classList.toggle('active');
+                    
+                    // Rotate chevron
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        icon.style.transform = dropdown.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+                    }
+                }
+            });
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                // Reset mobile menu if open
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                }
+                
+                // Reset dropdowns
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                    const icon = dropdown.querySelector('.dropdown-toggle i');
+                    if (icon) {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
         });
     }
 
@@ -74,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
     =============================== */
     let currentPage = window.location.pathname.split('/').pop();
 
-    if (currentPage === '') {
+    if (currentPage === '' || currentPage === 'index.html' || currentPage === '/') {
         currentPage = 'index.html';
     }
 
@@ -108,11 +177,11 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
 
             const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                service: document.getElementById('service').value,
-                message: document.getElementById('message').value
+                name: document.getElementById('name')?.value || '',
+                email: document.getElementById('email')?.value || '',
+                phone: document.getElementById('phone')?.value || '',
+                service: document.getElementById('service')?.value || '',
+                message: document.getElementById('message')?.value || ''
             };
 
             if (!formData.name || !formData.email || !formData.service || !formData.message) {
@@ -150,12 +219,20 @@ document.addEventListener('DOMContentLoaded', function() {
             if (navMenu && navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
                 if (menuToggle) {
-                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
                 }
             }
 
             document.querySelectorAll('.dropdown').forEach(dropdown => {
                 dropdown.classList.remove('active');
+                const icon = dropdown.querySelector('.dropdown-toggle i');
+                if (icon) {
+                    icon.style.transform = 'rotate(0deg)';
+                }
             });
         });
     });
@@ -186,6 +263,63 @@ document.addEventListener('DOMContentLoaded', function() {
     =============================== */
     initSlideshow();
     handlePageSpecificFeatures();
+    
+    // Re-run after header is loaded (for pages that load header dynamically)
+    setTimeout(function() {
+        // Re-initialize mobile menu listeners if header was loaded dynamically
+        if (!menuToggle || !navMenu) {
+            const newMenuToggle = document.getElementById('menuToggle');
+            const newNavMenu = document.getElementById('navMenu');
+            
+            if (newMenuToggle && newNavMenu) {
+                // Re-attach event listeners
+                newMenuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    newNavMenu.classList.toggle('active');
+                    
+                    const icon = this.querySelector('i');
+                    if (icon) {
+                        if (newNavMenu.classList.contains('active')) {
+                            icon.classList.remove('fa-bars');
+                            icon.classList.add('fa-times');
+                        } else {
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
+                    }
+                });
+                
+                // Re-attach dropdown toggles
+                document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+                    toggle.addEventListener('click', function(e) {
+                        if (window.innerWidth <= 768) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            
+                            const dropdown = this.closest('.dropdown');
+                            
+                            document.querySelectorAll('.dropdown').forEach(other => {
+                                if (other !== dropdown) {
+                                    other.classList.remove('active');
+                                    const otherIcon = other.querySelector('.dropdown-toggle i');
+                                    if (otherIcon) {
+                                        otherIcon.style.transform = 'rotate(0deg)';
+                                    }
+                                }
+                            });
+                            
+                            dropdown.classList.toggle('active');
+                            
+                            const icon = this.querySelector('i');
+                            if (icon) {
+                                icon.style.transform = dropdown.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+                            }
+                        }
+                    });
+                });
+            }
+        }
+    }, 100);
 });
 
 
@@ -223,7 +357,7 @@ function initSlideshow() {
     function prevSlide() { showSlide(currentSlide - 1); }
 
     function startInterval() {
-        slideInterval = setInterval(nextSlide, 3000);
+        slideInterval = setInterval(nextSlide, 5000);
     }
 
     function resetInterval() {
