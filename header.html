@@ -1,48 +1,48 @@
 <!-- Header -->
-<header class="header">
+<header class="header" role="banner">
     <div class="container">
-        <nav class="navbar">
-            <a href="index.html" class="logo">
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="logo" aria-label="Residential Home Solutions Home">
                 <img src="images/logo.png" alt="Residential Home Solutions Logo" width="320" height="90">
             </a>
 
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">
-                <i class="fas fa-bars"></i>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+                <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
 
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html">Home</a></li>
+            <ul class="nav-menu" id="navMenu" role="list">
+                <li role="none"><a href="index.html" role="listitem">Home</a></li>
 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">
-                        Services <i class="fas fa-chevron-down"></i>
+                <li class="dropdown" role="none">
+                    <a href="#" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                        Services <i class="fas fa-chevron-down" aria-hidden="true"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="windows-patio-doors.html">Windows & Patio Doors</a></li>
-                        <li><a href="entry-storm-doors.html">Entry & Storm Doors</a></li>
-                        <li><a href="siding.html">Siding</a></li>
-                        <li><a href="service.html">Service Request</a></li>
+                    <ul class="dropdown-menu" role="menu" aria-label="Services submenu">
+                        <li role="none"><a href="windows-patio-doors.html" role="menuitem">Windows & Patio Doors</a></li>
+                        <li role="none"><a href="entry-storm-doors.html" role="menuitem">Entry & Storm Doors</a></li>
+                        <li role="none"><a href="siding.html" role="menuitem">Siding</a></li>
+                        <li role="none"><a href="service.html" role="menuitem">Service Request</a></li>
                     </ul>
                 </li>
 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">
-                        Offers <i class="fas fa-chevron-down"></i>
+                <li class="dropdown" role="none">
+                    <a href="#" class="dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                        Offers <i class="fas fa-chevron-down" aria-hidden="true"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="promotions.html">Promotions</a></li>
-                        <li><a href="financing.html">Financing</a></li>
-                        <li><a href="rebates.html">Rebates</a></li>
+                    <ul class="dropdown-menu" role="menu" aria-label="Offers submenu">
+                        <li role="none"><a href="promotions.html" role="menuitem">Promotions</a></li>
+                        <li role="none"><a href="financing.html" role="menuitem">Financing</a></li>
+                        <li role="none"><a href="rebates.html" role="menuitem">Rebates</a></li>
                     </ul>
                 </li>
 
-                <li><a href="about.html">About</a></li>
-                <li><a href="testimonials.html">Testimonials</a></li>
-                <li><a href="contact.html" class="nav-cta">Free Quote</a></li>
+                <li role="none"><a href="about.html" role="listitem">About</a></li>
+                <li role="none"><a href="testimonials.html" role="listitem">Testimonials</a></li>
+                <li role="none"><a href="contact.html" class="nav-cta" role="listitem" aria-label="Get a free quote">Free Quote</a></li>
             </ul>
 
             <div class="hardie-header-logo">
-                <img src="images/infinitylogo.png" alt="Infinity by Marvin Contractor" class="partner-logo-img">
+                <img src="images/infinitylogo.png" alt="Infinity by Marvin Contractor" class="partner-logo-img" loading="lazy">
             </div>
         </nav>
     </div>
