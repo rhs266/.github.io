@@ -353,110 +353,107 @@ function initializeLazyLoading() {
  * Slideshow functionality
  */
 function initSlideshow() {
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.dot');
-    const prevBtn = document.querySelector('.slide-prev');
-    const nextBtn = document.querySelector('.slide-next');
-
-    if (slides.length === 0) return;
-
-    let currentSlide = 0;
-    let slideInterval;
-    let isPaused = false;
-
-    function showSlide(index) {
-        if (index >= slides.length) index = 0;
-        if (index < 0) index = slides.length - 1;
-
-        slides.forEach(slide => slide.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-
-        slides[index].classList.add('active');
-        if (dots[index]) {
-            dots[index].classList.add('active');
-            dots[index].setAttribute('aria-selected', 'true');
-        }
-
-        // Update ARIA for dots
-        dots.forEach((dot, i) => {
-            dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
-        });
-
-        currentSlide = index;
+    // Hero slideshow
+    const heroSlides = document.querySelectorAll('.hero .slide');
+    const heroDots = document.querySelectorAll('.hero .dot');
+    const heroPrev = document.querySelector('.slide-prev');
+    const heroNext = document.querySelector('.slide-next');
+    
+    if (heroSlides.length > 0) {
+        let heroCurrent = 0;
+        let heroInterval;
         
-        if (!isPaused) {
-            resetInterval();
+        function showHeroSlide(index) {
+            if (index >= heroSlides.length) index = 0;
+            if (index < 0) index = heroSlides.length - 1;
+            
+            heroSlides.forEach(s => s.classList.remove('active'));
+            if (heroDots.length > 0) {
+                heroDots.forEach(d => d.classList.remove('active'));
+                heroDots[index]?.classList.add('active');
+            }
+            
+            heroSlides[index].classList.add('active');
+            heroCurrent = index;
+        }
+        
+        if (heroDots.length > 0) {
+            heroDots.forEach((dot, i) => {
+                dot.addEventListener('click', () => showHeroSlide(i));
+            });
+        }
+        
+        if (heroPrev) {
+            heroPrev.addEventListener('click', () => showHeroSlide(heroCurrent - 1));
+        }
+        if (heroNext) {
+            heroNext.addEventListener('click', () => showHeroSlide(heroCurrent + 1));
+        }
+        
+        // Auto-advance slides
+        function startHeroInterval() {
+            heroInterval = setInterval(() => {
+                showHeroSlide(heroCurrent + 1);
+            }, 6000);
+        }
+        
+        startHeroInterval();
+        
+        // Pause on hover
+        const heroContainer = document.querySelector('.hero');
+        if (heroContainer) {
+            heroContainer.addEventListener('mouseenter', () => clearInterval(heroInterval));
+            heroContainer.addEventListener('mouseleave', startHeroInterval);
         }
     }
-
-    function nextSlide() { 
-        if (!isPaused) showSlide(currentSlide + 1); 
-    }
     
-    function prevSlide() { 
-        if (!isPaused) showSlide(currentSlide - 1); 
-    }
-
-    function startInterval() {
-        if (slideInterval) clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, 5000);
-    }
-
-    function resetInterval() {
-        if (slideInterval) clearInterval(slideInterval);
-        if (!isPaused) startInterval();
-    }
-
-    function pauseSlideshow() {
-        isPaused = true;
-        if (slideInterval) clearInterval(slideInterval);
-    }
-
-    function resumeSlideshow() {
-        isPaused = false;
-        startInterval();
-    }
-
-    // Event listeners
-    if (prevBtn) {
-        prevBtn.addEventListener('click', prevSlide);
-        prevBtn.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                prevSlide();
-            }
-        });
-    }
+    // Gallery slideshows (for siding, doors, windows pages)
+    const gallerySlides = document.querySelectorAll('.gallery-slide');
+    const galleryDots = document.querySelectorAll('.gallery-dot');
+    const galleryPrev = document.querySelector('.gallery-prev');
+    const galleryNext = document.querySelector('.gallery-next');
     
-    if (nextBtn) {
-        nextBtn.addEventListener('click', nextSlide);
-        nextBtn.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                nextSlide();
-            }
+    if (gallerySlides.length > 0 && galleryDots.length > 0) {
+        let galleryCurrent = 0;
+        let galleryInterval;
+
+        function showGallerySlide(index) {
+            if (index >= gallerySlides.length) index = 0;
+            if (index < 0) index = gallerySlides.length - 1;
+            
+            gallerySlides.forEach(slide => slide.classList.remove('active'));
+            galleryDots.forEach(dot => dot.classList.remove('active'));
+            
+            gallerySlides[index].classList.add('active');
+            galleryDots[index].classList.add('active');
+            galleryCurrent = index;
+        }
+
+        galleryDots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => showGallerySlide(idx));
         });
+
+        if (galleryPrev) {
+            galleryPrev.addEventListener('click', () => showGallerySlide(galleryCurrent - 1));
+        }
+        if (galleryNext) {
+            galleryNext.addEventListener('click', () => showGallerySlide(galleryCurrent + 1));
+        }
+
+        function startGalleryInterval() {
+            galleryInterval = setInterval(() => {
+                showGallerySlide(galleryCurrent + 1);
+            }, 5500);
+        }
+
+        startGalleryInterval();
+
+        const galleryContainer = document.querySelector('.gallery-slideshow-container');
+        if (galleryContainer) {
+            galleryContainer.addEventListener('mouseenter', () => clearInterval(galleryInterval));
+            galleryContainer.addEventListener('mouseleave', startGalleryInterval);
+        }
     }
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => showSlide(index));
-        dot.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                showSlide(index);
-            }
-        });
-    });
-
-    const slideshowContainer = document.querySelector('.slideshow-container');
-    if (slideshowContainer) {
-        slideshowContainer.addEventListener('mouseenter', pauseSlideshow);
-        slideshowContainer.addEventListener('mouseleave', resumeSlideshow);
-        slideshowContainer.addEventListener('focusin', pauseSlideshow);
-        slideshowContainer.addEventListener('focusout', resumeSlideshow);
-    }
-
-    startInterval();
 }
 
 /**
