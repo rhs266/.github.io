@@ -1291,7 +1291,7 @@ img {
 .footer {
     background-color: var(--off-white);
     color: var(--dark);
-    padding: 80px 0 30px;
+    padding: 10px 0 30px;
 }
 
 .footer-grid {
@@ -1325,7 +1325,7 @@ img {
 
 .footer-col p {
     color: var(--gray); 
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     line-height: 1.7;
 }
 
