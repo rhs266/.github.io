@@ -97,197 +97,215 @@
             min-height: 48px;
             padding: 12px 24px;
         }
+
+        /* Force footer styling to match siding.html */
+        .footer {
+            padding: 10px 0 30px !important;
+            margin-top: 0 !important;
+        }
+        
+        .footer .logo-grid {
+            padding: 0 0 60px !important;
+            gap: 20px !important;
+        }
+        
+        .footer-grid {
+            margin-bottom: 50px !important;
+            gap: 5px !important;
+        }
+        
+        .footer-bottom {
+            padding-top: 20px !important;
+        }
     </style>
 </head>
 <body>
-    <main id="main-content" role="main">
-        <!-- Header & Navigation -->
-        <div id="header-placeholder"></div>
+    <!-- Header & Navigation -->
+    <div id="header-placeholder"></div>
 
-        <!-- Hero Section -->
-        <section class="hero" id="home" aria-labelledby="hero-heading">
-            <!-- Slideshow Container -->
-            <div class="slideshow-container">
-                <!-- Slide 1 -->
-                <div class="slide active">
-                    <div class="slide-image" style="background-image: url('images/slide1.avif');"></div>
-                    <div class="slide-overlay"></div>
-                </div>
-                <!-- Slide 2 -->
-                <div class="slide">
-                    <div class="slide-image" style="background-image: url('images/slide2.avif');"></div>
-                    <div class="slide-overlay"></div>
-                </div>
-                <!-- Slide 3 -->
-                <div class="slide">
-                    <div class="slide-image" style="background-image: url('images/slide3.avif');"></div>
-                    <div class="slide-overlay"></div>
-                </div>
-                <!-- Slide 4 -->
-                <div class="slide">
-                    <div class="slide-image" style="background-image: url('images/slide4.avif');"></div>
-                    <div class="slide-overlay"></div>
-                </div>
-                
-                <!-- Slideshow Navigation -->
-                <div class="slideshow-nav">
-                    <button class="slide-prev" aria-label="Previous slide">
-                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
-                    </button>
-                    <div class="slide-dots">
-                        <button class="dot active" data-slide="0" aria-label="Go to slide 1" aria-current="true"></button>
-                        <button class="dot" data-slide="1" aria-label="Go to slide 2"></button>
-                        <button class="dot" data-slide="2" aria-label="Go to slide 3"></button>
-                        <button class="dot" data-slide="3" aria-label="Go to slide 4"></button>
-                    </div>
-                    <button class="slide-next" aria-label="Next slide">
-                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
-                    </button>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home" aria-labelledby="hero-heading">
+        <!-- Slideshow Container -->
+        <div class="slideshow-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <div class="slide-image" style="background-image: url('images/slide1.avif');"></div>
+                <div class="slide-overlay"></div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="slide-image" style="background-image: url('images/slide2.avif');"></div>
+                <div class="slide-overlay"></div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="slide-image" style="background-image: url('images/slide3.avif');"></div>
+                <div class="slide-overlay"></div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="slide">
+                <div class="slide-image" style="background-image: url('images/slide4.avif');"></div>
+                <div class="slide-overlay"></div>
             </div>
             
-            <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title" id="hero-heading">Upgrade Your Home With Confidence.</h1>
-                    <p class="hero-subtitle">Locally owned and trusted for expert installation of high-performance windows, doors, and James Hardie® siding—built for lasting beauty, comfort, and value.</p>
-                    <div class="hero-buttons">
-                        <a href="contact.html" class="btn btn-primary">
-                            <i class="fas fa-calendar-alt" aria-hidden="true"></i> Get Your Free, No-Obligation Quote
-                        </a>
-                        <a href="#services" class="btn btn-primary">
-                            <i class="fas fa-info-circle" aria-hidden="true"></i> Learn More
-                        </a>
-                    </div>
-                    <div class="hero-badges">
-                        <span class="badge">
-                            <i class="fas fa-award" aria-hidden="true"></i> Preferred James Hardie Contractor
-                        </span>
-                        <span class="badge">
-                            <i class="fas fa-home" aria-hidden="true"></i> Locally Owned & Operated
-                        </span>
-                        <span class="badge">
-                            <i class="fas fa-star" aria-hidden="true"></i> 5-Star Rated Service
-                        </span>
-                    </div>
+            <!-- Slideshow Navigation -->
+            <div class="slideshow-nav">
+                <button class="slide-prev" aria-label="Previous slide">
+                    <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <div class="slide-dots">
+                    <button class="dot active" data-slide="0" aria-label="Go to slide 1" aria-current="true"></button>
+                    <button class="dot" data-slide="1" aria-label="Go to slide 2"></button>
+                    <button class="dot" data-slide="2" aria-label="Go to slide 3"></button>
+                    <button class="dot" data-slide="3" aria-label="Go to slide 4"></button>
+                </div>
+                <button class="slide-next" aria-label="Next slide">
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title" id="hero-heading">Upgrade Your Home With Confidence.</h1>
+                <p class="hero-subtitle">Locally owned and trusted for expert installation of high-performance windows, doors, and James Hardie® siding—built for lasting beauty, comfort, and value.</p>
+                <div class="hero-buttons">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-calendar-alt" aria-hidden="true"></i> Get Your Free, No-Obligation Quote
+                    </a>
+                    <a href="#services" class="btn btn-primary">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i> Learn More
+                    </a>
+                </div>
+                <div class="hero-badges">
+                    <span class="badge">
+                        <i class="fas fa-award" aria-hidden="true"></i> Preferred James Hardie Contractor
+                    </span>
+                    <span class="badge">
+                        <i class="fas fa-home" aria-hidden="true"></i> Locally Owned & Operated
+                    </span>
+                    <span class="badge">
+                        <i class="fas fa-star" aria-hidden="true"></i> 5-Star Rated Service
+                    </span>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Services Section -->
-        <section class="services" id="services" aria-labelledby="services-heading">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title" id="services-heading">Our Premium Home Solutions</h2>
-                    <p class="section-subtitle">We specialize in transforming homes with premium, durable products designed for the Spokane climate.</p>
+    <!-- Services Section -->
+    <section class="services" id="services" aria-labelledby="services-heading">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="services-heading">Our Premium Home Solutions</h2>
+                <p class="section-subtitle">We specialize in transforming homes with premium, durable products designed for the Spokane climate.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-window-maximize" aria-hidden="true"></i>
+                    </div>
+                    <h3>Window Replacement</h3>
+                    <p>Energy-efficient replacement windows tailored to our climate, reducing energy bills and increasing home comfort.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Energy Star Certified</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Custom Sizing & Styles</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Professional Installation</li>
+                    </ul>
+                    <a href="windows-patio-doors.html" class="btn btn-primary" style="margin-top: 20px; width: 100%;">Learn More About Window & Patio Door Replacement</a>
                 </div>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-window-maximize" aria-hidden="true"></i>
-                        </div>
-                        <h3>Window Replacement</h3>
-                        <p>Energy-efficient replacement windows tailored to our climate, reducing energy bills and increasing home comfort.</p>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Energy Star Certified</li>
-                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Custom Sizing & Styles</li>
-                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Professional Installation</li>
-                        </ul>
-                        <a href="windows-patio-doors.html" class="btn btn-primary" style="margin-top: 20px; width: 100%;">Learn More About Window & Patio Door Replacement</a>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-door-open" aria-hidden="true"></i>
                     </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-door-open" aria-hidden="true"></i>
-                        </div>
-                        <h3>Door Installation</h3>
-                        <p>Secure, stylish entry and patio doors that enhance curb appeal while improving security and energy efficiency.</p>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Enhanced Security Features</li>
-                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Weather-Resistant Seals</li>
-                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Custom Finishes Available</li>
-                        </ul>
-                        <a href="entry-storm-doors.html" class="btn btn-primary" style="margin-top: 20px; width: 100%;">Explore Entry & Storm Door Installation Options</a>
+                    <h3>Door Installation</h3>
+                    <p>Secure, stylish entry and patio doors that enhance curb appeal while improving security and energy efficiency.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Enhanced Security Features</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Weather-Resistant Seals</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Custom Finishes Available</li>
+                    </ul>
+                    <a href="entry-storm-doors.html" class="btn btn-primary" style="margin-top: 20px; width: 100%;">Explore Entry & Storm Door Installation Options</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home" aria-hidden="true"></i>
                     </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-home" aria-hidden="true"></i>
-                        </div>
-                        <h3>James Hardie® Siding</h3>
-                        <p class="hardie-badge">Preferred James Hardie Contractor</p>
-                        <p>Superior fiber cement siding that withstands Pacific Northwest weather while maintaining beauty for decades.</p>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> 30-Year Warranty</li>
-                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Fire & Pest Resistant</li>
-                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Low Maintenance</li>
-                        </ul>
-                        <a href="siding.html" class="btn btn-primary" style="margin-top: 20px; width: 100%;">Learn More About James Hardie® Siding Installation</a>
-                    </div>
+                    <h3>James Hardie® Siding</h3>
+                    <p class="hardie-badge">Preferred James Hardie Contractor</p>
+                    <p>Superior fiber cement siding that withstands Pacific Northwest weather while maintaining beauty for decades.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> 30-Year Warranty</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Fire & Pest Resistant</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Low Maintenance</li>
+                    </ul>
+                    <a href="siding.html" class="btn btn-primary" style="margin-top: 20px; width: 100%;">Learn More About James Hardie® Siding Installation</a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Why Choose Us Section -->
-        <section class="why-us" id="about" aria-labelledby="why-heading">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title" id="why-heading">Why Choose Our Local Team?</h2>
-                    <p class="section-subtitle">As a hometown small business, we're invested in our community and your satisfaction.</p>
-                </div>
-                <div class="why-grid">
-                    <div class="why-content">
-                        <div class="why-item">
-                            <div class="why-icon">
-                                <i class="fas fa-hammer" aria-hidden="true"></i>
-                            </div>
-                            <div>
-                                <h3>Local Craftsmanship</h3>
-                                <p>We are a hometown small business deeply invested in the Spokane Valley community. Our work reflects our pride in serving our neighbors.</p>
-                            </div>
+    <!-- Why Choose Us Section -->
+    <section class="why-us" id="about" aria-labelledby="why-heading">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" id="why-heading">Why Choose Our Local Team?</h2>
+                <p class="section-subtitle">As a hometown small business, we're invested in our community and your satisfaction.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-content">
+                    <div class="why-item">
+                        <div class="why-icon">
+                            <i class="fas fa-hammer" aria-hidden="true"></i>
                         </div>
-                        <div class="why-item">
-                            <div class="why-icon">
-                                <i class="fas fa-star" aria-hidden="true"></i>
-                            </div>
-                            <div>
-                                <h3>Quality Products</h3>
-                                <p>We source and install high-quality made products that stand up to PNW's climate and add lasting value to your home.</p>
-                            </div>
-                        </div>
-                        <div class="why-item">
-                            <div class="why-icon">
-                                <i class="fas fa-lightbulb" aria-hidden="true"></i>
-                            </div>
-                            <div>
-                                <h3>Expert Insight</h3>
-                                <p>Get professional guidance from initial consultation through project completion. We help you make informed decisions for your home.</p>
-                            </div>
-                        </div>
-                        <div class="why-item">
-                            <div class="why-icon">
-                                <i class="fas fa-handshake" aria-hidden="true"></i>
-                            </div>
-                            <div>
-                                <h3>Outstanding Service</h3>
-                                <p>We're committed to your complete satisfaction with clear communication, timely completion, and attention to every detail.</p>
-                            </div>
+                        <div>
+                            <h3>Local Craftsmanship</h3>
+                            <p>We are a hometown small business deeply invested in the Spokane Valley community. Our work reflects our pride in serving our neighbors.</p>
                         </div>
                     </div>
-                    <div class="why-image">
-                        <img src="images/gallery18.avif" alt="Team at work on home installation" width="600" height="400">
+                    <div class="why-item">
+                        <div class="why-icon">
+                            <i class="fas fa-star" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <h3>Quality Products</h3>
+                            <p>We source and install high-quality made products that stand up to PNW's climate and add lasting value to your home.</p>
+                        </div>
+                    </div>
+                    <div class="why-item">
+                        <div class="why-icon">
+                            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <h3>Expert Insight</h3>
+                            <p>Get professional guidance from initial consultation through project completion. We help you make informed decisions for your home.</p>
+                        </div>
+                    </div>
+                    <div class="why-item">
+                        <div class="why-icon">
+                            <i class="fas fa-handshake" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <h3>Outstanding Service</h3>
+                            <p>We're committed to your complete satisfaction with clear communication, timely completion, and attention to every detail.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="text-center" style="margin-top: 40px;">
-                    <a href="about.html" class="btn btn-secondary">Learn More About Us</a>
+                <div class="why-image">
+                    <img src="images/gallery18.avif" alt="Team at work on home installation" width="600" height="400">
                 </div>
             </div>
-        </section>
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="about.html" class="btn btn-secondary">Learn More About Us</a>
+            </div>
+        </div>
+    </section>
 
-        <!-- Footer -->
-        <div id="footer-placeholder"></div>
-    </main>
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
 
     <!-- JavaScript -->
     <script>
-        // Load header and footer together (same pattern as siding.html)
+        // Load header and footer together
         Promise.all([
             fetch("header.html").then(response => response.text()),
             fetch("footer.html").then(response => response.text())
@@ -325,7 +343,7 @@
                 }
             });
             
-            // Initialize header scroll effect
+            // Header scroll effect
             const header = document.querySelector('.header');
             if (header) {
                 window.addEventListener('scroll', function() {
@@ -351,7 +369,6 @@
                     }
                 });
 
-                // Close mobile menu when clicking outside
                 document.addEventListener('click', function(event) {
                     if (navMenu && navMenu.classList.contains('active') && 
                         !navMenu.contains(event.target) && 
@@ -380,7 +397,7 @@
                 });
             }
 
-            // Hero slideshow initialization
+            // Hero slideshow
             const heroSlides = document.querySelectorAll('.hero .slide');
             const heroDots = document.querySelectorAll('.dot');
             const heroPrev = document.querySelector('.slide-prev');
