@@ -12,6 +12,89 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        /* Additional styles for email-only tracker */
+        .email-only-form .form-group {
+            margin-bottom: 30px;
+        }
+        
+        .email-only-form input {
+            font-size: 1.1rem;
+            padding: 18px;
+        }
+        
+        .project-preview {
+            background: linear-gradient(135deg, rgba(26, 76, 122, 0.05) 0%, rgba(201, 79, 0, 0.05) 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+            border: 1px dashed var(--tracker-secondary);
+        }
+        
+        .project-preview p {
+            margin: 0;
+            color: var(--tracker-primary);
+            font-weight: 500;
+        }
+        
+        .project-preview small {
+            color: var(--tracker-gray);
+            display: block;
+            margin-top: 10px;
+        }
+        
+        .recent-projects {
+            margin-top: 40px;
+            text-align: left;
+        }
+        
+        .recent-project-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border: 1px solid var(--tracker-border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .recent-project-item:hover {
+            transform: translateX(5px);
+            border-color: var(--tracker-secondary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .recent-project-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(201, 79, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--tracker-secondary);
+        }
+        
+        .recent-project-info h4 {
+            margin: 0 0 5px 0;
+            color: var(--tracker-primary);
+        }
+        
+        .recent-project-info p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--tracker-gray);
+        }
+        
+        @media (max-width: 768px) {
+            .recent-project-item {
+                padding: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -21,7 +104,7 @@
     <section class="tracker-hero">
         <div class="container">
             <h1><i class="fas fa-clipboard-check"></i> Project Tracker</h1>
-            <p>Follow your home improvement project in real-time. View progress, photos, and upcoming milestones.</p>
+            <p>Follow your home improvement project in real-time. Enter your email to view progress, photos, and upcoming milestones.</p>
         </div>
     </section>
 
@@ -33,39 +116,77 @@
                 <div class="access-card">
                     <div class="access-header">
                         <div class="access-icon">
-                            <i class="fas fa-hard-hat"></i>
+                            <i class="fas fa-envelope-open-text"></i>
                         </div>
-                        <h2>Access Your Project</h2>
-                        <p>Enter your project details to view real-time updates</p>
+                        <h2>Check Your Project Status</h2>
+                        <p>Enter your email address to access your project dashboard</p>
                     </div>
                     <div class="access-body">
-                        <form id="trackerAccessForm">
-                            <div class="form-group">
-                                <label for="projectId">
-                                    <i class="fas fa-hashtag"></i> Project ID
-                                </label>
-                                <input type="text" id="projectId" name="projectId" 
-                                       placeholder="e.g., RHS-2024-001" required>
-                                <small style="color: var(--tracker-gray); display: block; margin-top: 5px;">
-                                    Found in your welcome email or project documents
-                                </small>
-                            </div>
-                            
+                        <form id="trackerAccessForm" class="email-only-form">
                             <div class="form-group">
                                 <label for="email">
                                     <i class="fas fa-envelope"></i> Email Address
                                 </label>
                                 <input type="email" id="email" name="email" 
-                                       placeholder="The email used for this project" required>
+                                       placeholder="your@email.com" 
+                                       value="john.smith@example.com"
+                                       required>
+                                <small style="color: var(--tracker-gray); display: block; margin-top: 8px;">
+                                    <i class="fas fa-info-circle"></i> 
+                                    Use the email address you provided when scheduling your project
+                                </small>
                             </div>
                             
                             <button type="submit" class="btn btn-primary btn-block">
-                                <i class="fas fa-lock-open"></i> Access My Project
+                                <i class="fas fa-arrow-right"></i> View My Project
                             </button>
                         </form>
                         
+                        <!-- Demo hint (remove in production) -->
+                        <div class="project-preview">
+                            <p><i class="fas fa-flask"></i> Demo Mode</p>
+                            <small>Try it now with: <strong>john.smith@example.com</strong> (or any email for demo)</small>
+                        </div>
+                        
+                        <!-- Recent projects (for demo) -->
+                        <div class="recent-projects">
+                            <h4 style="color: var(--tracker-primary); margin-bottom: 15px;">
+                                <i class="fas fa-history"></i> Recent Projects
+                            </h4>
+                            <div class="recent-project-item" onclick="document.getElementById('email').value='john.smith@example.com'; document.getElementById('trackerAccessForm').dispatchEvent(new Event('submit'));">
+                                <div class="recent-project-icon">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="recent-project-info">
+                                    <h4>1234 Maple Street</h4>
+                                    <p>Window Replacement • 65% complete</p>
+                                </div>
+                                <i class="fas fa-chevron-right" style="color: var(--tracker-gray); margin-left: auto;"></i>
+                            </div>
+                            <div class="recent-project-item" onclick="document.getElementById('email').value='sarah.jones@example.com'; alert('Demo: This would load Sarah\'s project')">
+                                <div class="recent-project-icon">
+                                    <i class="fas fa-door-open"></i>
+                                </div>
+                                <div class="recent-project-info">
+                                    <h4>5678 Oak Avenue</h4>
+                                    <p>Entry Door Installation • 100% complete</p>
+                                </div>
+                                <i class="fas fa-chevron-right" style="color: var(--tracker-gray); margin-left: auto;"></i>
+                            </div>
+                            <div class="recent-project-item" onclick="document.getElementById('email').value='mike.brown@example.com'; alert('Demo: This would load Mike\'s project')">
+                                <div class="recent-project-icon">
+                                    <i class="fas fa-umbrella"></i>
+                                </div>
+                                <div class="recent-project-info">
+                                    <h4>9012 Pine Road</h4>
+                                    <p>James Hardie Siding • 35% complete</p>
+                                </div>
+                                <i class="fas fa-chevron-right" style="color: var(--tracker-gray); margin-left: auto;"></i>
+                            </div>
+                        </div>
+                        
                         <div class="access-help">
-                            <p><i class="fas fa-question-circle"></i> Having trouble accessing your project?</p>
+                            <p><i class="fas fa-question-circle"></i> Don't see your project or need help?</p>
                             <a href="contact.html" class="btn btn-secondary">Contact Support</a>
                         </div>
                     </div>
@@ -132,26 +253,26 @@
             <div class="process-steps">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>Receive Your Access</h3>
-                    <p>When your project begins, we'll email you your unique Project ID and access instructions.</p>
+                    <h3>Schedule Your Project</h3>
+                    <p>Book a consultation and we'll set up your project in our system using your email.</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>Log In Anytime</h3>
-                    <p>Use your Project ID and email to access your personalized dashboard 24/7.</p>
+                    <h3>Enter Your Email</h3>
+                    <p>Visit our tracker anytime and simply enter the email you used when booking.</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>Follow Your Progress</h3>
-                    <p>Watch your project come together with daily updates, photos, and milestone tracking.</p>
+                    <h3>View Your Dashboard</h3>
+                    <p>Instantly access your personalized project dashboard with real-time updates.</p>
                 </div>
                 
                 <div class="step">
                     <div class="step-number">4</div>
-                    <h3>Stay Connected</h3>
-                    <p>Get notifications at key moments and communicate directly with your team.</p>
+                    <h3>Stay Informed</h3>
+                    <p>Get notifications at key moments and watch your project come together.</p>
                 </div>
             </div>
         </div>
@@ -220,7 +341,7 @@
                 <i class="fas fa-calendar-alt"></i> Schedule a Consultation
             </a>
             <p style="color: rgba(255,255,255,0.8); margin-top: 20px;">
-                Already have a project? <a href="#accessContainer" style="color: white; text-decoration: underline;">Access your tracker</a>
+                Already have a project? <a href="#accessContainer" style="color: white; text-decoration: underline;">Enter your email above</a>
             </p>
         </div>
     </section>
@@ -232,6 +353,397 @@
     <script src="script.js"></script>
     <script src="project-tracker.js"></script>
     <script>
+        // Override the fetchProjectData function for email-only lookup
+        window.fetchProjectData = async function(email) {
+            // In production, this would call Salesforce with just the email
+            // For demo, use email to determine which project to show
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    // Map emails to demo projects
+                    const demoProjects = {
+                        'john.smith@example.com': {
+                            token: 'demo-token-123',
+                            exists: true,
+                            projectId: 'RHS-2024-001'
+                        },
+                        'sarah.jones@example.com': {
+                            token: 'demo-token-456',
+                            exists: true,
+                            projectId: 'RHS-2024-002'
+                        },
+                        'mike.brown@example.com': {
+                            token: 'demo-token-789',
+                            exists: true,
+                            projectId: 'RHS-2024-003'
+                        }
+                    };
+                    
+                    // Check if email exists in our demo map
+                    if (demoProjects[email.toLowerCase()]) {
+                        resolve(demoProjects[email.toLowerCase()]);
+                    } else {
+                        // For any other email, show the default demo project
+                        // In production, this would be a real check against Salesforce
+                        resolve({
+                            token: 'demo-token-default',
+                            exists: true,
+                            projectId: 'RHS-2024-001'
+                        });
+                    }
+                }, 800);
+            });
+        };
+
+        // Modify the handleAccessSubmit function
+        document.addEventListener('DOMContentLoaded', function() {
+            const accessForm = document.getElementById('trackerAccessForm');
+            
+            if (accessForm) {
+                accessForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const email = document.getElementById('email').value.trim();
+                    
+                    if (!email) {
+                        alert('Please enter your email address');
+                        return;
+                    }
+                    
+                    // Show loading
+                    document.getElementById('accessContainer').innerHTML = `
+                        <div class="tracker-loading">
+                            <div class="tracker-spinner"></div>
+                            <p>Finding your project...</p>
+                        </div>
+                    `;
+                    
+                    try {
+                        // Call our email-only lookup
+                        const result = await window.fetchProjectData(email);
+                        
+                        // Get mock project data
+                        const projectDetails = await getMockProjectData(result.projectId, email);
+                        
+                        // Render the tracker
+                        renderTracker(projectDetails);
+                        
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('Error finding your project. Please try again or contact support.');
+                        location.reload();
+                    }
+                });
+            }
+        });
+
+        // Mock project data function (simplified from original)
+        async function getMockProjectData(projectId, email) {
+            // Extract name from email for personalization
+            const name = email.split('@')[0].split('.').map(n => 
+                n.charAt(0).toUpperCase() + n.slice(1)
+            ).join(' ');
+            
+            return {
+                id: projectId,
+                customerName: name,
+                address: '1234 Maple Street, Spokane Valley, WA 99212',
+                projectType: 'Window Replacement',
+                products: 'Infinity by Marvin Windows (8 units)',
+                status: 'In Progress',
+                progress: 65,
+                startDate: '2024-02-15',
+                estimatedCompletion: '2024-03-10',
+                milestones: [
+                    {
+                        id: 1,
+                        title: 'Initial Consultation',
+                        description: 'Met with customer, measured windows, provided quote',
+                        date: '2024-02-10',
+                        status: 'completed'
+                    },
+                    {
+                        id: 2,
+                        title: 'Permits Approved',
+                        description: 'City of Spokane Valley permits received',
+                        date: '2024-02-14',
+                        status: 'completed'
+                    },
+                    {
+                        id: 3,
+                        title: 'Materials Ordered',
+                        description: 'Infinity windows ordered from manufacturer',
+                        date: '2024-02-15',
+                        status: 'completed'
+                    },
+                    {
+                        id: 4,
+                        title: 'Materials Received',
+                        description: 'All windows have arrived at our facility',
+                        date: '2024-02-28',
+                        status: 'completed'
+                    },
+                    {
+                        id: 5,
+                        title: 'Installation - Day 1',
+                        description: 'Removing old windows, preparing openings',
+                        date: '2024-03-04',
+                        status: 'active'
+                    },
+                    {
+                        id: 6,
+                        title: 'Installation - Day 2',
+                        description: 'Installing new windows, sealing, trim work',
+                        date: '2024-03-05',
+                        status: 'pending'
+                    },
+                    {
+                        id: 7,
+                        title: 'Final Inspection',
+                        description: 'Quality check and customer walkthrough',
+                        date: '2024-03-06',
+                        status: 'pending'
+                    }
+                ],
+                photos: [
+                    {
+                        url: 'images/projects/project1-before.avif',
+                        caption: 'Before: Original windows',
+                        date: '2024-02-15',
+                        type: 'before'
+                    },
+                    {
+                        url: 'images/projects/project1-materials.avif',
+                        caption: 'Infinity windows arrived',
+                        date: '2024-02-28',
+                        type: 'progress'
+                    },
+                    {
+                        url: 'images/projects/project1-day1.avif',
+                        caption: 'Day 1: Removal complete',
+                        date: '2024-03-04',
+                        type: 'progress'
+                    }
+                ],
+                teamMembers: [
+                    {
+                        name: 'Mike Johnson',
+                        role: 'Lead Installer',
+                        phone: '(509) 555-0123'
+                    },
+                    {
+                        name: 'Dave Wilson',
+                        role: 'Installation Assistant',
+                        phone: '(509) 555-0124'
+                    }
+                ],
+                nextSteps: 'Installation continues tomorrow. We\'ll be installing the remaining 4 windows and starting the trim work.',
+                lastUpdated: '2024-03-04T16:30:00'
+            };
+        }
+
+        // Render tracker function (simplified from original)
+        function renderTracker(project) {
+            const trackerContainer = document.getElementById('trackerContainer');
+            const accessContainer = document.getElementById('accessContainer');
+            
+            const progressPercentage = project.progress;
+            
+            // Build milestones HTML
+            const milestonesHtml = project.milestones.map(milestone => `
+                <div class="timeline-item ${milestone.status}">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">
+                            <i class="far fa-calendar-alt"></i>
+                            ${new Date(milestone.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                        </div>
+                        <h4 class="timeline-title">${milestone.title}</h4>
+                        <p class="timeline-desc">${milestone.description}</p>
+                        <span class="timeline-status status-${milestone.status}">
+                            ${milestone.status === 'active' ? 'In Progress' : milestone.status.charAt(0).toUpperCase() + milestone.status.slice(1)}
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Build photos HTML
+            const photosHtml = project.photos.map(photo => `
+                <div class="photo-item" onclick="openLightbox('${photo.url}', '${photo.caption}')">
+                    <img src="${photo.url}" alt="${photo.caption}" loading="lazy" onerror="this.src='https://placehold.co/400x300/1a4c7a/white?text=Project+Photo'">
+                    <div class="photo-overlay">
+                        <p class="photo-caption">${photo.caption}</p>
+                        <p class="photo-date">${new Date(photo.date).toLocaleDateString()}</p>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Build team HTML
+            const teamHtml = project.teamMembers.map(member => `
+                <div class="detail-item">
+                    <div class="detail-label">
+                        <i class="fas fa-user"></i> Team Member
+                    </div>
+                    <div class="detail-value">${member.name}</div>
+                    <div style="color: var(--tracker-gray); font-size: 0.9rem; margin-top: 5px;">
+                        ${member.role}
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <a href="tel:${member.phone}" style="color: var(--tracker-secondary); text-decoration: none;">
+                            <i class="fas fa-phone"></i> ${member.phone}
+                        </a>
+                    </div>
+                </div>
+            `).join('');
+            
+            const trackerHtml = `
+                <div style="margin-bottom: 20px; text-align: right;">
+                    <button class="btn btn-secondary" onclick="location.reload()">
+                        <i class="fas fa-sign-out-alt"></i> Switch Project
+                    </button>
+                </div>
+                <div class="tracker-card">
+                    <div class="tracker-header">
+                        <div>
+                            <h2>Welcome back, ${project.customerName}!</h2>
+                            <p style="color: rgba(255,255,255,0.9); margin: 10px 0 0 0;">
+                                <i class="fas fa-map-marker-alt"></i> ${project.address}
+                            </p>
+                        </div>
+                        <span class="tracker-badge">
+                            <i class="fas ${project.status === 'In Progress' ? 'fa-spinner fa-pulse' : 'fa-check-circle'}"></i>
+                            ${project.status}
+                        </span>
+                    </div>
+                    
+                    <div class="tracker-body">
+                        <!-- Progress Bar -->
+                        <div class="progress-container">
+                            <div class="progress-header">
+                                <span class="progress-title">Project Progress</span>
+                                <span class="progress-percentage">${progressPercentage}% Complete</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill" style="width: ${progressPercentage}%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Details Grid -->
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <div class="detail-label">
+                                    <i class="far fa-calendar-alt"></i> Started
+                                </div>
+                                <div class="detail-value">${new Date(project.startDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">
+                                    <i class="far fa-calendar-check"></i> Est. Completion
+                                </div>
+                                <div class="detail-value">${new Date(project.estimatedCompletion).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">
+                                    <i class="fas fa-tools"></i> Project Type
+                                </div>
+                                <div class="detail-value">${project.projectType}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">
+                                    <i class="fas fa-box"></i> Products
+                                </div>
+                                <div class="detail-value">${project.products}</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Timeline -->
+                        <h3 style="color: var(--tracker-primary); margin: 40px 0 20px;">
+                            <i class="fas fa-clock"></i> Project Timeline
+                        </h3>
+                        <div class="timeline">
+                            ${milestonesHtml}
+                        </div>
+                        
+                        <!-- Photo Gallery -->
+                        <h3 style="color: var(--tracker-primary); margin: 40px 0 20px;">
+                            <i class="fas fa-camera"></i> Project Photos
+                        </h3>
+                        <div class="photos-grid">
+                            ${photosHtml}
+                        </div>
+                        
+                        <!-- Team & Next Steps -->
+                        <div class="details-grid" style="margin-top: 30px;">
+                            <div>
+                                <h4 style="color: var(--tracker-primary); margin-bottom: 15px;">
+                                    <i class="fas fa-users"></i> Your Installation Team
+                                </h4>
+                                <div class="details-grid" style="grid-template-columns: 1fr; gap: 15px;">
+                                    ${teamHtml}
+                                </div>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--tracker-primary); margin-bottom: 15px;">
+                                    <i class="fas fa-clipboard-list"></i> Next Steps
+                                </h4>
+                                <div class="detail-item">
+                                    <p style="margin: 0; color: var(--tracker-gray); line-height: 1.6;">
+                                        ${project.nextSteps}
+                                    </p>
+                                    <p style="margin-top: 15px; font-size: 0.9rem; color: var(--tracker-gray);">
+                                        <i class="far fa-clock"></i> Last updated: ${new Date(project.lastUpdated).toLocaleString()}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div style="display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap;">
+                            <button class="btn btn-primary" onclick="alert('This would open a chat with your installation team')">
+                                <i class="fas fa-comment"></i> Message Your Team
+                            </button>
+                            <button class="btn btn-secondary" onclick="window.location.href='contact.html'">
+                                <i class="fas fa-phone"></i> Schedule a Call
+                            </button>
+                            <button class="btn btn-secondary" onclick="location.reload()">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            trackerContainer.innerHTML = trackerHtml;
+            trackerContainer.style.display = 'block';
+            accessContainer.style.display = 'none';
+            
+            // Scroll to tracker
+            trackerContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Lightbox function
+        function openLightbox(imageUrl, caption) {
+            const lightbox = document.createElement('div');
+            lightbox.className = 'lightbox-modal active';
+            lightbox.innerHTML = `
+                <div class="lightbox-content">
+                    <button class="lightbox-close" onclick="this.closest('.lightbox-modal').remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <img src="${imageUrl}" alt="${caption}" class="lightbox-img" onerror="this.src='https://placehold.co/800x600/1a4c7a/white?text=Project+Photo'">
+                    <div class="lightbox-caption">
+                        <p>${caption}</p>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(lightbox);
+            
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.remove();
+                }
+            });
+        }
+
         // Load header and footer
         Promise.all([
             fetch("header.html").then(response => response.text()),
