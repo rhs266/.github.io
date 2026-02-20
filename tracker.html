@@ -12,8 +12,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <!-- CometD library for Salesforce Streaming API -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cometd/4.0.4/cometd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cometd/4.0.4/jquery.cometd.js"></script>
     <style>
-        /* Simplified tracker styles */
+        /* Simplified tracker styles with primary color emphasis */
         .tracker-hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             padding: 140px 0 60px;
@@ -146,12 +149,42 @@
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             padding: 30px;
+            position: relative;
+        }
+        
+        .live-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #4cd964;
+            border-radius: 50%;
+            animation: pulse-green 2s infinite;
+        }
+        
+        @keyframes pulse-green {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
         }
         
         .tracker-header h2 {
             color: white;
             margin: 0 0 10px 0;
             font-size: 1.8rem;
+            padding-right: 100px;
         }
         
         .tracker-header p {
@@ -190,6 +223,24 @@
             font-size: 1.2rem;
             font-weight: 600;
             color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .update-flash {
+            background: var(--secondary);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 50px;
+            animation: fadeOut 3s forwards;
+        }
+        
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; }
         }
         
         .progress-percentage {
@@ -226,6 +277,18 @@
             border-radius: 8px;
             padding: 20px;
             border: 1px solid var(--light-gray);
+            transition: all 0.3s ease;
+        }
+        
+        .detail-item.updated {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 2px rgba(201,79,0,0.2);
+            animation: highlight 2s;
+        }
+        
+        @keyframes highlight {
+            0% { background: rgba(201,79,0,0.1); }
+            100% { background: var(--off-white); }
         }
         
         .detail-label {
@@ -269,6 +332,15 @@
             border-left-color: var(--secondary);
             background: rgba(201, 79, 0, 0.05);
             box-shadow: 0 2px 10px rgba(201, 79, 0, 0.1);
+        }
+        
+        .timeline-item.updated-milestone {
+            animation: milestone-flash 1.5s;
+        }
+        
+        @keyframes milestone-flash {
+            0% { background: rgba(201,79,0,0.2); border-left-color: var(--secondary); }
+            100% { background: var(--off-white); }
         }
         
         .timeline-marker {
@@ -388,6 +460,76 @@
             color: var(--secondary);
         }
         
+        /* Notification Toast */
+        .live-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 2000;
+            animation: slide-up 0.3s ease;
+            border-left: 4px solid var(--secondary);
+            max-width: 350px;
+        }
+        
+        @keyframes slide-up {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .live-notification-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(201,79,0,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .live-notification-content {
+            flex: 1;
+        }
+        
+        .live-notification-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 3px;
+        }
+        
+        .live-notification-message {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .live-notification-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--gray);
+            cursor: pointer;
+            padding: 0 5px;
+        }
+        
+        .live-notification-close:hover {
+            color: var(--secondary);
+        }
+        
         /* Loading Spinner */
         .tracker-loading {
             text-align: center;
@@ -438,6 +580,13 @@
             
             .tracker-header h2 {
                 font-size: 1.5rem;
+                padding-right: 0;
+            }
+            
+            .live-indicator {
+                position: static;
+                margin-top: 15px;
+                display: inline-flex;
             }
             
             .tracker-body {
@@ -514,7 +663,8 @@
                         <!-- Demo hint -->
                         <div class="demo-hint">
                             <p><i class="fas fa-flask" style="color: var(--secondary);"></i> Demo Mode</p>
-                            <small>Try it now with: <strong style="color: var(--primary);">john.smith@example.com</strong> (or any email for demo)</small>
+                            <small>Try it now with: <strong style="color: var(--primary);">john.smith@example.com</strong></small>
+                            <small style="display: block; margin-top: 5px;">Live updates will simulate Salesforce streaming</small>
                         </div>
                         
                         <div class="access-help">
@@ -536,6 +686,359 @@
     <!-- JavaScript -->
     <script src="script.js"></script>
     <script>
+        // Global variables for real-time updates
+        let cometd = null;
+        let currentProjectId = 'RHS-2024-001';
+        let currentProjectData = null;
+        let streamingEnabled = false;
+        let updateCounter = 0;
+
+        // ============================================
+        // SALESFORCE STREAMING API INTEGRATION
+        // ============================================
+        
+        /**
+         * Initialize Salesforce Streaming connection
+         * This connects to Salesforce CometD endpoint for real-time updates
+         */
+        function initSalesforceStreaming(projectId, sessionToken, instanceUrl) {
+            if (cometd) {
+                cometd.disconnect();
+            }
+            
+            // Create CometD client
+            cometd = new $.CometD();
+            
+            // Configure connection
+            cometd.configure({
+                url: instanceUrl + '/cometd/46.0/',
+                requestHeaders: {
+                    'Authorization': 'Bearer ' + sessionToken
+                },
+                appendMessageTypeToURL: false
+            });
+            
+            // Set up handshake callback
+            cometd.addListener('/meta/handshake', function(message) {
+                if (message.successful) {
+                    console.log('Connected to Salesforce Streaming');
+                    streamingEnabled = true;
+                    
+                    // Subscribe to PushTopic for project updates
+                    // This listens for changes to ANY project (we'll filter by ID)
+                    cometd.subscribe('/topic/ProjectUpdates', function(message) {
+                        handleSalesforceUpdate(message.data.sobject);
+                    });
+                    
+                    // Also subscribe to platform events if available
+                    cometd.subscribe('/event/Project_Update__e', function(message) {
+                        handleSalesforceUpdate(message.data.payload);
+                    });
+                    
+                    // Show live indicator
+                    showLiveNotification('Connected', 'Live updates enabled', 'success');
+                } else {
+                    console.error('Handshake failed', message);
+                    streamingEnabled = false;
+                }
+            });
+            
+            // Handle disconnect
+            cometd.addListener('/meta/disconnect', function(message) {
+                console.log('Disconnected from Salesforce Streaming');
+                streamingEnabled = false;
+            });
+            
+            // Initiate handshake
+            cometd.handshake();
+        }
+        
+        /**
+         * Handle incoming Salesforce updates
+         */
+        function handleSalesforceUpdate(updateData) {
+            // Check if this update is for our current project
+            if (updateData.Id === currentProjectId || updateData.Project_ID__c === currentProjectId) {
+                console.log('Received live update:', updateData);
+                
+                // Increment update counter
+                updateCounter++;
+                
+                // Show notification
+                showLiveNotification(
+                    'Project Updated', 
+                    updateData.Message__c || 'New information available',
+                    'info'
+                );
+                
+                // Update UI elements based on what changed
+                if (updateData.Progress__c) {
+                    updateProgressBar(updateData.Progress__c);
+                }
+                
+                if (updateData.Status__c) {
+                    updateStatusBadge(updateData.Status__c);
+                }
+                
+                if (updateData.Next_Milestone__c) {
+                    updateMilestoneStatus(updateData.Next_Milestone__c);
+                }
+                
+                // If significant changes, refresh full data
+                if (updateCounter % 3 === 0) {
+                    refreshProjectData();
+                }
+            }
+        }
+        
+        /**
+         * Update progress bar with animation
+         */
+        function updateProgressBar(newProgress) {
+            const progressFill = document.querySelector('.progress-bar-fill');
+            const progressPercent = document.querySelector('.progress-percentage');
+            
+            if (progressFill && progressPercent) {
+                // Animate the change
+                progressFill.style.transition = 'width 0.8s ease';
+                progressFill.style.width = newProgress + '%';
+                progressPercent.textContent = newProgress + '% Complete';
+                
+                // Add flash indicator
+                const progressTitle = document.querySelector('.progress-title');
+                if (progressTitle) {
+                    const flash = document.createElement('span');
+                    flash.className = 'update-flash';
+                    flash.textContent = 'UPDATED';
+                    progressTitle.appendChild(flash);
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        if (flash.parentNode) {
+                            flash.remove();
+                        }
+                    }, 3000);
+                }
+            }
+        }
+        
+        /**
+         * Update status badge
+         */
+        function updateStatusBadge(newStatus) {
+            const badge = document.querySelector('.tracker-badge');
+            if (badge) {
+                const icon = badge.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas ' + (newStatus === 'In Progress' ? 'fa-spinner fa-pulse' : 'fa-check-circle');
+                }
+                badge.innerHTML = icon.outerHTML + ' ' + newStatus;
+                
+                // Highlight badge
+                badge.style.transition = 'all 0.3s';
+                badge.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    badge.style.transform = 'scale(1)';
+                }, 300);
+            }
+        }
+        
+        /**
+         * Update milestone status
+         */
+        function updateMilestoneStatus(milestoneTitle) {
+            const milestones = document.querySelectorAll('.timeline-item');
+            
+            milestones.forEach(milestone => {
+                const title = milestone.querySelector('.timeline-title');
+                if (title && title.textContent.includes(milestoneTitle)) {
+                    // Add highlight animation
+                    milestone.classList.add('updated-milestone');
+                    
+                    // Update status if needed
+                    if (!milestone.classList.contains('active')) {
+                        milestone.classList.remove('pending', 'completed');
+                        milestone.classList.add('active');
+                        
+                        const status = milestone.querySelector('.timeline-status');
+                        if (status) {
+                            status.className = 'timeline-status status-active';
+                            status.textContent = 'In Progress';
+                        }
+                        
+                        const marker = milestone.querySelector('.timeline-marker i');
+                        if (marker) {
+                            marker.className = 'fas fa-spinner fa-pulse';
+                        }
+                    }
+                    
+                    // Remove animation class
+                    setTimeout(() => {
+                        milestone.classList.remove('updated-milestone');
+                    }, 1500);
+                }
+            });
+        }
+        
+        /**
+         * Refresh all project data from server
+         */
+        async function refreshProjectData() {
+            try {
+                // In production, fetch from Salesforce
+                // For demo, just show notification
+                showLiveNotification(
+                    'Refreshing Data',
+                    'Fetching latest project information',
+                    'info'
+                );
+                
+                // Simulate data refresh
+                setTimeout(() => {
+                    showLiveNotification(
+                        'Data Updated',
+                        'Project information is current',
+                        'success'
+                    );
+                }, 1500);
+                
+            } catch (error) {
+                console.error('Refresh failed:', error);
+            }
+        }
+        
+        /**
+         * Show live notification toast
+         */
+        function showLiveNotification(title, message, type = 'info') {
+            // Remove existing notification if any
+            const existing = document.querySelector('.live-notification');
+            if (existing) {
+                existing.remove();
+            }
+            
+            const icons = {
+                success: 'fa-check-circle',
+                info: 'fa-bolt',
+                warning: 'fa-exclamation-triangle'
+            };
+            
+            const colors = {
+                success: '#27ae60',
+                info: 'var(--secondary)',
+                warning: '#f39c12'
+            };
+            
+            const notification = document.createElement('div');
+            notification.className = 'live-notification';
+            notification.innerHTML = `
+                <div class="live-notification-icon" style="color: ${colors[type]};">
+                    <i class="fas ${icons[type]}"></i>
+                </div>
+                <div class="live-notification-content">
+                    <div class="live-notification-title">${title}</div>
+                    <p class="live-notification-message">${message}</p>
+                </div>
+                <button class="live-notification-close" onclick="this.closest('.live-notification').remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+        
+        /**
+         * Simulate live updates for demo mode
+         * In production, this would be handled by Salesforce Streaming
+         */
+        function startDemoLiveUpdates() {
+            let updateCount = 0;
+            
+            // Simulate periodic updates
+            setInterval(() => {
+                updateCount++;
+                
+                if (updateCount === 1) {
+                    // First update: progress change
+                    showLiveNotification(
+                        'Progress Update',
+                        'Installation team is making great progress!',
+                        'info'
+                    );
+                    updateProgressBar(75);
+                    
+                } else if (updateCount === 2) {
+                    // Second update: milestone change
+                    showLiveNotification(
+                        'Milestone Reached',
+                        'Day 2 installation complete',
+                        'success'
+                    );
+                    
+                    // Mark current milestone as completed
+                    document.querySelectorAll('.timeline-item').forEach((item, index) => {
+                        if (index === 4) { // Day 1
+                            item.classList.remove('active');
+                            item.classList.add('completed');
+                            item.querySelector('.timeline-marker i').className = 'fas fa-check-circle';
+                            item.querySelector('.timeline-status').className = 'timeline-status status-completed';
+                            item.querySelector('.timeline-status').textContent = 'Completed';
+                        }
+                        if (index === 5) { // Day 2 becomes active
+                            item.classList.remove('pending');
+                            item.classList.add('active');
+                            item.querySelector('.timeline-marker i').className = 'fas fa-spinner fa-pulse';
+                            item.querySelector('.timeline-status').className = 'timeline-status status-active';
+                            item.querySelector('.timeline-status').textContent = 'In Progress';
+                            
+                            // Scroll to active milestone
+                            item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    });
+                    
+                } else if (updateCount === 3) {
+                    // Third update: next steps
+                    showLiveNotification(
+                        'Schedule Update',
+                        'Tomorrow: Window installation continues at 8am',
+                        'info'
+                    );
+                    
+                    // Update next steps text
+                    const nextSteps = document.querySelector('.detail-item p');
+                    if (nextSteps) {
+                        nextSteps.innerHTML = 'Installation continues tomorrow. We\'ll be installing the remaining 4 windows and starting the trim work. <strong>All materials on site, crew ready at 8am.</strong>';
+                        
+                        // Highlight the next steps section
+                        const nextStepsSection = nextSteps.closest('.detail-item');
+                        if (nextStepsSection) {
+                            nextStepsSection.classList.add('updated');
+                            setTimeout(() => {
+                                nextStepsSection.classList.remove('updated');
+                            }, 2000);
+                        }
+                    }
+                }
+                
+                // Reset counter to cycle through updates
+                if (updateCount >= 3) {
+                    updateCount = 0;
+                }
+                
+            }, 15000); // Update every 15 seconds
+        }
+
+        // ============================================
+        // PROJECT DATA FUNCTIONS
+        // ============================================
+        
         // Fetch project data by email
         window.fetchProjectData = async function(email) {
             return new Promise((resolve) => {
@@ -543,6 +1046,8 @@
                     // For demo, any email works - shows the same project
                     resolve({
                         token: 'demo-token',
+                        sessionId: '00Ddemo000000001234',
+                        instanceUrl: 'https://your-instance.salesforce.com',
                         exists: true,
                         email: email
                     });
@@ -574,9 +1079,23 @@
                     `;
                     
                     try {
-                        await window.fetchProjectData(email);
+                        const result = await window.fetchProjectData(email);
                         const projectDetails = getMockProjectData(email);
                         renderTracker(projectDetails);
+                        
+                        // Start live updates based on environment
+                        if (result.sessionId && result.instanceUrl) {
+                            // Production: Connect to Salesforce Streaming
+                            initSalesforceStreaming(
+                                currentProjectId,
+                                result.sessionId,
+                                result.instanceUrl
+                            );
+                        } else {
+                            // Demo: Simulate live updates
+                            startDemoLiveUpdates();
+                        }
+                        
                     } catch (error) {
                         console.error('Error:', error);
                         alert('Error finding your project. Please try again or contact support.');
@@ -595,6 +1114,7 @@
             ).join(' ');
             
             return {
+                id: currentProjectId,
                 customerName: customerName,
                 address: '1234 Maple Street, Spokane Valley, WA 99212',
                 projectType: 'Window Replacement',
@@ -613,27 +1133,41 @@
                     },
                     {
                         id: 2,
+                        title: 'Permits Approved',
+                        description: 'City of Spokane Valley permits received',
+                        date: '2024-02-14',
+                        status: 'completed'
+                    },
+                    {
+                        id: 3,
                         title: 'Materials Ordered',
                         description: 'Infinity windows ordered from manufacturer',
                         date: '2024-02-15',
                         status: 'completed'
                     },
                     {
-                        id: 3,
+                        id: 4,
                         title: 'Materials Received',
                         description: 'All windows have arrived at our facility',
                         date: '2024-02-28',
                         status: 'completed'
                     },
                     {
-                        id: 4,
-                        title: 'Installation',
-                        description: 'Removing old windows, preparing openings, installing windows/doors',
+                        id: 5,
+                        title: 'Installation - Day 1',
+                        description: 'Removing old windows, preparing openings',
                         date: '2024-03-04',
                         status: 'active'
                     },
                     {
-                        id: 5,
+                        id: 6,
+                        title: 'Installation - Day 2',
+                        description: 'Installing new windows, sealing, trim work',
+                        date: '2024-03-05',
+                        status: 'pending'
+                    },
+                    {
+                        id: 7,
                         title: 'Final Inspection',
                         description: 'Quality check and customer walkthrough',
                         date: '2024-03-06',
@@ -642,13 +1176,13 @@
                 ],
                 teamMembers: [
                     {
-                        name: 'Kristina M.',
-                        role: 'Production Manager',
+                        name: 'Mike Johnson',
+                        role: 'Lead Installer',
                         phone: '(509) 892-6460'
                     },
                     {
-                        name: 'Office',
-                        role: '',
+                        name: 'Dave Wilson',
+                        role: 'Installation Assistant',
                         phone: '(509) 892-6460'
                     }
                 ],
@@ -659,16 +1193,18 @@
 
         // Render tracker
         function renderTracker(project) {
+            currentProjectData = project;
+            
             const trackerContainer = document.getElementById('trackerContainer');
             const accessContainer = document.getElementById('accessContainer');
             
-            // Build milestones HTML with simplified layout
+            // Build milestones HTML
             const milestonesHtml = project.milestones.map(milestone => {
                 const statusIcon = milestone.status === 'completed' ? 'fa-check-circle' : 
                                   milestone.status === 'active' ? 'fa-spinner fa-pulse' : 'fa-clock';
                 
                 return `
-                    <div class="timeline-item ${milestone.status}">
+                    <div class="timeline-item ${milestone.status}" data-milestone-id="${milestone.id}">
                         <div class="timeline-marker ${milestone.status}">
                             <i class="fas ${statusIcon}"></i>
                         </div>
@@ -712,6 +1248,10 @@
                 </div>
                 <div class="tracker-card">
                     <div class="tracker-header">
+                        <div class="live-indicator">
+                            <span class="live-dot"></span>
+                            LIVE UPDATES
+                        </div>
                         <div>
                             <h2>Welcome back, ${project.customerName}!</h2>
                             <p><i class="fas fa-map-marker-alt"></i> ${project.address}</p>
@@ -726,12 +1266,18 @@
                         <!-- Progress Bar -->
                         <div class="progress-container">
                             <div class="progress-header">
-                                <span class="progress-title">Project Progress</span>
+                                <span class="progress-title">
+                                    <i class="fas fa-chart-line" style="color: var(--secondary);"></i> 
+                                    Project Progress
+                                </span>
                                 <span class="progress-percentage">${project.progress}% Complete</span>
                             </div>
                             <div class="progress-bar-container">
                                 <div class="progress-bar-fill" style="width: ${project.progress}%"></div>
                             </div>
+                            <p style="color: var(--gray); font-size: 0.8rem; margin-top: 5px; text-align: right;">
+                                <i class="fas fa-bolt" style="color: var(--secondary);"></i> Updates appear in real-time
+                            </p>
                         </div>
                         
                         <!-- Quick Details Grid -->
@@ -772,7 +1318,7 @@
                         
                         <!-- Team -->
                         <h3 style="color: var(--primary); margin: 40px 0 20px;">
-                            <i class="fas fa-users" style="color: var(--secondary);"></i> Who to contact for questions
+                            <i class="fas fa-users" style="color: var(--secondary);"></i> Your Installation Team
                         </h3>
                         <div class="team-grid">
                             ${teamHtml}
