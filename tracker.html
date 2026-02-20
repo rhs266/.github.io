@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Track your home improvement project in real-time - Residential Home Solutions">
+    <title>Project Tracker | Residential Home Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="project-tracker.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section class="tracker-hero">
+        <div class="container">
+            <h1><i class="fas fa-clipboard-check"></i> Project Tracker</h1>
+            <p>Follow your home improvement project in real-time. View progress, photos, and upcoming milestones.</p>
+        </div>
+    </section>
+
+    <!-- Tracker Access Section -->
+    <section class="tracker-dashboard">
+        <div class="container">
+            <!-- Access Form -->
+            <div id="accessContainer" class="tracker-access">
+                <div class="access-card">
+                    <div class="access-header">
+                        <div class="access-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <h2>Access Your Project</h2>
+                        <p>Enter your project details to view real-time updates</p>
+                    </div>
+                    <div class="access-body">
+                        <form id="trackerAccessForm">
+                            <div class="form-group">
+                                <label for="projectId">
+                                    <i class="fas fa-hashtag"></i> Project ID
+                                </label>
+                                <input type="text" id="projectId" name="projectId" 
+                                       placeholder="e.g., RHS-2024-001" required>
+                                <small style="color: var(--tracker-gray); display: block; margin-top: 5px;">
+                                    Found in your welcome email or project documents
+                                </small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">
+                                    <i class="fas fa-envelope"></i> Email Address
+                                </label>
+                                <input type="email" id="email" name="email" 
+                                       placeholder="The email used for this project" required>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i class="fas fa-lock-open"></i> Access My Project
+                            </button>
+                        </form>
+                        
+                        <div class="access-help">
+                            <p><i class="fas fa-question-circle"></i> Having trouble accessing your project?</p>
+                            <a href="contact.html" class="btn btn-secondary">Contact Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tracker Container (initially hidden) -->
+            <div id="trackerContainer" style="display: none;"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="process" style="background-color: var(--off-white);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What You Can Track</h2>
+                <p class="section-subtitle">Real-time updates throughout your project</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Progress Timeline</h3>
+                    <p>See exactly where your project stands with our interactive timeline showing completed, current, and upcoming milestones.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Daily Photo Updates</h3>
+                    <p>View photos of your project as it progresses. We upload new images every day during installation.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Schedule Details</h3>
+                    <p>Know exactly when your team will arrive and what work will be completed each day.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Direct Communication</h3>
+                    <p>Message your installation team, schedule calls, or get quick answers to your questions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="why-us">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Simple, transparent, and always up-to-date</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Receive Your Access</h3>
+                    <p>When your project begins, we'll email you your unique Project ID and access instructions.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Log In Anytime</h3>
+                    <p>Use your Project ID and email to access your personalized dashboard 24/7.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Follow Your Progress</h3>
+                    <p>Watch your project come together with daily updates, photos, and milestone tracking.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Stay Connected</h3>
+                    <p>Get notifications at key moments and communicate directly with your team.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <p class="section-subtitle">Real feedback from homeowners who tracked their projects</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "The project tracker was amazing! I could see photos every day and knew exactly when they'd arrive. No more wondering or waiting for calls back."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>James D.</h4>
+                            <p>Spokane Valley</p>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Being able to message our installer directly through the tracker saved so much time. They answered questions while on site without playing phone tag."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SR</div>
+                        <div class="author-info">
+                            <h4>Sarah R.</h4>
+                            <p>Liberty Lake</p>
+                        </div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="process" style="background-color: var(--primary); color: white;">
+        <div class="container text-center">
+            <h2 style="color: white; margin-bottom: 20px;">Ready to Start Your Project?</h2>
+            <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; margin-bottom: 30px;">
+                Get the same transparent tracking experience with your own project.
+            </p>
+            <a href="contact.html" class="btn btn-primary" style="background-color: var(--secondary); border-color: var(--secondary);">
+                <i class="fas fa-calendar-alt"></i> Schedule a Consultation
+            </a>
+            <p style="color: rgba(255,255,255,0.8); margin-top: 20px;">
+                Already have a project? <a href="#accessContainer" style="color: white; text-decoration: underline;">Access your tracker</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script src="project-tracker.js"></script>
+    <script>
+        // Load header and footer
+        Promise.all([
+            fetch("header.html").then(response => response.text()),
+            fetch("footer.html").then(response => response.text())
+        ]).then(([headerData, footerData]) => {
+            document.getElementById("header-placeholder").innerHTML = headerData;
+            document.getElementById("footer-placeholder").innerHTML = footerData;
+            
+            // Set current year
+            const yearElement = document.getElementById('currentYear');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+            
+            // Active link logic
+            let currentPage = window.location.pathname.split("/").pop();
+            const navLinks = document.querySelectorAll(".nav-menu a");
+            
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute("href");
+                if (linkHref === currentPage) {
+                    link.classList.add("active");
+                    
+                    const dropdown = link.closest(".dropdown");
+                    if (dropdown) {
+                        const toggle = dropdown.querySelector(".dropdown-toggle");
+                        if (toggle) {
+                            toggle.classList.add("active");
+                        }
+                    }
+                }
+            });
+            
+            // Header scroll effect
+            const header = document.querySelector('.header');
+            if (header) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
