@@ -42,11 +42,11 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 30px 20px;
+    padding: 0 20px;
 }
 
 section {
-    padding: 0px;
+    padding: 80px 0;
 }
 
 h1, h2, h3, h4 {
@@ -155,7 +155,7 @@ img {
 
 .section-header {
     text-align: center;
-    margin-bottom: 0px;
+    margin-bottom: 60px;
 }
 
 .section-title {
@@ -199,8 +199,8 @@ img {
     background-color: var(--white);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     transition: var(--transition);
-    min-height: 50px;
-    padding: 0px 0;
+    min-height: 90px;
+    padding: 10px 0;
 }
 
 .header.scrolled {
@@ -1657,7 +1657,7 @@ img {
     }
     
     .header {
-        min-height: 150px;
+        min-height: 80px;
     }
     
     .navbar {
@@ -1719,7 +1719,7 @@ img {
     }
     
     .section-header {
-        margin-bottom: 0px;
+        margin-bottom: 40px;
     }
     
     .hero-badges {
