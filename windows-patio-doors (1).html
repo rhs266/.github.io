@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Window & Patio Door Replacement | Residential Home Solutions">
+    <script>
+      window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <title>Windows & Patio Doors | Residential Home Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <style>
+        /* Additional styles for the dropdowns and logos */
+        .provider-logo-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .provider-logo {
+            max-width: 200px;
+            max-height: 100px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+        
+        .learn-more-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .learn-more-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 250px;
+            box-shadow: var(--shadow-hover);
+            z-index: 1000;
+            border-radius: var(--radius);
+            padding: 15px 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .learn-more-dropdown:hover .learn-more-dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .learn-more-dropdown-content a {
+            color: var(--dark);
+            padding: 12px 20px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+        
+        .learn-more-dropdown-content a:hover {
+            background-color: rgba(0, 51, 102, 0.05);
+            color: var(--secondary);
+        }
+        
+        .learn-more-dropdown-content a i {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+        
+        .window-type-dropdown {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .window-type-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 280px;
+            box-shadow: var(--shadow-hover);
+            z-index: 1000;
+            border-radius: var(--radius);
+            padding: 15px 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            left: 0;
+            top: 100%;
+        }
+        
+        .window-type-dropdown:hover .window-type-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .window-type-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .window-type-item:hover {
+            background-color: rgba(0, 51, 102, 0.05);
+        }
+        
+        .window-type-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0, 51, 102, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .window-type-info {
+            flex: 1;
+        }
+        
+        .window-type-info h6 {
+            margin: 0;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .window-type-info p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+        
+        .stock-image-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: var(--light-gray);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            color: var(--gray);
+        }
+        
+        .gallery-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-weight: 500;
+            margin-top: 15px;
+        }
+        
+        .gallery-link:hover {
+            color: var(--secondary);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .provider-card {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+            
+            .provider-logo-container {
+                height: 150px;
+            }
+            
+            .provider-logo {
+                max-width: 180px;
+                max-height: 80px;
+            }
+            
+            .learn-more-dropdown-content,
+            .window-type-content {
+                position: static;
+                opacity: 1;
+                transform: none;
+                box-shadow: none;
+                display: none;
+                width: 100%;
+            }
+            
+            .learn-more-dropdown:hover .learn-more-dropdown-content,
+            .window-type-dropdown:hover .window-type-content {
+                display: block;
+            }
+        }
+        .gallery-hero {
+            background-color: var(--light);
+            padding: 120px 0 60px;
+            text-align: center;
+        }
+        
+        .brand-logo-header {
+            max-width: 300px;
+            height: auto;
+            margin: 0 auto 30px;
+            display: block;
+        }
+        
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Brand Details Section with Side-by-Side Layout */
+        .brand-details-section {
+            padding: 80px 0;
+        }
+        
+        .brand-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        
+        .brand-image-container {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .brand-image {
+            width: 100%;
+            height: 400px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+        }
+        
+        .brand-image i {
+            font-size: 4rem;
+        }
+        
+        .brand-content h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+        }
+        
+        .brand-features {
+            margin: 30px 0;
+        }
+        
+        .brand-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .brand-feature-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 51, 102, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        /* Masonry Gallery Section */
+        .masonry-gallery-section {
+            padding: 60px 0 80px;
+            background-color: var(--off-white);
+        }
+        
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .gallery-header h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: var(--white);
+            border: 2px solid var(--light-gray);
+            border-radius: 30px;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+        
+        /* Masonry Grid Layout */
+        .masonry-grid {
+            columns: 4 300px;
+            column-gap: 20px;
+        }
+        
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            background-color: var(--white);
+            cursor: pointer;
+        }
+        
+        .masonry-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .masonry-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .masonry-item:hover .masonry-img {
+            transform: scale(1.03);
+        }
+        
+        .masonry-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: var(--white);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .masonry-item:hover .masonry-caption {
+            transform: translateY(0);
+        }
+        
+        .masonry-caption h4 {
+            color: var(--white);
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        
+        .masonry-category {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-modal.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: var(--radius);
+        }
+        
+        .lightbox-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+        }
+        
+        .lightbox-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .lightbox-nav button:hover {
+            background: var(--secondary);
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: var(--white);
+            border-radius: var(--radius);
+            border: 2px dashed var(--light-gray);
+            grid-column: 1 / -1;
+        }
+        
+        .no-results i {
+            font-size: 3rem;
+            color: var(--light-gray);
+            margin-bottom: 20px;
+        }
+        
+        .back-to-products {
+            text-align: center;
+            margin: 50px 0 20px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .masonry-grid {
+                columns: 3 280px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .brand-details-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .brand-image {
+                height: 350px;
+            }
+            
+            .masonry-grid {
+                columns: 2 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .masonry-grid {
+                columns: 1 400px;
+            }
+            
+            .brand-logo-header {
+                max-width: 250px;
+            }
+            
+            .gallery-hero {
+                padding: 100px 0 40px;
+            }
+            
+            .brand-details-section,
+            .masonry-gallery-section {
+                padding: 60px 0;
+            }
+            
+            .gallery-filters {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .filter-btn {
+                white-space: nowrap;
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .masonry-grid {
+                columns: 1;
+            }
+            
+            .brand-image {
+                height: 250px;
+            }
+            
+            .lightbox-nav button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+        /* ----- Gallery slideshow styles (copied from entry-storm-doors page) ----- */
+        .doors-gallery {
+            background-color: var(--off-white);
+            padding: 60px 0;
+            margin-top: 40px;
+            border-top: 1px solid var(--light-gray);
+            border-bottom: 1px solid var(--light-gray);
+        }
+        .gallery-slideshow-container {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-hover);
+        }
+        .gallery-slide {
+            display: none;
+            position: relative;
+        }
+        .gallery-slide.active {
+            display: block;
+        }
+        .gallery-slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-overlay-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 30px 20px 20px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        .gallery-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 25px;
+        }
+        .gallery-dots {
+            display: flex;
+            gap: 12px;
+        }
+        .gallery-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--medium-gray);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        .gallery-dot.active {
+            background: var(--secondary);
+            transform: scale(1.2);
+            border-color: var(--white);
+            box-shadow: 0 0 0 2px var(--secondary-light);
+        }
+        .gallery-prev, .gallery-next {
+            background: var(--primary);
+            border: none;
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: 2px solid white;
+            box-shadow: var(--shadow);
+        }
+        .gallery-prev:hover, .gallery-next:hover {
+            background: var(--secondary);
+            transform: scale(1.1);
+        }
+        .after-gallery-cta {
+            margin-top: 50px;
+        }
+        @media (max-width: 768px) {
+            .gallery-slide img {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+     <!-- Header & Navigation -->
+   <div id="header-placeholder"></div>
+<!-- Page Hero -->
+    <section class="hero" style="min-height: 50vh; padding: 120px 0 60px;">
+        <div class="slideshow-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <div class="slide-image" style="background-image: url('images/infinity/infinity-patio-door.avif');"></div>
+                <div class="slide-overlay"></div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="slide-image" style="background-image: url('images/infinity/infinity-patio-door2.avif');"></div>
+                <div class="slide-overlay"></div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="slide-image" style="background-image: url('images/infinity/infinity-custom.avif');"></div>
+                <div class="slide-overlay"></div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="slide">
+                <div class="slide-image" style="background-image: url('images/infinity/infinity-custom.avif');"></div>
+                <div class="slide-overlay"></div>
+            </div>
+        <div class="container">
+            <div class="hero-content" style="max-width: 700px; padding: 180px 0 60px;">
+                <h1 class="hero-title">Windows & Patio Doors</h1>
+                <p class="hero-subtitle">Premium window solutions featuring Infinity by Marvin, ProVia, Coeur d'Alene Window, and VPI Quality Windows</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Content -->
+    <section class="services-detail" style="padding: 60px 0;">
+        <div class="container">
+            <div class="service-detail-card">
+                <div class="service-detail-header">
+                    <div class="service-icon-large">
+                        <i class="fas fa-window-maximize"></i>
+                    </div>
+                    <h2>Premium Window & Patio Door Solutions</h2>
+                    <p class="service-tagline">Featuring the region's finest window manufacturers for superior performance and beauty</p>
+                </div>
+                
+                <div class="service-detail-content" style="max-width: 1200px; margin: 0 auto;">
+                    <h3>Transform Your Home with Expert Window Solutions</h3>
+                    <p>At Residential Home Solutions, we partner with the Pacific Northwest's leading window manufacturers to bring you exceptional quality, energy efficiency, and durability. Each product line is selected for its ability to withstand our unique climate challenges while enhancing your home's comfort and value.</p>
+                    
+                    <!-- Window Provider Introduction -->
+                    <div class="window-providers-intro" style="background-color: rgba(128, 22, 204, 0.05); padding: 30px; border-radius: var(--radius); margin: 40px 0;">
+                        <h4 style="color: var(--primary); margin-bottom: 15px;">Why Choose Our Window Partners?</h4>
+                        <p>We carefully select window manufacturers based on quality craftsmanship, energy efficiency, and local availability. As your trusted window experts, we provide:</p>
+                        <ul style="columns: 2; column-gap: 40px; margin-top: 20px;">
+                            <li><i class="fas fa-check-circle" style="color: #27ae60;"></i> Energy Star Certified products</li>
+                            <li><i class="fas fa-check-circle" style="color: #27ae60;"></i> Local manufacturing when available</li>
+                            <li><i class="fas fa-check-circle" style="color: #27ae60;"></i> Custom sizing and configurations</li>
+                            <li><i class="fas fa-check-circle" style="color: #27ae60;"></i> Industry-leading warranties</li>
+                            <li><i class="fas fa-check-circle" style="color: #27ae60;"></i> Professional installation</li>
+                            <li><i class="fas fa-check-circle" style="color: #27ae60;"></i> Lifetime service support</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Window Provider Showcase -->
+                    <div class="providers-showcase" style="margin: 50px 0;">
+                        <h3 style="text-align: center; margin-bottom: 40px;">Our Premium Window Partners</h3>
+                        
+                        <!-- Infinity by Marvin -->
+                        <div class="provider-card" style="display: grid; grid-template-columns: 300px 1fr; gap: 40px; margin-bottom: 60px; padding: 30px; background-color: var(--light); border-radius: var(--radius); align-items: center;">
+                            <div>
+                                <div class="provider-logo-container">
+                                    <img src="images/infinitylogo.avif" alt="Infinity by Marvin" class="provider-logo">
+                                </div>
+                                <a href="gallery-infinity.html" class="gallery-link">
+                                    <i class="fas fa-images"></i> View Infinity Gallery
+                                </a>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--primary); margin-bottom: 15px;">Infinity by Marvin</h4>
+                                <p>Infinity by Marvin offers the ultimate in replacement window technology with their innovative fiberglass construction. These windows provide exceptional durability, energy efficiency, and low maintenance.</p>
+                                
+                                <div class="provider-features" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-leaf" style="color: #27ae60;"></i>
+                                        <span>Superior Energy Efficiency</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-shield-alt" style="color: var(--primary);"></i>
+                                        <span>Extremely Durable</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-palette" style="color: var(--secondary);"></i>
+                                        <span>Custom Color Options</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-certificate" style="color: var(--primary);"></i>
+                                        <span>Lifetime Warranty</span>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-top: 20px;" class="learn-more-dropdown">
+                                    <a href="https://www.infinitywindows.com/" target="_blank" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 10px;" aria-label="Learn more about Infinity by Marvin windows on their official website">
+                                        <i class="fas fa-external-link-alt"></i> Explore Infinity Windows
+                                    </a>
+                                    <div class="learn-more-dropdown-content">
+                                        <a href="gallery-infinity.html#double-hung" aria-label="View Infinity double-hung window gallery">
+                                            <span>Double-Hung Windows</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                        <a href="gallery-infinity.html#casement" aria-label="View Infinity casement window gallery">
+                                            <span>Casement Windows</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                        <a href="gallery-infinity.html#sliding" aria-label="View Infinity sliding window gallery">
+                                            <span>Sliding Windows</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                        <a href="gallery-infinity.html#patio-doors" aria-label="View Infinity patio door gallery">
+                                            <span>Patio Doors</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                        <a href="gallery-infinity.html" aria-label="View all Infinity products">
+                                            <span>View All Products</span>
+                                            <i class="fas fa-images"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- ProVia Windows -->
+                        <div class="provider-card" style="display: grid; grid-template-columns: 300px 1fr; gap: 40px; margin-bottom: 60px; padding: 30px; background-color: var(--light); border-radius: var(--radius); align-items: center;">
+                            <div>
+                                <div class="provider-logo-container">
+                                    <img src="images/provialogo.avif" alt="ProVia Windows" class="provider-logo">
+                                </div>
+                                <a href="gallery-provia.html" class="gallery-link">
+                                    <i class="fas fa-images"></i> View ProVia Gallery
+                                </a>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--primary); margin-bottom: 15px;">ProVia Windows & Doors</h4>
+                                <p>ProVia offers comprehensive solutions with both windows and doors. Their products are engineered with precision and built to perform, featuring exceptional energy efficiency and durability for Spokane Valley homes.</p>
+                                
+                                <div class="provider-features" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-snowflake" style="color: #3498db;"></i>
+                                        <span>Excellent Insulation</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-tools" style="color: var(--dark);"></i>
+                                        <span>Custom Manufacturing</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-wind" style="color: #2ecc71;"></i>
+                                        <span>Weather Resistant</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-eye" style="color: var(--primary);"></i>
+                                        <span>Beautiful Designs</span>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-top: 20px;" class="learn-more-dropdown">
+                                    <a href="https://www.provia.com/windows/" target="_blank" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 10px;" aria-label="Learn more about ProVia windows on their official website">
+                                        <i class="fas fa-external-link-alt"></i> Discover ProVia Products
+                                    </a>
+                                    <div class="learn-more-dropdown-content">
+                                        <a href="gallery-provia.html#windows" aria-label="View ProVia window gallery">
+                                            <span>Windows</span>
+                                            <i class="fas fa-window-maximize"></i>
+                                        </a>
+                                        <a href="entry-storm-doors.html#provia" aria-label="View ProVia entry doors">
+                                            <span>Entry Doors</span>
+                                            <i class="fas fa-door-open"></i>
+                                        </a>
+                                        <a href="entry-storm-doors.html#storm-doors" aria-label="View ProVia storm doors">
+                                            <span>Storm Doors</span>
+                                            <i class="fas fa-wind"></i>
+                                        </a>
+                                        <a href="gallery-provia.html#patio-doors" aria-label="View ProVia patio doors">
+                                            <span>Patio Doors</span>
+                                            <i class="fas fa-glass-martini-alt"></i>
+                                        </a>
+                                        <a href="gallery-provia.html" aria-label="View all ProVia products">
+                                            <span>View All Products</span>
+                                            <i class="fas fa-images"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Coeur d'Alene Window -->
+                        <div class="provider-card" style="display: grid; grid-template-columns: 300px 1fr; gap: 40px; margin-bottom: 60px; padding: 30px; background-color: var(--light); border-radius: var(--radius); align-items: center;">
+                            <div>
+                                <div class="provider-logo-container">
+                                    <img src="images/cdalogo.avif" alt="Coeur d'Alene Window" class="provider-logo">
+                                </div>
+                                <a href="gallery-cda.html" class="gallery-link">
+                                    <i class="fas fa-images"></i> View CDA Gallery
+                                </a>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--primary); margin-bottom: 15px;">Coeur d'Alene Window Company</h4>
+                                <p>Coeur d'Alene Window Company represents the best of local Pacific Northwest craftsmanship. Their windows are specifically designed for our regional climate and built to withstand the unique weather challenges of Eastern Washington and Northern Idaho.</p>
+                                
+                                <div class="provider-features" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-home" style="color: #e74c3c;"></i>
+                                        <span>Local Manufacturing</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-cloud-sun" style="color: #f39c12;"></i>
+                                        <span>Climate-Specific Design</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-truck" style="color: #3498db;"></i>
+                                        <span>Quick Local Delivery</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-users" style="color: var(--primary);"></i>
+                                        <span>Local Support Team</span>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-top: 20px;" class="learn-more-dropdown">
+                                    <a href="https://www.coeurdalenewindow.com/" target="_blank" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 10px;" aria-label="Learn more about Coeur d'Alene windows on their official website">
+                                        <i class="fas fa-external-link-alt"></i> See CDA Windows
+                                    </a>
+                                    <div class="learn-more-dropdown-content">
+                                        <a href="gallery-cda.html#single-hung" aria-label="View Coeur d'Alene single-hung window gallery">
+                                            <span>Single-Hung Windows</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                        <a href="gallery-cda.html#double-hung" aria-label="View Coeur d'Alene double-hung window gallery">
+                                            <span>Double-Hung Windows</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                        <a href="gallery-cda.html#picture" aria-label="View Coeur d'Alene picture window gallery">
+                                            <span>Picture Windows</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                        <a href="gallery-cda.html#custom" aria-label="View Coeur d'Alene custom window gallery">
+                                            <span>Custom Windows</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                        <a href="gallery-cda.html" aria-label="View all Coeur d'Alene products">
+                                            <span>View All Products</span>
+                                            <i class="fas fa-images"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- VPI Quality Windows -->
+                        <div class="provider-card" style="display: grid; grid-template-columns: 300px 1fr; gap: 40px; margin-bottom: 60px; padding: 30px; background-color: var(--light); border-radius: var(--radius); align-items: center;">
+                            <div>
+                                <div class="provider-logo-container">
+                                    <img src="images/vpilogo.avif" alt="VPI Quality Windows" class="provider-logo">
+                                </div>
+                                <a href="gallery-vpi.html" class="gallery-link">
+                                    <i class="fas fa-images"></i> View VPI Gallery
+                                </a>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--primary); margin-bottom: 15px;">VPI Quality Windows</h4>
+                                <p>VPI Quality Windows offers superior engineering and construction designed for long-term performance. Their windows feature innovative technologies that provide exceptional energy efficiency, security, and durability for Pacific Northwest homes.</p>
+                                
+                                <div class="provider-features" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px 0;">
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-bolt" style="color: #f1c40f;"></i>
+                                        <span>Advanced Energy Tech</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-lock" style="color: var(--dark);"></i>
+                                        <span>Enhanced Security</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-hourglass-half" style="color: #e74c3c;"></i>
+                                        <span>Long-Lasting Quality</span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <i class="fas fa-cogs" style="color: var(--primary);"></i>
+                                        <span>Precision Engineering</span>
+                                    </div>
+                                </div>
+                                
+                                <div style="margin-top: 20px;" class="learn-more-dropdown">
+                                    <a href="https://www.vpiqualitywindows.com/windows" target="_blank" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 10px;" aria-label="Learn more about VPI Quality Windows on their official website">
+                                        <i class="fas fa-external-link-alt"></i> Explore VPI Windows
+                                    </a>
+                                    <div class="learn-more-dropdown-content">
+                                        <a href="gallery-vpi.html#double-hung" aria-label="View VPI double-hung window gallery">
+                                            <span>Double-Hung Windows</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                        <a href="gallery-vpi.html#casement" aria-label="View VPI casement window gallery">
+                                            <span>Casement Windows</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                        <a href="gallery-vpi.html#awning" aria-label="View VPI awning window gallery">
+                                            <span>Awning Windows</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                        <a href="gallery-vpi.html#sliding" aria-label="View VPI sliding window gallery">
+                                            <span>Sliding Windows</span>
+                                            <i class="fas fa-chevron-right"></i>
+                                        </a>
+                                        <a href="gallery-vpi.html" aria-label="View all VPI products">
+                                            <span>View All Products</span>
+                                            <i class="fas fa-images"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- ===== WINDOW & PATIO DOOR PROJECT GALLERY - SIDE TO SIDE SLIDESHOW ===== -->
+                    <div class="doors-gallery">
+                        <div class="container">
+                            <div class="section-header">
+                                <h2 class="section-title">Window & Patio Door Project Gallery</h2>
+                                <p class="section-subtitle">Browse our installations featuring Infinity, ProVia, CDA and VPI.</p>
+                            </div>
+                    
+                            <!-- Slideshow container -->
+                            <div class="gallery-slideshow-container">
+                                <!-- Slide 1: Infinity Double-Hung -->
+                                <div class="gallery-slide active">
+                                    <img src="images/infinity/infinity-double-hung.avif" alt="Infinity Double-Hung Window" onerror="this.src='https://placehold.co/1100x500/0066a1/white?text=Infinity+Double+Hung'; this.onerror=null;">
+                                    <div class="gallery-overlay-caption">
+                                        <i class="fas fa-tag" style="margin-right: 8px;"></i> Infinity Double Hung Window
+                                    </div>
+                                </div>
+                                <!-- Slide 2: Infinity Casement -->
+                                <div class="gallery-slide">
+                                    <img src="images/infinity/infinity-casement.avif" alt="Infinity Casement" onerror="this.src='https://placehold.co/1100x500/0066a1/white?text=Infinity+Casement'; this.onerror=null;">
+                                    <div class="gallery-overlay-caption">
+                                        <i class="fas fa-tag" style="margin-right: 8px;"></i> Infinity Casement Window
+                                    </div>
+                                </div>
+                                <!-- Slide 3: Infinity Patio Door -->
+                                <div class="gallery-slide">
+                                    <img src="images/infinity/infinity-patio-door.avif" alt="Infinity Patio Door" onerror="this.src='https://placehold.co/1100x500/0066a1/white?text=Infinity+Patio+Door'; this.onerror=null;">
+                                    <div class="gallery-overlay-caption">
+                                        <i class="fas fa-tag" style="margin-right: 8px;"></i> Infinity Patio Door
+                                    </div>
+                                </div>
+                                <!-- Slide 4: Infinity Custom Shape -->
+                                <div class="gallery-slide">
+                                    <img src="images/infinity/infinity-custom.avif" alt="Infinity Custom Shape Window" onerror="this.src='https://placehold.co/1100x500/0066a1/white?text=Infinity+Custom+Window'; this.onerror=null;">
+                                    <div class="gallery-overlay-caption">
+                                        <i class="fas fa-tag" style="margin-right: 8px;"></i> Infinity Custom Shape Window
+                                    </div>
+                                </div>
+                                <!-- Slide 5: ProVia Double Hung -->
+                                <div class="gallery-slide">
+                                    <img src="images/provia/provia-double-hung.avif" alt="ProVia Double Hung Window" onerror="this.src='https://placehold.co/1100x500/5a2e8a/white?text=ProVia+Double+Hung'; this.onerror=null;">
+                                    <div class="gallery-overlay-caption">
+                                        <i class="fas fa-tag" style="margin-right: 8px;"></i> ProVia Double Hung Window
+                                    </div>
+                                </div>
+                                <!-- Slide 6: ProVia Casement -->
+                                <div class="gallery-slide">
+                                    <img src="images/provia/provia-casement.avif" alt="ProVia Casement Window" onerror="this.src='https://placehold.co/1100x500/5a2e8a/white?text=ProVia+Casement'; this.onerror=null;">
+                                    <div class="gallery-overlay-caption">
+                                        <i class="fas fa-tag" style="margin-right: 8px;"></i> ProVia Casement Window
+                                    </div>
+                                </div>
+                                <!-- Slide 7: ProVia Picture -->
+                                <div class="gallery-slide">
+                                    <img src="images/provia/provia-picture.avif" alt="ProVia Picture Window" onerror="this.src='https://placehold.co/1100x500/5a2e8a/white?text=ProVia+Picture'; this.onerror=null;">
+                                    <div class="gallery-overlay-caption">
+                                        <i class="fas fa-tag" style="margin-right: 8px;"></i> ProVia Picture Window
+                                    </div>
+                                </div>
+                                <!-- Slide 8: ProVia Patio Door -->
+                                <div class="gallery-slide">
+                                    <img src="images/provia/provia-patio-door.avif" alt="ProVia Patio Door" onerror="this.src='https://placehold.co/1100x500/5a2e8a/white?text=ProVia+Patio+Door'; this.onerror=null;">
+                                    <div class="gallery-overlay-caption">
+                                        <i class="fas fa-tag" style="margin-right: 8px;"></i> ProVia Patio Door
+                                    </div>
+                                </div>
+                                <!-- Slide 9: ProVia Bay -->
+                                <div class="gallery-slide">
+                                    <img src="images/provia/provia-bay.avif" alt="ProVia Bay Window" onerror="this.src='https://placehold.co/1100x500/5a2e8a/white?text=ProVia+Bay+Window'; this.onerror=null;">
+                                    <div class="gallery-overlay-caption">
+                                        <i class="fas fa-tag" style="margin-right: 8px;"></i> ProVia Bay Window
+                                    </div>
+                                </div>
+                                <!-- Slide 10: CDA Single Hung -->
+                                <div class="gallery-slide">
+                                    <img src="images/cda/cda-single-hung.avif" alt="Coeur d'Alene Single Hung Window" onerror="this.src='https://placehold.co/1100x500/0f4d5a/white?text=CDA+Single+Hung'; this.onerror=null;">
+                                    <div class="gallery-overlay-caption">
+                                        <i class="fas fa-tag" style="margin-right: 8px;"></i> Coeur d'Alene Single Hung Window
+                                    </div>
+                                </div>
+                                <!-- Slide 11: CDA Patio Door -->
+                                <div class="gallery-slide">
+                                    <img src="images/cda/cda-patio-door.avif" alt="Coeur d'Alene Patio Door" onerror="this.src='https://placehold.co/1100x500/0f4d5a/white?text=CDA+Patio+Door'; this.onerror=null;">
+                                    <div class="gallery-overlay-caption">
+                                        <i class="fas fa-tag" style="margin-right: 8px;"></i> Coeur d'Alene Patio Door
+                                    </div>
+                                </div>
+                                <!-- Slide 12: CDA Custom -->
+                                <div class="gallery-slide">
+                                    <img src="images/cda/cda-custom.avif" alt="Coeur d'Alene Custom Shape Window" onerror="this.src='https://placehold.co/1100x500/0f4d5a/white?text=CDA+Custom+Window'; this.onerror=null;">
+                                    <div class="gallery-overlay-caption">
+                                        <i class="fas fa-tag" style="margin-right: 8px;"></i> Coeur d'Alene Custom Shape Window
+                                    </div>
+                                </div>
+                                <!-- Slide 13: Infinity Patio Door 2 -->
+                                <div class="gallery-slide">
+                                    <img src="images/infinity/infinity-patio-door2.avif" alt="Infinity Patio Door" onerror="this.src='https://placehold.co/1100x500/0066a1/white?text=Infinity+Patio+Door+2'; this.onerror=null;">
+                                    <div class="gallery-overlay-caption">
+                                        <i class="fas fa-tag" style="margin-right: 8px;"></i> Infinity Patio Door
+                                    </div>
+                                </div>
+                                <!-- Slide 14: Infinity Sliding Window -->
+                                <div class="gallery-slide">
+                                    <img src="images/infinity/infinity-sliding2.avif" alt="Infinity Sliding Window" onerror="this.src='https://placehold.co/1100x500/0066a1/white?text=Infinity+Sliding'; this.onerror=null;">
+                                    <div class="gallery-overlay-caption">
+                                        <i class="fas fa-tag" style="margin-right: 8px;"></i> Infinity Sliding Window
+                                    </div>
+                                </div>
+                            </div>
+                    
+                            <!-- Navigation: prev/next + dots -->
+                            <div class="gallery-nav">
+                                <button class="gallery-prev" aria-label="Previous gallery image">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <div class="gallery-dots">
+                                    <!-- Dots will be generated by JS, but we keep static fallback -->
+                                    <span class="gallery-dot active" data-index="0"></span>
+                                    <span class="gallery-dot" data-index="1"></span>
+                                    <span class="gallery-dot" data-index="2"></span>
+                                    <span class="gallery-dot" data-index="3"></span>
+                                    <span class="gallery-dot" data-index="4"></span>
+                                    <span class="gallery-dot" data-index="5"></span>
+                                    <span class="gallery-dot" data-index="6"></span>
+                                    <span class="gallery-dot" data-index="7"></span>
+                                    <span class="gallery-dot" data-index="8"></span>
+                                    <span class="gallery-dot" data-index="9"></span>
+                                    <span class="gallery-dot" data-index="10"></span>
+                                    <span class="gallery-dot" data-index="11"></span>
+                                    <span class="gallery-dot" data-index="12"></span>
+                                    <span class="gallery-dot" data-index="13"></span>
+                                </div>
+                                <button class="gallery-next" aria-label="Next gallery image">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                    
+                            <div class="text-center after-gallery-cta">
+                                <p style="margin-top: 30px; font-style: italic; color: var(--primary);">
+                                    <i class="fas fa-camera"></i> Every window and door is custom-fit to your home’s exact measurements.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Benefits Section -->
+                    <div class="benefits-grid" style="margin: 40px 0;">
+                        <div class="benefit-item">
+                            <i class="fas fa-bolt"></i>
+                            <h4>Energy Savings</h1>
+                            <p>Reduce heating and cooling costs by up to 30% with our Energy Star certified windows</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Enhanced Security</h2>
+                            <p>Advanced locking systems and durable materials for maximum protection</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-volume-mute"></i>
+                            <h4>Noise Reduction</h3>
+                            <p>Multi-pane glass and tight seals dramatically reduce outside noise</p>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-home"></i>
+                            <h4>Increased Home Value</h4>
+                            <p>Premium window replacement can significantly increase your home's resale value</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="process" style="background-color: var(--light); padding: 80px 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Ready for New Windows?</h2>
+                <p class="section-subtitle">Contact us today for a free consultation and quote on window or patio door installation from our premium partners</p>
+            </div>
+            <div class="text-center">
+                <a href="contact.html" class="btn btn-primary btn-large" aria-label="Schedule a free window consultation">
+                    <i class="fas fa-calendar-alt"></i> Schedule Free Consultation
+                </a>
+                <p style="margin-top: 20px; font-size: 1.1rem;">
+                    <i class="fas fa-phone"></i> Call us today: <a href="tel:15098926460" style="color: var(--primary); text-decoration: underline; font-weight: 600;" aria-label="Call us at (509) 892-6460">(509) 892-6460</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+<!-- Footer -->
+    <div id="footer-placeholder"></div>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        fetch("header.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("header-placeholder").innerHTML = data;
+
+        // ✅ Run active link logic AFTER header loads
+        let currentPage = window.location.pathname.split("/").pop();
+
+        if (currentPage === "") {
+            currentPage = "index.html";
+        }
+
+        const navLinks = document.querySelectorAll(".nav-menu a");
+
+        navLinks.forEach(link => {
+            const linkHref = link.getAttribute("href");
+
+            if (linkHref === currentPage) {
+                link.classList.add("active");
+
+                const dropdown = link.closest(".dropdown");
+                if (dropdown) {
+                    const toggle = dropdown.querySelector(".dropdown-toggle");
+                    if (toggle) {
+                        toggle.classList.add("active");
+                    }
+                }
+            }
+        });
+    });
+
+fetch("footer.html")
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById("footer-placeholder").innerHTML = data;
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    });
+        
+        // Mobile dropdown functionality
+        document.querySelectorAll('.window-type-dropdown').forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    const content = this.querySelector('.window-type-content');
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+        });
+        
+        document.querySelectorAll('.learn-more-dropdown').forEach(dropdown => {
+            dropdown.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    const content = this.querySelector('.learn-more-dropdown-content');
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+        });
+
+        // ========== GALLERY SLIDESHOW (WINDOWS PAGE) ==========
+        (function() {
+            const gallerySlides = document.querySelectorAll('.gallery-slide');
+            const galleryDots = document.querySelectorAll('.gallery-dot');
+            const prevBtn = document.querySelector('.gallery-prev');
+            const nextBtn = document.querySelector('.gallery-next');
+            
+            if (gallerySlides.length > 0 && galleryDots.length > 0) {
+                let currentSlide = 0;
+
+                function showGallerySlide(index) {
+                    // wrap around
+                    if (index >= gallerySlides.length) index = 0;
+                    if (index < 0) index = gallerySlides.length - 1;
+                    
+                    // hide all slides, remove active class
+                    gallerySlides.forEach(slide => slide.classList.remove('active'));
+                    galleryDots.forEach(dot => dot.classList.remove('active'));
+                    
+                    // show current
+                    gallerySlides[index].classList.add('active');
+                    galleryDots[index].classList.add('active');
+                    currentSlide = index;
+                }
+
+                // Event listeners for dots
+                galleryDots.forEach((dot, idx) => {
+                    dot.addEventListener('click', () => showGallerySlide(idx));
+                });
+
+                // Previous / next buttons
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', () => showGallerySlide(currentSlide - 1));
+                }
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => showGallerySlide(currentSlide + 1));
+                }
+
+                // Auto-advance every 5 seconds
+                let autoSlideInterval = setInterval(() => {
+                    showGallerySlide(currentSlide + 1);
+                }, 5500);
+
+                // pause on hover (nice UX)
+                const galleryContainer = document.querySelector('.gallery-slideshow-container');
+                if (galleryContainer) {
+                    galleryContainer.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+                    galleryContainer.addEventListener('mouseleave', () => {
+                        autoSlideInterval = setInterval(() => {
+                            showGallerySlide(currentSlide + 1);
+                        }, 5500);
+                    });
+                }
+            }
+        })();
+    </script>
+</body>
+</html>

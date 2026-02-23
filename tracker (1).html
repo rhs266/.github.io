@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Track your home improvement project in real-time - Residential Home Solutions">
+    <title>Project Tracker | Residential Home Solutions</title>
+    <!-- MAIN STYLE.CSS (brand primary #6120bd, secondary #FF6600) -->
+    <link rel="stylesheet" href="style.css">
+    <!-- additional inline styles only for tracker; colors now match service.html brand -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <!-- CometD library for Salesforce Streaming API (kept) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cometd/4.0.4/cometd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cometd/4.0.4/jquery.cometd.js"></script>
+    <style>
+        /* tracker styles — fully adapted to service.html look: primary #6120bd, secondary #FF6600 */
+        .tracker-hero {
+            background: linear-gradient(105deg, #f8f4ff 0%, #f0eaff 100%);
+            padding: 140px 0 60px;
+            color: var(--primary, #6120bd);
+            text-align: center;
+        }
+        .tracker-hero h1 {
+            color: var(--primary, #6120bd);
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-family: 'Merriweather', serif;
+        }
+        .tracker-hero p {
+            color: #4a2c6b; /* deep purple from service */
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .tracker-dashboard {
+            padding: 60px 0;
+            background-color: white;
+            min-height: 60vh;
+        }
+
+        /* access card — now with service-like card styling */
+        .access-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.04);
+            overflow: hidden;
+            border: 1px solid #e0d6f0;
+        }
+        .access-header {
+            background: #f3edff; /* light purple from service */
+            color: var(--primary, #6120bd);
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 1px solid #e0d6f0;
+        }
+        .access-icon {
+            font-size: 4rem;
+            color: var(--secondary, #FF6600);
+            margin-bottom: 20px;
+        }
+        .access-header h2 {
+            color: var(--primary, #6120bd);
+            margin-bottom: 10px;
+            font-family: 'Merriweather', serif;
+        }
+        .access-body {
+            padding: 40px 30px;
+        }
+        .email-only-form .form-group {
+            margin-bottom: 30px;
+        }
+        .email-only-form input {
+            font-size: 1.1rem;
+            padding: 18px;
+            border: 1.5px solid #d0c2e6;
+            border-radius: 18px;
+            width: 100%;
+            transition: all 0.3s ease;
+            background: #fdfcff;
+        }
+        .email-only-form input:focus {
+            outline: none;
+            border-color: var(--primary, #6120bd);
+            box-shadow: 0 0 0 4px rgba(97,32,189,0.06);
+        }
+        .btn-primary {
+            background: var(--secondary, #FF6600);
+            background: linear-gradient(165deg, #FF6600 0%, #e65c00 100%);
+            border: none;
+            color: white;
+            padding: 16px 28px;
+            font-weight: 700;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 18px rgba(230,92,0,0.16);
+            transition: 0.2s;
+            width: 100%;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .btn-primary:hover {
+            background: #e65300;
+            transform: translateY(-3px);
+            box-shadow: 0 18px 28px rgba(230,92,0,0.22);
+        }
+
+        .demo-hint {
+            background: #fff6e5; /* light orange */
+            border-radius: 18px;
+            padding: 20px;
+            margin-top: 30px;
+            border-left: 5px solid var(--secondary, #FF6600);
+            text-align: center;
+        }
+        .demo-hint p {
+            margin: 0;
+            color: var(--primary, #6120bd);
+            font-weight: 600;
+        }
+        .demo-hint small {
+            color: #5f4b7a;
+            display: block;
+            margin-top: 10px;
+        }
+        .access-help {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed #d0c2e6;
+        }
+        .access-help p {
+            color: #5f4b7a;
+            margin-bottom: 15px;
+        }
+
+        /* Tracker Card Styles — now with service card look */
+        .tracker-card {
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.04);
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 1px solid #e0d6f0;
+        }
+        .tracker-header {
+            background: #f3edff; /* light purple */
+            color: var(--primary, #6120bd);
+            padding: 30px;
+            position: relative;
+            border-bottom: 1px solid #e0d6f0;
+        }
+        .live-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--secondary, #FF6600);
+            color: white;
+            padding: 5px 16px;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+        }
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            animation: pulse-white 2s infinite;
+        }
+        @keyframes pulse-white {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.3); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .tracker-header h2 {
+            color: var(--primary, #6120bd);
+            margin: 0 0 10px 0;
+            font-size: 1.8rem;
+            padding-right: 100px;
+            font-family: 'Merriweather', serif;
+        }
+        .tracker-header p {
+            color: #4a2c6b;
+            margin: 0;
+        }
+        .tracker-badge {
+            display: inline-block;
+            background: var(--secondary, #FF6600);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .tracker-body {
+            padding: 30px;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin-bottom: 40px;
+        }
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .progress-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary, #6120bd);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .update-flash {
+            background: var(--secondary, #FF6600);
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 50px;
+            animation: fadeOut 3s forwards;
+        }
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        .progress-percentage {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary, #FF6600);
+        }
+        .progress-bar-container {
+            width: 100%;
+            height: 12px;
+            background-color: #f0eaff;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary, #FF6600) 0%, #ff944d 100%);
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+
+        /* Details Grid */
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .detail-item {
+            background: #fdfcff;
+            border-radius: 18px;
+            padding: 20px;
+            border: 1.5px solid #d0c2e6;
+            transition: all 0.3s ease;
+        }
+        .detail-item.updated {
+            border-color: var(--secondary, #FF6600);
+            box-shadow: 0 0 0 2px rgba(255,102,0,0.2);
+            animation: highlight 2s;
+        }
+        @keyframes highlight {
+            0% { background: rgba(255,102,0,0.1); }
+            100% { background: #fdfcff; }
+        }
+        .detail-label {
+            color: #5f4b7a;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .detail-value {
+            font-weight: 700;
+            color: var(--primary, #6120bd);
+            font-size: 1.1rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            margin: 40px 0;
+        }
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            background: #faf8ff;
+            border-radius: 18px;
+            border-left: 4px solid #d0c2e6;
+            transition: all 0.3s ease;
+        }
+        .timeline-item.completed {
+            border-left-color: #28a745;
+            background: rgba(40,167,69,0.05);
+        }
+        .timeline-item.active {
+            border-left-color: var(--secondary, #FF6600);
+            background: #fff6e5;
+            box-shadow: 0 2px 10px rgba(255,102,0,0.08);
+        }
+        .timeline-item.updated-milestone {
+            animation: milestone-flash 1.5s;
+        }
+        @keyframes milestone-flash {
+            0% { background: #fff0e5; border-left-color: var(--secondary); }
+            100% { background: #faf8ff; }
+        }
+        .timeline-marker {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .timeline-item.completed .timeline-marker {
+            background: #28a745;
+            color: white;
+        }
+        .timeline-item.active .timeline-marker {
+            background: var(--secondary, #FF6600);
+            color: white;
+        }
+        .timeline-item.pending .timeline-marker {
+            background: #d0c2e6;
+            color: white;
+        }
+        .timeline-content {
+            flex: 1;
+        }
+        .timeline-date {
+            color: #5f4b7a;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        .timeline-title {
+            font-weight: 700;
+            color: var(--primary, #6120bd);
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        .timeline-desc {
+            color: #5f4b7a;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+        .timeline-status {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 4px 14px;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .status-completed {
+            background: rgba(40,167,69,0.1);
+            color: #28a745;
+        }
+        .status-active {
+            background: rgba(255,102,0,0.1);
+            color: var(--secondary, #FF6600);
+        }
+        .status-pending {
+            background: rgba(97,32,189,0.1);
+            color: var(--primary, #6120bd);
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .team-member {
+            background: #faf8ff;
+            border-radius: 18px;
+            padding: 20px;
+            border: 1.5px solid #d0c2e6;
+        }
+        .team-member h4 {
+            color: var(--primary, #6120bd);
+            margin: 0 0 5px 0;
+        }
+        .team-member .role {
+            color: var(--secondary, #FF6600);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .team-member .phone {
+            color: #5f4b7a;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: white;
+            border-radius: 60px;
+            border: 1px solid #d0c2e6;
+            transition: all 0.3s ease;
+        }
+        .team-member .phone:hover {
+            border-color: var(--secondary, #FF6600);
+            color: var(--secondary);
+        }
+
+        /* Notification Toast — service style */
+        .live-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 2000;
+            animation: slide-up 0.3s ease;
+            border-left: 6px solid var(--secondary, #FF6600);
+            max-width: 350px;
+        }
+        @keyframes slide-up {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .live-notification-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,102,0,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary, #FF6600);
+            font-size: 1.2rem;
+        }
+        .live-notification-content {
+            flex: 1;
+        }
+        .live-notification-title {
+            font-weight: 700;
+            color: var(--primary, #6120bd);
+            margin-bottom: 3px;
+        }
+        .live-notification-message {
+            color: #5f4b7a;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        .live-notification-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #8ba3ad;
+            cursor: pointer;
+            padding: 0 5px;
+        }
+        .live-notification-close:hover {
+            color: var(--secondary, #FF6600);
+        }
+
+        /* Loading Spinner */
+        .tracker-loading {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .tracker-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,102,0,0.1);
+            border-radius: 50%;
+            border-top-color: var(--secondary, #FF6600);
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .tracker-loading p {
+            margin-top: 20px;
+            color: #5f4b7a;
+        }
+
+        /* Switch Project Button */
+        .switch-project {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .switch-project .btn {
+            background: transparent;
+            border: 2px solid var(--primary, #6120bd);
+            color: var(--primary, #6120bd);
+            padding: 10px 24px;
+            border-radius: 60px;
+            font-weight: 600;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .switch-project .btn:hover {
+            background: var(--primary, #6120bd);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tracker-hero h1 {
+                font-size: 2.2rem;
+            }
+            .tracker-header h2 {
+                font-size: 1.5rem;
+                padding-right: 0;
+            }
+            .live-indicator {
+                position: static;
+                margin-top: 15px;
+                display: inline-flex;
+            }
+            .tracker-body {
+                padding: 20px;
+            }
+            .timeline-item {
+                padding: 15px;
+                gap: 15px;
+            }
+            .timeline-marker {
+                width: 30px;
+                height: 30px;
+                font-size: 1rem;
+            }
+            .progress-percentage {
+                font-size: 1.2rem;
+            }
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* service tag style */
+        .service-tag {
+            background: var(--secondary, #FF6600);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .tracker-hero .service-tag {
+            background: var(--secondary, #FF6600);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+
+    <!-- Hero Section with service-like header -->
+    <section class="tracker-hero">
+        <div class="container">
+            <span class="service-tag"><i class="fas fa-clipboard-check"></i> live project tracking</span>
+            <h1>Project Tracker</h1>
+            <p>Follow your home improvement project in real-time. Enter your email to view progress and upcoming milestones.</p>
+        </div>
+    </section>
+
+    <!-- Tracker Access Section -->
+    <section class="tracker-dashboard">
+        <div class="container">
+            <!-- Access Form -->
+            <div id="accessContainer" class="tracker-access">
+                <div class="access-card">
+                    <div class="access-header">
+                        <div class="access-icon">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                        <h2>Check Your Project Status</h2>
+                        <p>Enter your email address to access your project dashboard</p>
+                    </div>
+                    <div class="access-body">
+                        <form id="trackerAccessForm" class="email-only-form">
+                            <div class="form-group">
+                                <label for="email" style="color: var(--primary, #6120bd); font-weight: 600;">
+                                    <i class="fas fa-envelope" style="color: var(--secondary, #FF6600);"></i> Email Address
+                                </label>
+                                <input type="email" id="email" name="email" 
+                                       placeholder="your@email.com" 
+                                       value="john.smith@example.com"
+                                       required>
+                                <small style="color: #5f4b7a; display: block; margin-top: 8px;">
+                                    <i class="fas fa-info-circle" style="color: var(--secondary, #FF6600);"></i> 
+                                    Use the email address you provided when scheduling your project
+                                </small>
+                            </div>
+                            
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-arrow-right"></i> View My Project
+                            </button>
+                        </form>
+                        
+                        <!-- Demo hint (service style) -->
+                        <div class="demo-hint">
+                            <p><i class="fas fa-flask" style="color: var(--secondary, #FF6600);"></i> Demo Mode</p>
+                            <small>Try it now with: <strong style="color: var(--primary, #6120bd);">john.smith@example.com</strong></small>
+                            <small style="display: block; margin-top: 5px;">Live updates will simulate Salesforce streaming</small>
+                        </div>
+                        
+                        <div class="access-help">
+                            <p><i class="fas fa-question-circle" style="color: var(--secondary, #FF6600);"></i> Need help accessing your project?</p>
+                            <a href="contact.html" class="btn-primary" style="display: inline-block; width: auto; padding: 12px 32px; text-decoration: none;">Contact Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tracker Container (initially hidden) -->
+            <div id="trackerContainer" style="display: none;"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // Global variables for real-time updates (same logic, but colors updated via CSS)
+        let cometd = null;
+        let currentProjectId = 'RHS-2024-001';
+        let currentProjectData = null;
+        let streamingEnabled = false;
+        let updateCounter = 0;
+
+        // ============================================
+        // SALESFORCE STREAMING API INTEGRATION (unchanged logic)
+        // ============================================
+        
+        function initSalesforceStreaming(projectId, sessionToken, instanceUrl) {
+            if (cometd) {
+                cometd.disconnect();
+            }
+            cometd = new $.CometD();
+            cometd.configure({
+                url: instanceUrl + '/cometd/46.0/',
+                requestHeaders: {
+                    'Authorization': 'Bearer ' + sessionToken
+                },
+                appendMessageTypeToURL: false
+            });
+            cometd.addListener('/meta/handshake', function(message) {
+                if (message.successful) {
+                    console.log('Connected to Salesforce Streaming');
+                    streamingEnabled = true;
+                    cometd.subscribe('/topic/ProjectUpdates', function(message) {
+                        handleSalesforceUpdate(message.data.sobject);
+                    });
+                    cometd.subscribe('/event/Project_Update__e', function(message) {
+                        handleSalesforceUpdate(message.data.payload);
+                    });
+                    showLiveNotification('Connected', 'Live updates enabled', 'success');
+                } else {
+                    console.error('Handshake failed', message);
+                    streamingEnabled = false;
+                }
+            });
+            cometd.addListener('/meta/disconnect', function(message) {
+                console.log('Disconnected from Salesforce Streaming');
+                streamingEnabled = false;
+            });
+            cometd.handshake();
+        }
+        
+        function handleSalesforceUpdate(updateData) {
+            if (updateData.Id === currentProjectId || updateData.Project_ID__c === currentProjectId) {
+                console.log('Received live update:', updateData);
+                updateCounter++;
+                showLiveNotification(
+                    'Project Updated', 
+                    updateData.Message__c || 'New information available',
+                    'info'
+                );
+                if (updateData.Progress__c) {
+                    updateProgressBar(updateData.Progress__c);
+                }
+                if (updateData.Status__c) {
+                    updateStatusBadge(updateData.Status__c);
+                }
+                if (updateData.Next_Milestone__c) {
+                    updateMilestoneStatus(updateData.Next_Milestone__c);
+                }
+                if (updateCounter % 3 === 0) {
+                    refreshProjectData();
+                }
+            }
+        }
+        
+        function updateProgressBar(newProgress) {
+            const progressFill = document.querySelector('.progress-bar-fill');
+            const progressPercent = document.querySelector('.progress-percentage');
+            if (progressFill && progressPercent) {
+                progressFill.style.transition = 'width 0.8s ease';
+                progressFill.style.width = newProgress + '%';
+                progressPercent.textContent = newProgress + '% Complete';
+                const progressTitle = document.querySelector('.progress-title');
+                if (progressTitle) {
+                    const flash = document.createElement('span');
+                    flash.className = 'update-flash';
+                    flash.textContent = 'UPDATED';
+                    progressTitle.appendChild(flash);
+                    setTimeout(() => {
+                        if (flash.parentNode) {
+                            flash.remove();
+                        }
+                    }, 3000);
+                }
+            }
+        }
+        
+        function updateStatusBadge(newStatus) {
+            const badge = document.querySelector('.tracker-badge');
+            if (badge) {
+                const icon = badge.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas ' + (newStatus === 'In Progress' ? 'fa-spinner fa-pulse' : 'fa-check-circle');
+                }
+                badge.innerHTML = icon.outerHTML + ' ' + newStatus;
+                badge.style.transition = 'all 0.3s';
+                badge.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    badge.style.transform = 'scale(1)';
+                }, 300);
+            }
+        }
+        
+        function updateMilestoneStatus(milestoneTitle) {
+            const milestones = document.querySelectorAll('.timeline-item');
+            milestones.forEach(milestone => {
+                const title = milestone.querySelector('.timeline-title');
+                if (title && title.textContent.includes(milestoneTitle)) {
+                    milestone.classList.add('updated-milestone');
+                    if (!milestone.classList.contains('active')) {
+                        milestone.classList.remove('pending', 'completed');
+                        milestone.classList.add('active');
+                        const status = milestone.querySelector('.timeline-status');
+                        if (status) {
+                            status.className = 'timeline-status status-active';
+                            status.textContent = 'In Progress';
+                        }
+                        const marker = milestone.querySelector('.timeline-marker i');
+                        if (marker) {
+                            marker.className = 'fas fa-spinner fa-pulse';
+                        }
+                    }
+                    setTimeout(() => {
+                        milestone.classList.remove('updated-milestone');
+                    }, 1500);
+                }
+            });
+        }
+        
+        async function refreshProjectData() {
+            try {
+                showLiveNotification(
+                    'Refreshing Data',
+                    'Fetching latest project information',
+                    'info'
+                );
+                setTimeout(() => {
+                    showLiveNotification(
+                        'Data Updated',
+                        'Project information is current',
+                        'success'
+                    );
+                }, 1500);
+            } catch (error) {
+                console.error('Refresh failed:', error);
+            }
+        }
+        
+        function showLiveNotification(title, message, type = 'info') {
+            const existing = document.querySelector('.live-notification');
+            if (existing) {
+                existing.remove();
+            }
+            const icons = {
+                success: 'fa-check-circle',
+                info: 'fa-bolt',
+                warning: 'fa-exclamation-triangle'
+            };
+            const colors = {
+                success: '#28a745',
+                info: 'var(--secondary, #FF6600)',
+                warning: '#f39c12'
+            };
+            const notification = document.createElement('div');
+            notification.className = 'live-notification';
+            notification.innerHTML = `
+                <div class="live-notification-icon" style="color: ${colors[type]};">
+                    <i class="fas ${icons[type]}"></i>
+                </div>
+                <div class="live-notification-content">
+                    <div class="live-notification-title">${title}</div>
+                    <p class="live-notification-message">${message}</p>
+                </div>
+                <button class="live-notification-close" onclick="this.closest('.live-notification').remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+        
+        function startDemoLiveUpdates() {
+            let updateCount = 0;
+            setInterval(() => {
+                updateCount++;
+                if (updateCount === 1) {
+                    showLiveNotification(
+                        'Progress Update',
+                        'Installation team is making great progress!',
+                        'info'
+                    );
+                    updateProgressBar(75);
+                } else if (updateCount === 2) {
+                    showLiveNotification(
+                        'Milestone Reached',
+                        'Day 2 installation complete',
+                        'success'
+                    );
+                    document.querySelectorAll('.timeline-item').forEach((item, index) => {
+                        if (index === 4) {
+                            item.classList.remove('active');
+                            item.classList.add('completed');
+                            item.querySelector('.timeline-marker i').className = 'fas fa-check-circle';
+                            item.querySelector('.timeline-status').className = 'timeline-status status-completed';
+                            item.querySelector('.timeline-status').textContent = 'Completed';
+                        }
+                        if (index === 5) {
+                            item.classList.remove('pending');
+                            item.classList.add('active');
+                            item.querySelector('.timeline-marker i').className = 'fas fa-spinner fa-pulse';
+                            item.querySelector('.timeline-status').className = 'timeline-status status-active';
+                            item.querySelector('.timeline-status').textContent = 'In Progress';
+                            item.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    });
+                } else if (updateCount === 3) {
+                    showLiveNotification(
+                        'Schedule Update',
+                        'Tomorrow: Window installation continues at 8am',
+                        'info'
+                    );
+                    const nextSteps = document.querySelector('.detail-item p');
+                    if (nextSteps) {
+                        nextSteps.innerHTML = 'Installation continues tomorrow. We\'ll be installing the remaining 4 windows and starting the trim work. <strong>All materials on site, crew ready at 8am.</strong>';
+                        const nextStepsSection = nextSteps.closest('.detail-item');
+                        if (nextStepsSection) {
+                            nextStepsSection.classList.add('updated');
+                            setTimeout(() => {
+                                nextStepsSection.classList.remove('updated');
+                            }, 2000);
+                        }
+                    }
+                }
+                if (updateCount >= 3) {
+                    updateCount = 0;
+                }
+            }, 15000);
+        }
+
+        // ============================================
+        // PROJECT DATA FUNCTIONS (unchanged)
+        // ============================================
+        
+        window.fetchProjectData = async function(email) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        token: 'demo-token',
+                        sessionId: '00Ddemo000000001234',
+                        instanceUrl: 'https://your-instance.salesforce.com',
+                        exists: true,
+                        email: email
+                    });
+                }, 800);
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const accessForm = document.getElementById('trackerAccessForm');
+            if (accessForm) {
+                accessForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    const email = document.getElementById('email').value.trim();
+                    if (!email) {
+                        alert('Please enter your email address');
+                        return;
+                    }
+                    document.getElementById('accessContainer').innerHTML = `
+                        <div class="tracker-loading">
+                            <div class="tracker-spinner"></div>
+                            <p>Finding your project...</p>
+                        </div>
+                    `;
+                    try {
+                        const result = await window.fetchProjectData(email);
+                        const projectDetails = getMockProjectData(email);
+                        renderTracker(projectDetails);
+                        if (result.sessionId && result.instanceUrl) {
+                            initSalesforceStreaming(
+                                currentProjectId,
+                                result.sessionId,
+                                result.instanceUrl
+                            );
+                        } else {
+                            startDemoLiveUpdates();
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('Error finding your project. Please try again or contact support.');
+                        location.reload();
+                    }
+                });
+            }
+        });
+
+        function getMockProjectData(email) {
+            const namePart = email.split('@')[0];
+            const customerName = namePart.split('.').map(n => 
+                n.charAt(0).toUpperCase() + n.slice(1)
+            ).join(' ');
+            return {
+                id: currentProjectId,
+                customerName: customerName,
+                address: '1234 Maple Street, Spokane Valley, WA 99212',
+                projectType: 'Window Replacement',
+                products: 'Infinity by Marvin Windows (8 units)',
+                status: 'In Progress',
+                progress: 65,
+                startDate: '2024-02-15',
+                estimatedCompletion: '2024-03-10',
+                milestones: [
+                    { id: 1, title: 'Initial Consultation', description: 'Met with customer, measured windows, provided quote', date: '2024-02-10', status: 'completed' },
+                    { id: 2, title: 'Permits Approved', description: 'City of Spokane Valley permits received', date: '2024-02-14', status: 'completed' },
+                    { id: 3, title: 'Materials Ordered', description: 'Infinity windows ordered from manufacturer', date: '2024-02-15', status: 'completed' },
+                    { id: 4, title: 'Materials Received', description: 'All windows have arrived at our facility', date: '2024-02-28', status: 'completed' },
+                    { id: 5, title: 'Installation - Day 1', description: 'Removing old windows, preparing openings', date: '2024-03-04', status: 'active' },
+                    { id: 6, title: 'Installation - Day 2', description: 'Installing new windows, sealing, trim work', date: '2024-03-05', status: 'pending' },
+                    { id: 7, title: 'Final Inspection', description: 'Quality check and customer walkthrough', date: '2024-03-06', status: 'pending' }
+                ],
+                teamMembers: [
+                    { name: 'Mike Johnson', role: 'Lead Installer', phone: '(509) 892-6460' },
+                    { name: 'Dave Wilson', role: 'Installation Assistant', phone: '(509) 892-6460' }
+                ],
+                nextSteps: 'Installation continues tomorrow. We\'ll be installing the remaining 4 windows and starting the trim work.',
+                lastUpdated: '2024-03-04T16:30:00'
+            };
+        }
+
+        function renderTracker(project) {
+            currentProjectData = project;
+            const trackerContainer = document.getElementById('trackerContainer');
+            const accessContainer = document.getElementById('accessContainer');
+            
+            const milestonesHtml = project.milestones.map(milestone => {
+                const statusIcon = milestone.status === 'completed' ? 'fa-check-circle' : 
+                                  milestone.status === 'active' ? 'fa-spinner fa-pulse' : 'fa-clock';
+                return `
+                    <div class="timeline-item ${milestone.status}" data-milestone-id="${milestone.id}">
+                        <div class="timeline-marker ${milestone.status}">
+                            <i class="fas ${statusIcon}"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">
+                                <i class="far fa-calendar-alt"></i> 
+                                ${new Date(milestone.date).toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' })}
+                            </div>
+                            <h4 class="timeline-title">${milestone.title}</h4>
+                            <p class="timeline-desc">${milestone.description}</p>
+                            <span class="timeline-status status-${milestone.status}">
+                                ${milestone.status === 'active' ? 'In Progress' : milestone.status.charAt(0).toUpperCase() + milestone.status.slice(1)}
+                            </span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            const teamHtml = project.teamMembers.map(member => `
+                <div class="team-member">
+                    <h4>${member.name}</h4>
+                    <div class="role">${member.role}</div>
+                    <a href="tel:${member.phone}" class="phone">
+                        <i class="fas fa-phone" style="color: var(--secondary, #FF6600);"></i> 
+                        ${member.phone}
+                    </a>
+                </div>
+            `).join('');
+            
+            const trackerHtml = `
+                <div class="switch-project">
+                    <button class="btn" onclick="location.reload()">
+                        <i class="fas fa-sign-out-alt"></i> Switch Project
+                    </button>
+                </div>
+                <div class="tracker-card">
+                    <div class="tracker-header">
+                        <div class="live-indicator">
+                            <span class="live-dot"></span>
+                            LIVE UPDATES
+                        </div>
+                        <div>
+                            <h2>Welcome back, ${project.customerName}!</h2>
+                            <p><i class="fas fa-map-marker-alt"></i> ${project.address}</p>
+                        </div>
+                        <div class="tracker-badge">
+                            <i class="fas ${project.status === 'In Progress' ? 'fa-spinner fa-pulse' : 'fa-check-circle'}"></i>
+                            ${project.status}
+                        </div>
+                    </div>
+                    
+                    <div class="tracker-body">
+                        <!-- Progress Bar -->
+                        <div class="progress-container">
+                            <div class="progress-header">
+                                <span class="progress-title">
+                                    <i class="fas fa-chart-line" style="color: var(--secondary, #FF6600);"></i> 
+                                    Project Progress
+                                </span>
+                                <span class="progress-percentage">${project.progress}% Complete</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill" style="width: ${project.progress}%"></div>
+                            </div>
+                            <p style="color: #5f4b7a; font-size: 0.8rem; margin-top: 5px; text-align: right;">
+                                <i class="fas fa-bolt" style="color: var(--secondary, #FF6600);"></i> Updates appear in real-time
+                            </p>
+                        </div>
+                        
+                        <!-- Quick Details Grid -->
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <div class="detail-label"><i class="far fa-calendar-alt" style="color: var(--secondary, #FF6600);"></i> Started</div>
+                                <div class="detail-value">${new Date(project.startDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label"><i class="far fa-calendar-check" style="color: var(--secondary, #FF6600);"></i> Est. Completion</div>
+                                <div class="detail-value">${new Date(project.estimatedCompletion).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label"><i class="fas fa-tools" style="color: var(--secondary, #FF6600);"></i> Project Type</div>
+                                <div class="detail-value">${project.projectType}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label"><i class="fas fa-box" style="color: var(--secondary, #FF6600);"></i> Products</div>
+                                <div class="detail-value">${project.products}</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Timeline -->
+                        <h3 style="color: var(--primary, #6120bd); margin: 40px 0 20px;">
+                            <i class="fas fa-clock" style="color: var(--secondary, #FF6600);"></i> Project Timeline
+                        </h3>
+                        <div class="timeline">${milestonesHtml}</div>
+                        
+                        <!-- Team -->
+                        <h3 style="color: var(--primary, #6120bd); margin: 40px 0 20px;">
+                            <i class="fas fa-users" style="color: var(--secondary, #FF6600);"></i> Your Installation Team
+                        </h3>
+                        <div class="team-grid">${teamHtml}</div>
+                        
+                        <!-- Next Steps -->
+                        <h3 style="color: var(--primary, #6120bd); margin: 40px 0 20px;">
+                            <i class="fas fa-clipboard-list" style="color: var(--secondary, #FF6600);"></i> Next Steps
+                        </h3>
+                        <div class="detail-item" style="background: #faf8ff;">
+                            <p style="margin: 0; color: #5f4b7a; line-height: 1.6;">${project.nextSteps}</p>
+                            <p style="margin-top: 15px; font-size: 0.9rem; color: #5f4b7a;">
+                                <i class="far fa-clock" style="color: var(--secondary, #FF6600);"></i> 
+                                Last updated: ${new Date(project.lastUpdated).toLocaleString()}
+                            </p>
+                        </div>
+                        
+                        <!-- Contact Button -->
+                        <div style="margin-top: 30px; text-align: center;">
+                            <a href="tel:15098926460" class="btn-primary" style="display: inline-block; width: auto; padding: 12px 32px; text-decoration: none;">
+                                <i class="fas fa-phone"></i> Call Us: (509) 892-6460
+                            </a>
+                            <p style="margin-top: 15px; color: #5f4b7a;">Questions? Give us a call during business hours.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            trackerContainer.innerHTML = trackerHtml;
+            trackerContainer.style.display = 'block';
+            accessContainer.style.display = 'none';
+            trackerContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Load header and footer (same as original)
+        Promise.all([
+            fetch("header.html").then(response => response.text()),
+            fetch("footer.html").then(response => response.text())
+        ]).then(([headerData, footerData]) => {
+            document.getElementById("header-placeholder").innerHTML = headerData;
+            document.getElementById("footer-placeholder").innerHTML = footerData;
+            const yearElement = document.getElementById('currentYear');
+            if (yearElement) {
+                yearElement.textContent = new Date().getFullYear();
+            }
+            let currentPage = window.location.pathname.split("/").pop();
+            const navLinks = document.querySelectorAll(".nav-menu a");
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute("href");
+                if (linkHref === currentPage) {
+                    link.classList.add("active");
+                    const dropdown = link.closest(".dropdown");
+                    if (dropdown) {
+                        const toggle = dropdown.querySelector(".dropdown-toggle");
+                        if (toggle) {
+                            toggle.classList.add("active");
+                        }
+                    }
+                }
+            });
+            const header = document.querySelector('.header');
+            if (header) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 50) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
